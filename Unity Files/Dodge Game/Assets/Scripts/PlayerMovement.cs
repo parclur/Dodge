@@ -14,10 +14,14 @@ public class PlayerMovement : MonoBehaviour {
 
     Rigidbody2D rig;
 
+    string playerHor;
+    string playerJump;
+
 	// Use this for initialization
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
         onGround = false;
+        CheckPlayer();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +30,27 @@ public class PlayerMovement : MonoBehaviour {
         // CheckMoveInput();
         CheckMoveInputForce();
 	}
+
+    void CheckPlayer()
+    {
+        if (gameObject.tag == "Player1")
+        {
+            playerHor = "Horizontal";
+            playerJump = "Jump";
+        }
+        else if (gameObject.tag == "Player2")
+        {
+
+        }
+        else if (gameObject.tag == "Player3")
+        {
+
+        }
+        else if (gameObject.tag == "Player4")
+        {
+
+        }
+    }
 
     void CheckMove()
     {
@@ -52,18 +77,18 @@ public class PlayerMovement : MonoBehaviour {
         float xMove;
         float yMove;
 
-        if(Input.GetAxis("Jump") > 0 && onGround)
+        if(Input.GetAxis(playerJump) > 0 && onGround)
         {
-            yMove = Input.GetAxis("Jump") * jumpPower;
+            yMove = Input.GetAxis(playerJump) * jumpPower;
         }
         else
         {
             yMove = 0;
         }
 
-        if(Input.GetAxis("Horizontal") != 0)
+        if(Input.GetAxis(playerHor) != 0)
         {
-            xMove = Input.GetAxis("Horizontal");
+            xMove = Input.GetAxis(playerHor);
         }
         else
         {
@@ -78,13 +103,13 @@ public class PlayerMovement : MonoBehaviour {
 
     void CheckMoveInputForce()
     {
-        if(Input.GetAxis("Horizontal") > 0)
+        if(Input.GetAxis(playerHor) > 0)
         {
             Debug.Log("Moving right");
             rig.AddForce(transform.right * forceSpeed);
             // rig.velocity = new Vector2(playerSpeed, rig.velocity.y);
         }
-        else if (Input.GetAxis("Horizontal") < 0)
+        else if (Input.GetAxis(playerHor) < 0)
         {
             Debug.Log("Moving Left");
             rig.AddForce(transform.right * -forceSpeed);
@@ -95,7 +120,7 @@ public class PlayerMovement : MonoBehaviour {
             rig.velocity = new Vector2(rig.velocity.x * 0.8f, rig.velocity.y);
         }
 
-        if (Input.GetAxis("Jump") != 0 && onGround)
+        if (Input.GetAxis(playerJump) != 0 && onGround)
         {
             Debug.Log("Jumping Low");
             rig.velocity = new Vector2(rig.velocity.x, 0.5f);
@@ -104,7 +129,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (!onGround)
         {
-            rig.AddForce(transform.up * (-forceJump/2));
+            //rig.AddForce(transform.up * (-forceJump/2));
             //rig.velocity = new Vector2(rig.velocity.x, -forceFall);
         }
     }
