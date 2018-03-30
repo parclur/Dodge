@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetAxis(playerJump) != 0 && onGround)
         {
-            Debug.Log("Jumping Low");
+            Debug.Log("Jumping");
             rig.velocity = new Vector2(rig.velocity.x, 0.5f);
             rig.AddForce(transform.up * forceJump);
         }
