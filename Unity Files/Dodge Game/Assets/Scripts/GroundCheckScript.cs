@@ -18,7 +18,7 @@ public class GroundCheckScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "Floor" || col.gameObject.tag == "Platform")
         {
-            gameObject.GetComponentInParent<PlayerMovement>().Grounded();
+            //gameObject.GetComponentInParent<PlayerMovement>().Grounded();
 
         }
     }
@@ -27,7 +27,7 @@ public class GroundCheckScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "Floor" || col.gameObject.tag == "Platform")
         {
-            gameObject.GetComponentInParent<PlayerMovement>().NotGrounded();
+            //gameObject.GetComponentInParent<PlayerMovement>().NotGrounded();
 
         }
 

@@ -4,39 +4,56 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    float playerSpeed = 15f;
-    float jumpPower = 3f;
-    float forceSpeed = 10f;
-    float forceJump = 150f;
-    float forceFall = 25f;
+    float playerSpeed = 10f;
+    float jumpForce = 800f;
+	float throwSpeed = 100f;
 
     public bool onGround;
+	public LayerMask ground;
+	float groundTimer = 0f;
 
     Rigidbody2D rig;
 
     string playerHor;
     string playerJump;
+	string playerPickup;
+	string playerAimHor;
+	string playerAimVer;
+	string playerThrow;
+
+	public CircleCollider2D pickupRad;
+
+	int numBalls = 0;
+	int maxBalls = 3;
+
+	public GameObject ballPrefab;
+
 
 	// Use this for initialization
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
         onGround = false;
-        CheckPlayer();
+        InitPlayer();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        // CheckMove();
-        // CheckMoveInput();
-        CheckMoveInputForce();
+		CheckGrounded ();
+		CheckPickup ();
+        CheckMove ();
+		CheckThrow ();
 	}
 
-    void CheckPlayer()
+    void InitPlayer() //TODO add multiplayer options
     {
         if (gameObject.tag == "Player1")
         {
             playerHor = "Horizontal";
             playerJump = "Jump";
+			playerPickup = "Pickup";
+			playerAimHor = "RightJoystickHorizontal";
+			playerAimVer = "RightJoystickVertical";
+			playerThrow = "RightTrigger";
         }
         else if (gameObject.tag == "Player2")
         {
@@ -52,85 +69,80 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+
+
     void CheckMove()
     {
-        float xMove = Input.GetAxis("Horizontal");
-        float yMove = Input.GetAxis("Jump") * jumpPower;
+        float xMove = Input.GetAxis(playerHor);
+        float yMove = Input.GetAxis(playerJump);
 
-        Vector3 newMove = new Vector3(xMove, yMove, 0) * playerSpeed * Time.deltaTime;
+		rig.velocity = new Vector2(xMove * playerSpeed, rig.velocity.y);
 
-        rig.MovePosition(transform.position + newMove);
+		if (yMove != 0 && onGround)
+		{
+			onGround = false;
+			groundTimer = 0.1f;
+
+			rig.AddForce (Vector2.up * jumpForce);
+		}
     }
 
-    public void Grounded()
-    {
-        onGround = true;
-    }
 
-    public void NotGrounded()
-    {
-        onGround = false;
-    }
+	void CheckGrounded()
+	{
+		if (groundTimer == 0f)
+		{
+			RaycastHit2D rcLeft, rcRight;
 
-    void CheckMoveInput()
-    {
-        float xMove;
-        float yMove;
+			rcLeft = Physics2D.Raycast (new Vector2 (transform.position.x - 0.5f, transform.position.y - 0.5f), Vector2.down, 0.1f, ground);
+			rcRight = Physics2D.Raycast (new Vector2 (transform.position.x + 0.5f, transform.position.y - 0.5f), Vector2.down, 0.1f, ground);
 
-        if(Input.GetAxis(playerJump) > 0 && onGround)
-        {
-            yMove = Input.GetAxis(playerJump) * jumpPower;
-        }
-        else
-        {
-            yMove = 0;
-        }
-
-        if(Input.GetAxis(playerHor) != 0)
-        {
-            xMove = Input.GetAxis(playerHor);
-        }
-        else
-        {
-            xMove = 0;
-        }
+			if (rcLeft.transform != null || rcRight.transform != null)
+			{
+				onGround = true;
+			} else
+			{
+				onGround = false;
+			}
+		}
+		else
+		{
+			groundTimer -= Time.deltaTime;
+			if (groundTimer <= 0f)
+			{
+				groundTimer = 0f;
+			}
+		}
+	}
 
 
-        Vector3 newMove = new Vector3(xMove, yMove, 0) * playerSpeed * Time.deltaTime;
+	void CheckPickup()
+	{
+		if (Input.GetAxis (playerPickup) != 0)
+		{
+			Collider2D[] hits = Physics2D.OverlapCircleAll (pickupRad.bounds.center, pickupRad.radius, LayerMask.GetMask ("Ball"));
 
-        rig.MovePosition(transform.position + newMove);
-    }
+			for (int i = 0; i < hits.GetLength (0) && numBalls < maxBalls; i++)
+			{
+				numBalls++;
+				Destroy (hits [i].gameObject);
+			}
+		}
+	}
 
-    void CheckMoveInputForce()
-    {
-        if(Input.GetAxis(playerHor) > 0)
-        {
-            Debug.Log("Moving right");
-            rig.AddForce(transform.right * forceSpeed);
-            // rig.velocity = new Vector2(playerSpeed, rig.velocity.y);
-        }
-        else if (Input.GetAxis(playerHor) < 0)
-        {
-            Debug.Log("Moving Left");
-            rig.AddForce(transform.right * -forceSpeed);
-            // rig.velocity = new Vector2(-playerSpeed, rig.velocity.y);
-        }
-        else
-        {
-            rig.velocity = new Vector2(rig.velocity.x * 0.8f, rig.velocity.y);
-        }
+	void CheckThrow()
+	{
+		Debug.Log (Input.GetAxis (playerThrow));
+		if (Input.GetAxis(playerThrow) != 0 && numBalls > 1)
+		{
+			float xMag = Input.GetAxis (playerAimHor);
+			float yMag = Input.GetAxis (playerAimVer);
 
-        if (Input.GetAxis(playerJump) != 0 && onGround)
-        {
-            Debug.Log("Jumping");
-            rig.velocity = new Vector2(rig.velocity.x, 0.5f);
-            rig.AddForce(transform.up * forceJump);
-        }
 
-        if (!onGround)
-        {
-            //rig.AddForce(transform.up * (-forceJump/2));
-            //rig.velocity = new Vector2(rig.velocity.x, -forceFall);
-        }
-    }
+			GameObject ball = Instantiate (ballPrefab) as GameObject;
+			ball.transform.position = gameObject.transform.position;
+			ball.GetComponent<Rigidbody2D> ().velocity = new Vector2 (throwSpeed * xMag, throwSpeed * yMag);
+			numBalls--;
+		}
+	}
 }
