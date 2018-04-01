@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour {
     float jumpForce = 800f;
 	float throwSpeed = 100f;
 
+    bool ableToThrow = true;
+
     public bool onGround;
 	public LayerMask ground;
 	float groundTimer = 0f;
@@ -83,7 +85,7 @@ public class PlayerMovement : MonoBehaviour {
 			onGround = false;
 			groundTimer = 0.1f;
 
-			rig.AddForce (Vector2.up * jumpForce);
+			rig.AddForce (Vector2.up * 1.25f * jumpForce);
 		}
     }
 
@@ -132,17 +134,40 @@ public class PlayerMovement : MonoBehaviour {
 
 	void CheckThrow()
 	{
+        Debug.Log(numBalls + " of balls");
+       
 		Debug.Log (Input.GetAxis (playerThrow));
-		if (Input.GetAxis(playerThrow) != 0 && numBalls > 1)
+
+		if (Input.GetAxis(playerThrow) != 0 && numBalls > 0 && ableToThrow)
 		{
+            Debug.Log("Thowing");
 			float xMag = Input.GetAxis (playerAimHor);
 			float yMag = Input.GetAxis (playerAimVer);
 
 
 			GameObject ball = Instantiate (ballPrefab) as GameObject;
-			ball.transform.position = gameObject.transform.position;
-			ball.GetComponent<Rigidbody2D> ().velocity = new Vector2 (throwSpeed * xMag, throwSpeed * yMag);
+
+            if(xMag < 0)
+            {
+                ball.transform.position = new Vector2(gameObject.transform.position.x - 1.0f, gameObject.transform.position.y);
+            }
+            else
+            {
+                ball.transform.position = gameObject.transform.position;
+
+            }
+
+            ball.GetComponent<Rigidbody2D> ().velocity = new Vector2 (throwSpeed * xMag * 0.5f, throwSpeed * yMag *0.5f);
 			numBalls--;
+            ableToThrow = false;
+            StartCoroutine(AbleToShootAgain());
 		}
 	}
+
+    IEnumerator AbleToShootAgain()
+    {
+
+        yield return new WaitForSeconds(1.0f);
+        ableToThrow = true;
+    }
 }
