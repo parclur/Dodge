@@ -50,24 +50,41 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (gameObject.tag == "Player1")
         {
-            playerHor = "Horizontal";
-            playerJump = "Jump";
-			playerPickup = "Pickup";
-			playerAimHor = "RightJoystickHorizontal";
-			playerAimVer = "RightJoystickVertical";
-			playerThrow = "RightTrigger";
+            playerHor = "P1LSH";
+            playerJump = "P1A";
+            playerPickup = "P1X";
+            playerAimHor = "P1RSH";
+            playerAimVer = "P1RSV";
+            playerThrow = "P1RT";
         }
         else if (gameObject.tag == "Player2")
         {
-
+            playerHor = "P2LSH";
+            playerJump = "P2A";
+            playerPickup = "P2X";
+            playerAimHor = "P2RSH";
+            playerAimVer = "P2RSV";
+            playerThrow = "P2RT";
         }
         else if (gameObject.tag == "Player3")
         {
 
+            playerHor = "P3LSH";
+            playerJump = "P3A";
+            playerPickup = "P3X";
+            playerAimHor = "P3RSH";
+            playerAimVer = "P3RSV";
+            playerThrow = "P3RT";
         }
         else if (gameObject.tag == "Player4")
         {
 
+            playerHor = "P4LSH";
+            playerJump = "P4A";
+            playerPickup = "P4X";
+            playerAimHor = "P4RSH";
+            playerAimVer = "P4RSV";
+            playerThrow = "P4RT";
         }
     }
 
