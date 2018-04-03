@@ -53,8 +53,8 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P1LSH";
             playerJump = "P1A";
             playerPickup = "P1X";
-            playerAimHor = "P1RSH";
-            playerAimVer = "P1RSV";
+            playerAimHor = "P1LSH";
+            playerAimVer = "P1LSV";
             playerThrow = "P1RT";
         }
         else if (gameObject.tag == "Player2")
@@ -62,8 +62,8 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P2LSH";
             playerJump = "P2A";
             playerPickup = "P2X";
-            playerAimHor = "P2RSH";
-            playerAimVer = "P2RSV";
+            playerAimHor = "P2LSH";
+            playerAimVer = "P2LSV";
             playerThrow = "P2RT";
         }
         else if (gameObject.tag == "Player3")
@@ -72,8 +72,8 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P3LSH";
             playerJump = "P3A";
             playerPickup = "P3X";
-            playerAimHor = "P3RSH";
-            playerAimVer = "P3RSV";
+            playerAimHor = "P3LSH";
+            playerAimVer = "P3LSV";
             playerThrow = "P3RT";
         }
         else if (gameObject.tag == "Player4")
@@ -82,8 +82,8 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P4LSH";
             playerJump = "P4A";
             playerPickup = "P4X";
-            playerAimHor = "P4RSH";
-            playerAimVer = "P4RSV";
+            playerAimHor = "P4LSH";
+            playerAimVer = "P4LSV";
             playerThrow = "P4RT";
         }
     }
@@ -164,16 +164,50 @@ public class PlayerMovement : MonoBehaviour {
 
 			GameObject ball = Instantiate (ballPrefab) as GameObject;
 
-            if(xMag < 0)
+            float spawnX = gameObject.transform.position.x;
+            float spawnY = gameObject.transform.position.y;
+
+            if (xMag > 0)
+            {
+                spawnX = gameObject.transform.position.x + 1.0f;
+            }
+            else if(xMag < 0)
+            {
+                spawnX = gameObject.transform.position.x - 1.0f;
+
+            }
+
+            if (yMag > 0)
+            {
+                spawnY = gameObject.transform.position.y + 1.0f;
+            }
+            else if (yMag < 0)
+            {
+                spawnY = gameObject.transform.position.y - 1.0f;
+
+            }
+
+            ball.transform.position = new Vector2(spawnX, spawnY);
+
+            /*
+            if (xMag < 0)
             {
                 ball.transform.position = new Vector2(gameObject.transform.position.x - 1.0f, gameObject.transform.position.y);
             }
-            else
+            else if (xMag > 0)
             {
-                ball.transform.position = gameObject.transform.position;
+                ball.transform.position = new Vector2(gameObject.transform.position.x + 1.0f, gameObject.transform.position.y);
 
             }
-
+            else if (xMag == 0 && yMag > 0)
+            {
+                ball.transform.position = new Vector2(gameObject.transform.position.x , gameObject.transform.position.y + 1.0f);
+            }
+            else if (xMag == 0 && yMag < 0)
+            {
+                ball.transform.position = new Vector2(gameObject.transform.position.x , gameObject.transform.position.y - 1.0f);
+            }
+            */
             ball.GetComponent<Rigidbody2D> ().velocity = new Vector2 (throwSpeed * xMag * 0.5f, throwSpeed * yMag *0.5f);
 			numBalls--;
             ableToThrow = false;
