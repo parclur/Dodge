@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     Rigidbody2D rig;
 
     string playerHor;
+    string playerVer;
     string playerJump;
 	string playerPickup;
 	string playerAimHor;
@@ -51,39 +52,43 @@ public class PlayerMovement : MonoBehaviour {
         if (gameObject.tag == "Player1")
         {
             playerHor = "P1LSH";
+            playerAimVer = "P1LSV";
             playerJump = "P1A";
             playerPickup = "P1X";
-            playerAimHor = "P1LSH";
-            playerAimVer = "P1LSV";
+            playerAimHor = "P1RSH";
+            playerAimVer = "P1RSV";
             playerThrow = "P1RT";
         }
         else if (gameObject.tag == "Player2")
         {
             playerHor = "P2LSH";
+            playerAimVer = "P2LSV";
             playerJump = "P2A";
             playerPickup = "P2X";
-            playerAimHor = "P2LSH";
-            playerAimVer = "P2LSV";
+            playerAimHor = "P2RSH";
+            playerAimVer = "P2RSV";
             playerThrow = "P2RT";
         }
         else if (gameObject.tag == "Player3")
         {
 
             playerHor = "P3LSH";
+            playerAimVer = "P3LSV";
             playerJump = "P3A";
             playerPickup = "P3X";
-            playerAimHor = "P3LSH";
-            playerAimVer = "P3LSV";
+            playerAimHor = "P3RSH";
+            playerAimVer = "P3RSV";
             playerThrow = "P3RT";
         }
         else if (gameObject.tag == "Player4")
         {
 
             playerHor = "P4LSH";
+            playerAimVer = "P4LSV";
             playerJump = "P4A";
             playerPickup = "P4X";
-            playerAimHor = "P4LSH";
-            playerAimVer = "P4LSV";
+            playerAimHor = "P4RSH";
+            playerAimVer = "P4RSV";
             playerThrow = "P4RT";
         }
     }
@@ -160,6 +165,8 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log("Thowing");
 			float xMag = Input.GetAxis (playerAimHor);
 			float yMag = Input.GetAxis (playerAimVer);
+            float xMag2 = Input.GetAxis(playerHor);
+            float yMag2 = Input.GetAxis(playerAimVer);
 
 
 			GameObject ball = Instantiate (ballPrefab) as GameObject;
@@ -167,21 +174,23 @@ public class PlayerMovement : MonoBehaviour {
             float spawnX = gameObject.transform.position.x;
             float spawnY = gameObject.transform.position.y;
 
-            if (xMag > 0)
+            // might have to create a new set for mag2 then mag1 for overriding
+            // test to see how things work with this tho
+            if (xMag > 0 || xMag2 > 0)
             {
                 spawnX = gameObject.transform.position.x + 1.0f;
             }
-            else if(xMag < 0)
+            else if(xMag < 0 || xMag2 < 0)
             {
                 spawnX = gameObject.transform.position.x - 1.0f;
 
             }
 
-            if (yMag > 0)
+            if (yMag > 0 || yMag2 > 0)
             {
                 spawnY = gameObject.transform.position.y + 1.0f;
             }
-            else if (yMag < 0)
+            else if (yMag < 0 || yMag2 < 0)
             {
                 spawnY = gameObject.transform.position.y - 1.0f;
 
@@ -218,7 +227,7 @@ public class PlayerMovement : MonoBehaviour {
     IEnumerator AbleToShootAgain()
     {
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.2f);
         ableToThrow = true;
     }
 }
