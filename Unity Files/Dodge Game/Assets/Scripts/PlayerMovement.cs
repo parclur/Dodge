@@ -176,21 +176,40 @@ public class PlayerMovement : MonoBehaviour {
 
             // might have to create a new set for mag2 then mag1 for overriding
             // test to see how things work with this tho
-            if (xMag > 0 || xMag2 > 0)
+            if (xMag2 > 0)
             {
                 spawnX = gameObject.transform.position.x + 1.0f;
             }
-            else if(xMag < 0 || xMag2 < 0)
+            else if (xMag2 < 0)
+            {
+                spawnX = gameObject.transform.position.x - 1.0f;
+            }
+
+            if (yMag2 > 0)
+            {
+                spawnY = gameObject.transform.position.y + 1.0f;
+            }
+            else if (yMag2 < 0)
+            {
+                spawnY = gameObject.transform.position.y - 1.0f;
+            }
+
+
+            if (xMag > 0)
+            {
+                spawnX = gameObject.transform.position.x + 1.0f;
+            }
+            else if(xMag < 0)
             {
                 spawnX = gameObject.transform.position.x - 1.0f;
 
             }
 
-            if (yMag > 0 || yMag2 > 0)
+            if (yMag > 0)
             {
                 spawnY = gameObject.transform.position.y + 1.0f;
             }
-            else if (yMag < 0 || yMag2 < 0)
+            else if (yMag < 0)
             {
                 spawnY = gameObject.transform.position.y - 1.0f;
 
