@@ -225,8 +225,13 @@ public class PlayerMovement : MonoBehaviour {
 
 			ball.GetComponent<BallScript>().possession = team;
 			ball.GetComponent<BallScript>().UpdateColor();
-            ball.GetComponent<Rigidbody2D> ().velocity = new Vector2 (throwSpeed * xMag * 0.5f, throwSpeed * yMag *0.5f);
-			numBalls--;
+
+            if (xMag != 0 || yMag != 0)
+                ball.GetComponent<Rigidbody2D>().velocity = new Vector2(throwSpeed * xMag * 0.5f, throwSpeed * yMag * 0.5f);
+            else
+                ball.GetComponent<Rigidbody2D>().velocity = new Vector2(throwSpeed * xMag2 * 0.5f, throwSpeed * yMag2 * 0.5f);
+
+            numBalls--;
             ableToThrow = false;
             StartCoroutine(AbleToShootAgain());
 		}
@@ -243,7 +248,7 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
 		{
-			iFrameTimer = 1.5f;
+			iFrameTimer = 0.5f;
 		}
 	}
 
@@ -256,7 +261,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		else{
 			iFrameTimer -= Time.deltaTime;
-			if ((int)(iFrameTimer * 4) % 2 == 0)
+			if ((int)(iFrameTimer * 6) % 2 == 0)
 			{
 				GetComponent<SpriteRenderer>().color = Color.white;
 			}
