@@ -33,10 +33,14 @@ public class PlayerMovement : MonoBehaviour {
 
 	public int team;
 
+	float iFrameTimer = 0f;
+	Color color;
+
 	// Use this for initialization
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
         onGround = false;
+		color = GetComponent<SpriteRenderer>().color;
         InitPlayer();
 	}
 	
@@ -46,6 +50,7 @@ public class PlayerMovement : MonoBehaviour {
 		CheckPickup ();
         CheckMove ();
 		CheckThrow ();
+		UpdateIframes();
 	}
 
     void InitPlayer() //TODO add multiplayer options
@@ -119,8 +124,8 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			RaycastHit2D rcLeft, rcRight;
 
-			rcLeft = Physics2D.Raycast (new Vector2 (transform.position.x - 0.5f, transform.position.y - 0.5f), Vector2.down, 0.1f, ground);
-			rcRight = Physics2D.Raycast (new Vector2 (transform.position.x + 0.5f, transform.position.y - 0.5f), Vector2.down, 0.1f, ground);
+			rcLeft = Physics2D.Raycast (new Vector2 (transform.position.x - 0.5f, transform.position.y - 0.55f), Vector2.down, 0.05f, ground);
+			rcRight = Physics2D.Raycast (new Vector2 (transform.position.x + 0.5f, transform.position.y - 0.55f), Vector2.down, 0.05f, ground);
 
 			if (rcLeft.transform != null || rcRight.transform != null)
 			{
@@ -218,25 +223,8 @@ public class PlayerMovement : MonoBehaviour {
 
             ball.transform.position = new Vector2(spawnX, spawnY);
 
-            /*
-            if (xMag < 0)
-            {
-                ball.transform.position = new Vector2(gameObject.transform.position.x - 1.0f, gameObject.transform.position.y);
-            }
-            else if (xMag > 0)
-            {
-                ball.transform.position = new Vector2(gameObject.transform.position.x + 1.0f, gameObject.transform.position.y);
-
-            }
-            else if (xMag == 0 && yMag > 0)
-            {
-                ball.transform.position = new Vector2(gameObject.transform.position.x , gameObject.transform.position.y + 1.0f);
-            }
-            else if (xMag == 0 && yMag < 0)
-            {
-                ball.transform.position = new Vector2(gameObject.transform.position.x , gameObject.transform.position.y - 1.0f);
-            }
-            */
+			ball.GetComponent<BallScript>().possession = team;
+			ball.GetComponent<BallScript>().UpdateColor();
             ball.GetComponent<Rigidbody2D> ().velocity = new Vector2 (throwSpeed * xMag * 0.5f, throwSpeed * yMag *0.5f);
 			numBalls--;
             ableToThrow = false;
@@ -253,6 +241,29 @@ public class PlayerMovement : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col)
 	{
-		//TODO
+		if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
+		{
+			iFrameTimer = 1.5f;
+		}
+	}
+
+	void UpdateIframes()
+	{
+		if (iFrameTimer <= 0f)
+		{
+			iFrameTimer = 0f;
+			GetComponent<SpriteRenderer>().color = color;
+		}
+		else{
+			iFrameTimer -= Time.deltaTime;
+			if ((int)(iFrameTimer * 4) % 2 == 0)
+			{
+				GetComponent<SpriteRenderer>().color = Color.white;
+			}
+			else{
+				GetComponent<SpriteRenderer>().color = color;
+			}
+		}
+
 	}
 }

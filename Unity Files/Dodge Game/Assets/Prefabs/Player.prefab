@@ -150,6 +150,7 @@ MonoBehaviour:
     m_Bits: 256
   pickupRad: {fileID: 58534694573563408}
   ballPrefab: {fileID: 1133825204610308, guid: 1690ca27877616f47a5e697c87e4dcd1, type: 2}
+  team: 0
 --- !u!212 &212292273750782474
 SpriteRenderer:
   m_ObjectHideFlags: 1

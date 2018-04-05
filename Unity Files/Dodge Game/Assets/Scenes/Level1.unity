@@ -393,6 +393,11 @@ Prefab:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114929803305666498, guid: 2b196f94a5d8c294ba15169b17c891d4,
+        type: 2}
+      propertyPath: team
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b196f94a5d8c294ba15169b17c891d4, type: 2}
   m_IsPrefabParent: 0
@@ -980,6 +985,15 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114929803305666498, guid: 2b196f94a5d8c294ba15169b17c891d4,
+        type: 2}
+      propertyPath: team
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716472380115652, guid: 2b196f94a5d8c294ba15169b17c891d4, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b196f94a5d8c294ba15169b17c891d4, type: 2}
   m_IsPrefabParent: 0
@@ -1293,6 +1307,11 @@ Prefab:
       propertyPath: m_TagString
       value: Player4
       objectReference: {fileID: 0}
+    - target: {fileID: 114929803305666498, guid: 2b196f94a5d8c294ba15169b17c891d4,
+        type: 2}
+      propertyPath: team
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b196f94a5d8c294ba15169b17c891d4, type: 2}
   m_IsPrefabParent: 0
@@ -1590,6 +1609,11 @@ Prefab:
     - target: {fileID: 212292273750782474, guid: 2b196f94a5d8c294ba15169b17c891d4,
         type: 2}
       propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929803305666498, guid: 2b196f94a5d8c294ba15169b17c891d4,
+        type: 2}
+      propertyPath: team
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -8,7 +8,7 @@ public class BallScript : MonoBehaviour {
 
 	Rigidbody2D rb;
 
-	float velocityThreshold = 10f;
+	float speedThreshold = 1f;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +22,8 @@ public class BallScript : MonoBehaviour {
 
 	void CheckForDeadBall()
 	{
-		if (rb.angularVelocity < velocityThreshold)
+		float speed = Mathf.Sqrt(rb.velocity.x * rb.velocity.x + rb.velocity.y * rb.velocity.y);
+		if (speed < speedThreshold)
 		{
 			possession = 0;
 			UpdateColor ();
