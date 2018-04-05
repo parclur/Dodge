@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public GameObject ballPrefab;
 
+	public int team;
 
 	// Use this for initialization
 	void Start () {
@@ -249,4 +250,9 @@ public class PlayerMovement : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
         ableToThrow = true;
     }
+
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		//TODO
+	}
 }
