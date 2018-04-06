@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour {
     float jumpForce = 800f;
 	float throwSpeed = 100f;
 
-    bool ableToThrow = true;
+    public bool ableToThrow = false;
+    public bool ableToPickUp = true;
 
     public bool onGround;
 	public LayerMask ground;
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour {
 	public CircleCollider2D pickupRad;
 
 	int numBalls = 0;
-	int maxBalls = 3;
+	int maxBalls = 1;
 
 	public GameObject ballPrefab;
 
@@ -60,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P1LSH";
             playerVer = "P1LSV";
             playerJump = "P1A";
-            playerPickup = "P1X";
+            playerPickup = "P1RT";
             playerAimHor = "P1RSH";
             playerAimVer = "P1RSV";
             playerThrow = "P1RT";
@@ -70,7 +71,7 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P2LSH";
             playerVer = "P2LSV";
             playerJump = "P2A";
-            playerPickup = "P2X";
+            playerPickup = "P2RT";
             playerAimHor = "P2RSH";
             playerAimVer = "P2RSV";
             playerThrow = "P2RT";
@@ -81,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P3LSH";
             playerVer = "P3LSV";
             playerJump = "P3A";
-            playerPickup = "P3X";
+            playerPickup = "P3RT";
             playerAimHor = "P3RSH";
             playerAimVer = "P3RSV";
             playerThrow = "P3RT";
@@ -92,7 +93,7 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P4LSH";
             playerVer = "P4LSV";
             playerJump = "P4A";
-            playerPickup = "P4X";
+            playerPickup = "P4RT";
             playerAimHor = "P4RSH";
             playerAimVer = "P4RSV";
             playerThrow = "P4RT";
@@ -148,8 +149,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	void CheckPickup()
 	{
-		if (Input.GetAxis (playerPickup) != 0)
+		if (Input.GetAxis (playerPickup) != 0 && ableToPickUp)
 		{
+            ableToPickUp = false;
+            ableToThrow = false;
+
 			Collider2D[] hits = Physics2D.OverlapCircleAll (pickupRad.bounds.center, pickupRad.radius, LayerMask.GetMask ("Ball"));
 
 			for (int i = 0; i < hits.GetLength (0) && numBalls < maxBalls; i++)
@@ -233,18 +237,32 @@ public class PlayerMovement : MonoBehaviour {
 
             numBalls--;
             ableToThrow = false;
-            StartCoroutine(AbleToShootAgain());
+            //StartCoroutine(AbleToShootAgain());
 		}
+
+        if (numBalls == 0)
+        {
+            //ableToPickUp = true;
+            StartCoroutine(AbleToPickUpAgain());
+        }
+        else
+            StartCoroutine(AbleToShootAgain());
 	}
 
     IEnumerator AbleToShootAgain()
     {
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         ableToThrow = true;
     }
 
-	void OnCollisionEnter2D(Collision2D col)
+    IEnumerator AbleToPickUpAgain()
+    {
+        yield return new WaitForSeconds(0.3f);
+        ableToPickUp = true;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
 	{
 		if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
 		{
