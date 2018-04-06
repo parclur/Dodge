@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour {
         if (gameObject.tag == "Player1")
         {
             playerHor = "P1LSH";
-            playerAimVer = "P1LSV";
+            playerVer = "P1LSV";
             playerJump = "P1A";
             playerPickup = "P1X";
             playerAimHor = "P1RSH";
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour {
         else if (gameObject.tag == "Player2")
         {
             playerHor = "P2LSH";
-            playerAimVer = "P2LSV";
+            playerVer = "P2LSV";
             playerJump = "P2A";
             playerPickup = "P2X";
             playerAimHor = "P2RSH";
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour {
         {
 
             playerHor = "P3LSH";
-            playerAimVer = "P3LSV";
+            playerVer = "P3LSV";
             playerJump = "P3A";
             playerPickup = "P3X";
             playerAimHor = "P3RSH";
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
         {
 
             playerHor = "P4LSH";
-            playerAimVer = "P4LSV";
+            playerVer = "P4LSV";
             playerJump = "P4A";
             playerPickup = "P4X";
             playerAimHor = "P4RSH";
@@ -172,7 +172,7 @@ public class PlayerMovement : MonoBehaviour {
 			float xMag = Input.GetAxis (playerAimHor);
 			float yMag = Input.GetAxis (playerAimVer);
             float xMag2 = Input.GetAxis(playerHor);
-            float yMag2 = Input.GetAxis(playerAimVer);
+            float yMag2 = Input.GetAxis(playerVer);
 
 
 			GameObject ball = Instantiate (ballPrefab) as GameObject;
