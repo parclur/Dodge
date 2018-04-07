@@ -144,12 +144,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c6fd611c994394a806fbf031b958d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ableToThrow: 0
+  ableToPickUp: 1
+  ableToShield: 1
   onGround: 0
   ground:
     serializedVersion: 2
     m_Bits: 256
   pickupRad: {fileID: 58534694573563408}
   ballPrefab: {fileID: 1133825204610308, guid: 1690ca27877616f47a5e697c87e4dcd1, type: 2}
+  shieldPrefab: {fileID: 1288964514461226, guid: 24d1fa10d099e6248a7b9d55bafb094e,
+    type: 2}
   team: 0
 --- !u!212 &212292273750782474
 SpriteRenderer:

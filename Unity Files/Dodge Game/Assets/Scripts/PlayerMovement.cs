@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool ableToThrow = false;
     public bool ableToPickUp = true;
+    public bool ableToShield = true;
 
     public bool onGround;
 	public LayerMask ground;
@@ -24,13 +25,16 @@ public class PlayerMovement : MonoBehaviour {
 	string playerAimHor;
 	string playerAimVer;
 	string playerThrow;
+    string playerShield;
 
 	public CircleCollider2D pickupRad;
 
 	int numBalls = 0;
 	int maxBalls = 1;
+    int shieldHealth = 1;
 
 	public GameObject ballPrefab;
+    public GameObject shieldPrefab;
 
 	public int team;
 
@@ -51,6 +55,7 @@ public class PlayerMovement : MonoBehaviour {
 		CheckPickup ();
         CheckMove ();
 		CheckThrow ();
+        CheckShield();
 		UpdateIframes();
 	}
 
@@ -65,6 +70,7 @@ public class PlayerMovement : MonoBehaviour {
             playerAimHor = "P1RSH";
             playerAimVer = "P1RSV";
             playerThrow = "P1RT";
+            playerShield = "P1LT";
         }
         else if (gameObject.tag == "Player2")
         {
@@ -75,6 +81,8 @@ public class PlayerMovement : MonoBehaviour {
             playerAimHor = "P2RSH";
             playerAimVer = "P2RSV";
             playerThrow = "P2RT";
+            playerShield = "P2LT";
+
         }
         else if (gameObject.tag == "Player3")
         {
@@ -86,6 +94,8 @@ public class PlayerMovement : MonoBehaviour {
             playerAimHor = "P3RSH";
             playerAimVer = "P3RSV";
             playerThrow = "P3RT";
+            playerShield = "P3LT";
+
         }
         else if (gameObject.tag == "Player4")
         {
@@ -97,6 +107,8 @@ public class PlayerMovement : MonoBehaviour {
             playerAimHor = "P4RSH";
             playerAimVer = "P4RSV";
             playerThrow = "P4RT";
+            playerShield = "P4LT";
+
         }
     }
 
@@ -204,7 +216,6 @@ public class PlayerMovement : MonoBehaviour {
                 spawnY = gameObject.transform.position.y - 1.0f;
             }
 
-
             if (xMag > 0)
             {
                 spawnX = gameObject.transform.position.x + 1.0f;
@@ -237,17 +248,125 @@ public class PlayerMovement : MonoBehaviour {
 
             numBalls--;
             ableToThrow = false;
-            //StartCoroutine(AbleToShootAgain());
 		}
 
         if (numBalls == 0)
         {
-            //ableToPickUp = true;
             StartCoroutine(AbleToPickUpAgain());
         }
         else
             StartCoroutine(AbleToShootAgain());
 	}
+
+    void CheckShield()
+    {
+        if(Input.GetAxis(playerShield) > 0 && ableToShield)
+        {
+            Debug.Log("Shielding");
+            float xMag = Input.GetAxis(playerAimHor);
+            float yMag = Input.GetAxis(playerAimVer);
+            float xMag2 = Input.GetAxis(playerHor);
+            float yMag2 = Input.GetAxis(playerVer);
+
+
+            GameObject shield = Instantiate(shieldPrefab);
+            shield.transform.parent = gameObject.transform;
+
+            float spawnX = gameObject.transform.localPosition.x;
+            float spawnY = gameObject.transform.localPosition.y;
+
+            float spawnDist = 0.9f;
+
+            if (xMag2 > 0)
+            {
+                spawnX = gameObject.transform.localPosition.x + spawnDist;
+            }
+            else if (xMag2 < 0)
+            {
+                spawnX = gameObject.transform.localPosition.x - spawnDist;
+            }
+
+            if (yMag2 > 0)
+            {
+                spawnY = gameObject.transform.localPosition.y + spawnDist;
+                shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 90);
+
+                if (xMag > 0)
+                {
+                    shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z - 45);
+                }
+
+            }
+            else if (yMag2 < 0)
+            {
+                spawnY = gameObject.transform.localPosition.y - spawnDist;
+                shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 90);
+
+                if (xMag > 0)
+                {
+                    shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 45);
+                }
+
+            }
+
+            if (xMag > 0)
+            {
+                spawnX = gameObject.transform.localPosition.x + spawnDist;
+            }
+            else if (xMag < 0)
+            {
+                spawnX = gameObject.transform.localPosition.x - spawnDist;
+
+            }
+
+            if (yMag > 0)
+            {
+                spawnY = gameObject.transform.localPosition.y + spawnDist;
+                shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 90);
+
+                if(xMag > 0)
+                {
+                    shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z - 45);
+                }
+            }
+            else if (yMag < 0)
+            {
+                spawnY = gameObject.transform.localPosition.y - spawnDist;
+                shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 90);
+
+                if (xMag > 0)
+                {
+                    shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 45);
+                }
+
+            }
+
+            shield.transform.position = new Vector2(spawnX, spawnY);
+
+            if(xMag == 0 && yMag == 0 && xMag2 == 0 && yMag2 == 0)
+            {
+                ableToShield = true;
+            }
+            else
+            {
+            ableToShield = false;
+            }
+
+            Destroy(shield, 1.0f);
+            StartCoroutine(AbleToShieldAgain());
+        }
+
+        if(shieldHealth < 1)
+        {
+            ableToShield = true;
+        }
+    }
+
+    IEnumerator AbleToShieldAgain()
+    {
+        yield return new WaitForSeconds(2.0f);
+        ableToShield = true;
+    }
 
     IEnumerator AbleToShootAgain()
     {

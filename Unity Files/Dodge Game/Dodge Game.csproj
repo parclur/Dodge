@@ -329,6 +329,7 @@
     <Compile Include="Assets\Scripts\GroundCheckScript.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\RightStickControl.cs" />
+    <Compile Include="Assets\ShieldScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
