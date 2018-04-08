@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P1LSH";
             playerVer = "P1LSV";
             playerJump = "P1A";
-            playerPickup = "P1RT";
+            playerPickup = "P1X";
             playerAimHor = "P1RSH";
             playerAimVer = "P1RSV";
             playerThrow = "P1RT";
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P2LSH";
             playerVer = "P2LSV";
             playerJump = "P2A";
-            playerPickup = "P2RT";
+            playerPickup = "P2X";
             playerAimHor = "P2RSH";
             playerAimVer = "P2RSV";
             playerThrow = "P2RT";
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P3LSH";
             playerVer = "P3LSV";
             playerJump = "P3A";
-            playerPickup = "P3RT";
+            playerPickup = "P3X";
             playerAimHor = "P3RSH";
             playerAimVer = "P3RSV";
             playerThrow = "P3RT";
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour {
             playerHor = "P4LSH";
             playerVer = "P4LSV";
             playerJump = "P4A";
-            playerPickup = "P4RT";
+            playerPickup = "P4X";
             playerAimHor = "P4RSH";
             playerAimVer = "P4RSV";
             playerThrow = "P4RT";
