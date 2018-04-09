@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public GameObject ballPrefab;
     public GameObject shieldPrefab;
+    public GameObject cursorPrefab;
 
 	public int team;
 
@@ -43,6 +44,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        cursorPrefab = Instantiate(cursorPrefab);
+        cursorPrefab.transform.parent = gameObject.transform;
+        cursorPrefab.transform.position = gameObject.transform.position;
+
         rig = GetComponent<Rigidbody2D>();
         onGround = false;
 		color = GetComponent<SpriteRenderer>().color;
@@ -51,6 +56,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        SetCursor();
 		CheckGrounded ();
 		CheckPickup ();
         CheckMove ();
@@ -176,22 +182,75 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
+    void SetCursor()
+    {
+        float xMag = Input.GetAxis(playerAimHor);
+        float yMag = Input.GetAxis(playerAimVer);
+        float xMag2 = Input.GetAxis(playerHor);
+        float yMag2 = Input.GetAxis(playerVer);
+
+        float spawnX = gameObject.transform.position.x;
+        float spawnY = gameObject.transform.position.y;
+
+        if (xMag2 > 0)
+        {
+            spawnX = gameObject.transform.position.x + 1.0f;
+        }
+        else if (xMag2 < 0)
+        {
+            spawnX = gameObject.transform.position.x - 1.0f;
+        }
+
+        if (yMag2 > 0)
+        {
+            spawnY = gameObject.transform.position.y + 1.0f;
+        }
+        else if (yMag2 < 0)
+        {
+            spawnY = gameObject.transform.position.y - 1.0f;
+        }
+
+        if (xMag > 0)
+        {
+            spawnX = gameObject.transform.position.x + 1.0f;
+        }
+        else if (xMag < 0)
+        {
+            spawnX = gameObject.transform.position.x - 1.0f;
+
+        }
+
+        if (yMag > 0)
+        {
+            spawnY = gameObject.transform.position.y + 1.0f;
+        }
+        else if (yMag < 0)
+        {
+            spawnY = gameObject.transform.position.y - 1.0f;
+
+        }
+
+        cursorPrefab.transform.position = new Vector2(spawnX, spawnY);
+    }
+
 	void CheckThrow()
 	{
         Debug.Log(numBalls + " of balls");
        
 		Debug.Log (Input.GetAxis (playerThrow));
 
-		if (Input.GetAxis(playerThrow) != 0 && numBalls > 0 && ableToThrow)
+
+
+        if (Input.GetAxis(playerThrow) != 0 && numBalls > 0 && ableToThrow)
 		{
             Debug.Log("Thowing");
-			float xMag = Input.GetAxis (playerAimHor);
-			float yMag = Input.GetAxis (playerAimVer);
+
+            float xMag = Input.GetAxis(playerAimHor);
+            float yMag = Input.GetAxis(playerAimVer);
             float xMag2 = Input.GetAxis(playerHor);
             float yMag2 = Input.GetAxis(playerVer);
 
-
-			GameObject ball = Instantiate (ballPrefab) as GameObject;
+            GameObject ball = Instantiate (ballPrefab) as GameObject;
 
             float spawnX = gameObject.transform.position.x;
             float spawnY = gameObject.transform.position.y;
