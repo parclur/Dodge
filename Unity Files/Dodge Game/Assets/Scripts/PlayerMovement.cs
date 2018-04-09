@@ -184,62 +184,21 @@ public class PlayerMovement : MonoBehaviour {
 
     void SetCursor()
     {
-        float xMag = Input.GetAxis(playerAimHor);
-        float yMag = Input.GetAxis(playerAimVer);
-        float xMag2 = Input.GetAxis(playerHor);
-        float yMag2 = Input.GetAxis(playerVer);
+        float spawnX;
+        float spawnY;
 
-        float spawnX = gameObject.transform.position.x;
-        float spawnY = gameObject.transform.position.y;
+        spawnX = Input.GetAxis(playerHor);
+        spawnY = Input.GetAxis(playerVer);
 
-        if (xMag2 > 0)
-        {
-            spawnX = gameObject.transform.position.x + 1.0f;
-        }
-        else if (xMag2 < 0)
-        {
-            spawnX = gameObject.transform.position.x - 1.0f;
-        }
+        spawnX = Input.GetAxis(playerAimHor);
+        spawnY = Input.GetAxis(playerAimVer);
 
-        if (yMag2 > 0)
-        {
-            spawnY = gameObject.transform.position.y + 1.0f;
-        }
-        else if (yMag2 < 0)
-        {
-            spawnY = gameObject.transform.position.y - 1.0f;
-        }
-
-        if (xMag > 0)
-        {
-            spawnX = gameObject.transform.position.x + 1.0f;
-        }
-        else if (xMag < 0)
-        {
-            spawnX = gameObject.transform.position.x - 1.0f;
-
-        }
-
-        if (yMag > 0)
-        {
-            spawnY = gameObject.transform.position.y + 1.0f;
-        }
-        else if (yMag < 0)
-        {
-            spawnY = gameObject.transform.position.y - 1.0f;
-
-        }
-
-        cursorPrefab.transform.position = new Vector2(spawnX, spawnY);
+        cursorPrefab.transform.position = new Vector2(gameObject.transform.position.x + spawnX, gameObject.transform.position.y + spawnY);
     }
 
 	void CheckThrow()
 	{
         Debug.Log(numBalls + " of balls");
-       
-		Debug.Log (Input.GetAxis (playerThrow));
-
-
 
         if (Input.GetAxis(playerThrow) != 0 && numBalls > 0 && ableToThrow)
 		{
@@ -295,9 +254,12 @@ public class PlayerMovement : MonoBehaviour {
 
             }
 
-            ball.transform.position = new Vector2(spawnX, spawnY);
+            //spawnX = Input.GetAxis(playerAimHor);
+            //spawnY = Input.GetAxis(playerAimVer);
 
-			ball.GetComponent<BallScript>().possession = team;
+            ball.transform.position = new Vector2( spawnX, spawnY);
+
+            ball.GetComponent<BallScript>().possession = team;
 			ball.GetComponent<BallScript>().UpdateColor();
 
             if (xMag != 0 || yMag != 0)
@@ -327,8 +289,7 @@ public class PlayerMovement : MonoBehaviour {
             float xMag2 = Input.GetAxis(playerHor);
             float yMag2 = Input.GetAxis(playerVer);
 
-
-            GameObject shield = Instantiate(shieldPrefab);
+            GameObject shield = Instantiate(shieldPrefab) as GameObject;
             shield.transform.parent = gameObject.transform;
 
             float spawnX = gameObject.transform.localPosition.x;
@@ -348,22 +309,30 @@ public class PlayerMovement : MonoBehaviour {
             if (yMag2 > 0)
             {
                 spawnY = gameObject.transform.localPosition.y + spawnDist;
-                shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 90);
+                shield.transform.eulerAngles = new Vector3(0, 0, 90);
 
-                if (xMag > 0)
+                if (xMag2 > 0.5f)
                 {
-                    shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z - 45);
+                    shield.transform.eulerAngles = new Vector3(0, 0, 45);
+                }
+                else if (xMag2 < -0.5f)
+                {
+                    shield.transform.eulerAngles = new Vector3(0, 0, 135);
                 }
 
             }
             else if (yMag2 < 0)
             {
                 spawnY = gameObject.transform.localPosition.y - spawnDist;
-                shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 90);
+                shield.transform.eulerAngles = new Vector3(0, 0, 90);
 
-                if (xMag > 0)
+                if (xMag2 > 0.2f)
                 {
-                    shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 45);
+                    shield.transform.eulerAngles = new Vector3(0, 0, 135);
+                }
+                else if (xMag2 < -0.2f)
+                {
+                    shield.transform.eulerAngles = new Vector3(0, 0, 45);
                 }
 
             }
@@ -381,26 +350,32 @@ public class PlayerMovement : MonoBehaviour {
             if (yMag > 0)
             {
                 spawnY = gameObject.transform.localPosition.y + spawnDist;
-                shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 90);
+                shield.transform.eulerAngles = new Vector3(0, 0, 90);
 
-                if(xMag > 0)
+                if(xMag > 0.2f)
                 {
-                    shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z - 45);
+                    shield.transform.eulerAngles = new Vector3(0, 0, 45);
+                }else if(xMag < -0.2f)
+                {
+                    shield.transform.eulerAngles = new Vector3(0, 0, 135);
                 }
             }
             else if (yMag < 0)
             {
                 spawnY = gameObject.transform.localPosition.y - spawnDist;
-                shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 90);
+                shield.transform.eulerAngles = new Vector3(0, 0, 90);
 
-                if (xMag > 0)
+                if (xMag > 0.2f)
                 {
-                    shield.transform.eulerAngles = new Vector3(0, 0, shield.transform.eulerAngles.z + 45);
+                    shield.transform.eulerAngles = new Vector3(0, 0, 135);
+                }
+                else if (xMag < -0.2f)
+                {
+                    shield.transform.eulerAngles = new Vector3(0, 0, 45);
                 }
 
             }
 
-            shield.transform.position = new Vector2(spawnX, spawnY);
 
             if(xMag == 0 && yMag == 0 && xMag2 == 0 && yMag2 == 0)
             {
@@ -411,6 +386,9 @@ public class PlayerMovement : MonoBehaviour {
             ableToShield = false;
             }
 
+            shield.transform.position = new Vector2(spawnX, spawnY);
+
+            // needs to have a recharge and will last for as long as the player holds the button
             Destroy(shield, 1.0f);
             StartCoroutine(AbleToShieldAgain());
         }
@@ -442,10 +420,18 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
 	{
-		if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
-		{
-			iFrameTimer = 0.5f;
-		}
+        if(col.otherCollider.transform.tag == "Shield")
+        {
+            Debug.Log("You got blocked bitch");
+        }
+        else
+        {
+            if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
+            {
+                iFrameTimer = 0.5f;
+            }
+        }
+
 	}
 
 	void UpdateIframes()

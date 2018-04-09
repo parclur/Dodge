@@ -21,11 +21,11 @@ GameObject:
   - component: {fileID: 4465552958391412}
   - component: {fileID: 212392188982423010}
   - component: {fileID: 61003167091904088}
-  - component: {fileID: 50882037495691868}
   - component: {fileID: 114716914110680212}
+  - component: {fileID: 50289509751116308}
   m_Layer: 8
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,13 +37,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1288964514461226}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.958628, y: -5.9097366, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50882037495691868
+--- !u!50 &50289509751116308
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
