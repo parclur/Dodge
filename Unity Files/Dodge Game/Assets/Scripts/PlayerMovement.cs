@@ -232,11 +232,16 @@ public class PlayerMovement : MonoBehaviour {
         float spawnX;
         float spawnY;
 
-        spawnX = Input.GetAxis(playerHor);
-        spawnY = Input.GetAxis(playerVer);
-
-        spawnX = Input.GetAxis(playerAimHor);
-        spawnY = Input.GetAxis(playerAimVer);
+        if(Mathf.Abs(Input.GetAxis(playerAimHor)) > 0 || Mathf.Abs(Input.GetAxis(playerAimVer)) > 0)
+        {
+            spawnX = Input.GetAxis(playerAimHor);
+            spawnY = Input.GetAxis(playerAimVer);
+        }
+        else
+        {
+            spawnX = Input.GetAxis(playerHor);
+            spawnY = Input.GetAxis(playerVer);
+        }
 
         cursorPrefab.transform.position = new Vector2(gameObject.transform.position.x + spawnX, gameObject.transform.position.y + spawnY);
     }

@@ -6,7 +6,9 @@ public class ManagerScript : MonoBehaviour {
 
     // the manager script will be used to check if all players are out
     // and reset if on team is out
-    public int gameScore = 0;
+    public int gameRound = 0;
+    public int team1Score = 0;
+    public int team2Score = 0;
 
     public GameObject player1;
     public GameObject player2;
@@ -107,7 +109,9 @@ public class ManagerScript : MonoBehaviour {
             {
                 // appear congratulations to the winning team, increase score, reset
                 canCheck = false;
-                Debug.Log("Team 2 Wins!");
+                Debug.Log("Team2 Wins Round " + gameRound + "!");
+                team2Score++;
+                Debug.Log("Team 1 score: " + team1Score + " vs " + "Team 2 score: " + team2Score);
                 StartCoroutine(WaitTime());
             }
         }
@@ -128,7 +132,9 @@ public class ManagerScript : MonoBehaviour {
             {
                 // appear congratulations to the winning team, increase score, reset
                 canCheck = false;
-                Debug.Log("Team1 Wins!");
+                Debug.Log("Team1 Wins Round " + gameRound + "!");
+                team1Score++;
+                Debug.Log("Team 1 score: " + team1Score + " vs " + "Team 2 score: " + team2Score);
                 StartCoroutine(WaitTime());
             }
         }
@@ -159,6 +165,8 @@ public class ManagerScript : MonoBehaviour {
         {
             GameObject.Find("Ball" + i).GetComponent<BallScript>().ResetPos();
         }
+
+        gameRound++;
 
         canCheck = true;
     }
