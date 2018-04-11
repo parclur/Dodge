@@ -6,7 +6,9 @@ public class ManagerScript : MonoBehaviour {
 
     // the manager script will be used to check if all players are out
     // and reset if on team is out
-    public int gameRound = 0;
+    public int gameRound = 1;
+    public int maxRounds = 7;
+
     public int team1Score = 0;
     public int team2Score = 0;
 
@@ -112,7 +114,7 @@ public class ManagerScript : MonoBehaviour {
                 Debug.Log("Team2 Wins Round " + gameRound + "!");
                 team2Score++;
                 Debug.Log("Team 1 score: " + team1Score + " vs " + "Team 2 score: " + team2Score);
-                StartCoroutine(WaitTime());
+                StartCoroutine(WaitInBetweenMatch());
             }
         }
     }
@@ -135,19 +137,26 @@ public class ManagerScript : MonoBehaviour {
                 Debug.Log("Team1 Wins Round " + gameRound + "!");
                 team1Score++;
                 Debug.Log("Team 1 score: " + team1Score + " vs " + "Team 2 score: " + team2Score);
-                StartCoroutine(WaitTime());
+                StartCoroutine(WaitInBetweenMatch());
             }
         }
     }
 
-    IEnumerator WaitTime()
+    IEnumerator WaitInBetweenMatch()
     {
         yield return new WaitForSeconds(3.5f);
-        ResetGame();
+        ResetMatch();
     }
 
-    void ResetGame()
+    void ResetMatch()
     {
+        gameRound++;
+
+        if(gameRound > maxRounds)
+        {
+            ResetGame();
+        }
+
         for (int i = 0; i < sizeOfTeam1; i++)
         {
             // set the positions
@@ -166,8 +175,26 @@ public class ManagerScript : MonoBehaviour {
             GameObject.Find("Ball" + i).GetComponent<BallScript>().ResetPos();
         }
 
-        gameRound++;
-
         canCheck = true;
+    }
+
+    void ResetGame()
+    {
+        if(team1Score > team2Score)
+        {
+            Debug.Log("Team1 Wins " + team1Score + " to " + team2Score + "!");
+
+        }
+        else
+        {
+            Debug.Log("Team1 Wins " + team1Score + " to " + team2Score + "!");
+
+        }
+    }
+
+    IEnumerator GoBackToMenu()
+    {
+        yield return new WaitForSeconds(4);
+        // go back to the menu
     }
 }
