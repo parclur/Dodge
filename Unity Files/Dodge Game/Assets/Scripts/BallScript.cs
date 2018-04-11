@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BallScript : MonoBehaviour {
 
+    Vector2 spawn;
+
 	public int possession = 0;
 
 	Rigidbody2D rb;
@@ -12,13 +14,33 @@ public class BallScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody2D> ();
+        SetSpawn();
+        rb = GetComponent<Rigidbody2D> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		CheckForDeadBall ();
 	}
+
+
+    void SetSpawn()
+    {
+        if (name == "Ball1")
+            spawn = GameObject.Find("Ball_Start_Point_0").transform.position;
+        else if (name == "Ball2")
+            spawn = GameObject.Find("Ball_Start_Point_1").transform.position;
+        else if (name == "Ball3")
+            spawn = GameObject.Find("Ball_Start_Point_2").transform.position;
+        else if (name == "Ball4")
+            spawn = GameObject.Find("Ball_Start_Point_3").transform.position;
+    }
+
+
+    public void ResetPos()
+    {
+        gameObject.transform.position = spawn;
+    }
 
 	void CheckForDeadBall()
 	{

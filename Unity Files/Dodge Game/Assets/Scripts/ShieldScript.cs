@@ -22,9 +22,9 @@ public class ShieldScript : MonoBehaviour {
         {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<BoxCollider2D>(), gameObject.GetComponent<BoxCollider2D>(), true);
         }
-        if (col.gameObject.layer == 8)
+        /*if (col.gameObject.layer == 8)
         {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<BoxCollider2D>(), gameObject.GetComponent<BoxCollider2D>(), true);
-        }
+        }*/
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    Vector2 spawn;
+
     float playerSpeed = 10f;
     float jumpForce = 800f;
 	float throwSpeed = 100f;
@@ -29,9 +31,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	public CircleCollider2D pickupRad;
 
+    string ballSavedName;
 	int numBalls = 0;
 	int maxBalls = 1;
     int shieldHealth = 1;
+    public bool isOut = false;
 
 	public GameObject ballPrefab;
     public GameObject shieldPrefab;
@@ -44,6 +48,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
         cursorPrefab = Instantiate(cursorPrefab);
         shieldPrefab = Instantiate(shieldPrefab);
         cursorPrefab.transform.parent = gameObject.transform;
@@ -59,17 +64,54 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        SetCursor();
-		CheckGrounded ();
-		CheckPickup ();
-        CheckMove ();
-		CheckThrow ();
-        CheckShield2();
-		UpdateIframes();
+
+        if(!isOut)
+        {
+            gameObject.SetActive(true);
+            SetCursor();
+            CheckGrounded();
+            CheckPickup();
+            CheckMove();
+            CheckThrow();
+            CheckShield2();
+            UpdateIframes();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+
 	}
+
+
+    public void NotOutAnymore()
+    {
+        isOut = false;
+    }
+
+
+    public void ResetPlayer()
+    {
+        gameObject.transform.position = spawn;
+        shieldHealth = 1;
+
+        if(numBalls>0)
+        {
+            GameObject ball = Instantiate(ballPrefab);
+            ball.name = ballSavedName;
+            numBalls = 0;
+        }
+
+        isOut = false;
+        gameObject.SetActive(true);
+
+
+    }
+
 
     void InitPlayer() //TODO add multiplayer options
     {
+        spawn = gameObject.transform.position;
         if (gameObject.tag == "Player1")
         {
             playerHor = "P1LSH";
@@ -120,7 +162,6 @@ public class PlayerMovement : MonoBehaviour {
 
         }
     }
-
 
 
     void CheckMove()
@@ -176,14 +217,15 @@ public class PlayerMovement : MonoBehaviour {
             ableToThrow = false;
 
 			Collider2D[] hits = Physics2D.OverlapCircleAll (pickupRad.bounds.center, pickupRad.radius, LayerMask.GetMask ("Ball"));
-
 			for (int i = 0; i < hits.GetLength (0) && numBalls < maxBalls; i++)
 			{
-				numBalls++;
+                ballSavedName = hits[i].gameObject.name;
+                numBalls++;
 				Destroy (hits [i].gameObject);
 			}
 		}
 	}
+
 
     void SetCursor()
     {
@@ -198,6 +240,7 @@ public class PlayerMovement : MonoBehaviour {
 
         cursorPrefab.transform.position = new Vector2(gameObject.transform.position.x + spawnX, gameObject.transform.position.y + spawnY);
     }
+
 
 	void CheckThrow()
 	{
@@ -255,12 +298,10 @@ public class PlayerMovement : MonoBehaviour {
                 spawnY = gameObject.transform.position.y - 1.0f;
 
             }
+            
 
-            //spawnX = Input.GetAxis(playerAimHor);
-            //spawnY = Input.GetAxis(playerAimVer);
-
-            ball.transform.position = new Vector2( spawnX, spawnY);
-
+            ball.transform.position = new Vector2(spawnX, spawnY);
+            ball.name = ballSavedName;
             ball.GetComponent<BallScript>().possession = team;
 			ball.GetComponent<BallScript>().UpdateColor();
 
@@ -280,6 +321,7 @@ public class PlayerMovement : MonoBehaviour {
         else
             StartCoroutine(AbleToShootAgain());
 	}
+
 
     void CheckShield2()
     {
@@ -439,6 +481,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+
     IEnumerator AbleToShieldAgain()
     {
         yield return new WaitForSeconds(2.0f);
@@ -446,18 +489,20 @@ public class PlayerMovement : MonoBehaviour {
         shieldHealth = 1;
     }
 
+
     IEnumerator AbleToShootAgain()
     {
-
         yield return new WaitForSeconds(0.3f);
         ableToThrow = true;
     }
+
 
     IEnumerator AbleToPickUpAgain()
     {
         yield return new WaitForSeconds(0.3f);
         ableToPickUp = true;
     }
+
 
     void OnCollisionEnter2D(Collision2D col)
 	{
@@ -470,11 +515,20 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
             {
+                isOut = true;
+
+                if(numBalls > 0)
+                {
+                    Instantiate(ballPrefab, gameObject.transform);
+                    numBalls--;
+                }
+
                 iFrameTimer = 0.5f;
             }
         }
 
 	}
+
 
 	void UpdateIframes()
 	{
