@@ -359,8 +359,10 @@ public class PlayerMovement : MonoBehaviour {
                 float spawnY = gameObject.transform.localPosition.y;
                 float spawnDist = 0.9f;
 
+                shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
+
                 // positioning the shield and angling the shield
-                if(Mathf.Abs(xMag) > 0 || Mathf.Abs(yMag) > 0)
+                if (Mathf.Abs(xMag) > 0 || Mathf.Abs(yMag) > 0)
                 {
                     // setting pos
                     if (xMag > 0)
