@@ -156,26 +156,30 @@ public class ManagerScript : MonoBehaviour {
         {
             ResetGame();
         }
-
-        for (int i = 0; i < sizeOfTeam1; i++)
+        else
         {
-            // set the positions
-            team1Players[i].GetComponent<PlayerMovement>().ResetPlayer();
+            for (int i = 0; i < sizeOfTeam1; i++)
+            {
+                // set the positions
+                team1Players[i].GetComponent<PlayerMovement>().ResetPlayer();
+            }
+
+            for (int i = 0; i < sizeOfTeam2; i++)
+            {
+                team2Players[i].GetComponent<PlayerMovement>().ResetPlayer();
+            }
+
+            int amountOfBalls = 4;
+
+            for (int i = 1; i <= amountOfBalls; i++)
+            {
+                GameObject.Find("Ball" + i).GetComponent<BallScript>().ResetPos();
+            }
+
+            canCheck = true;
         }
 
-        for (int i = 0; i < sizeOfTeam2; i++)
-        {
-            team2Players[i].GetComponent<PlayerMovement>().ResetPlayer();
-        }
 
-        int amountOfBalls = 4;
-
-        for (int i = 1; i <= amountOfBalls; i++)
-        {
-            GameObject.Find("Ball" + i).GetComponent<BallScript>().ResetPos();
-        }
-
-        canCheck = true;
     }
 
     void ResetGame()

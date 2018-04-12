@@ -7,13 +7,11 @@ public class ShieldScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //Physics.IgnoreLayerCollision(7, 8);
-
-        
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        GameObject.FindGameObjectWithTag("Floor").GetComponentInChildren<IgnoreShieldScript>().AddShield(gameObject);
 	}
 
     private void OnCollisionEnter2D(Collision2D col)
