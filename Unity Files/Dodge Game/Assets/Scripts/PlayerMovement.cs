@@ -534,7 +534,8 @@ public class PlayerMovement : MonoBehaviour {
 
                 if(numBalls > 0)
                 {
-                    Instantiate(ballPrefab, gameObject.transform);
+                    GameObject ball = Instantiate(ballPrefab, gameObject.transform);
+                    ball.name = ballSavedName;
                     numBalls--;
                 }
 

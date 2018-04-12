@@ -191,7 +191,7 @@ public class ManagerScript : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Team1 Wins " + team1Score + " to " + team2Score + "!");
+            Debug.Log("Team2 Wins " + team2Score + " to " + team1Score + "!");
 
         }
     }
