@@ -11,7 +11,7 @@ public class ShieldScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GameObject.FindGameObjectWithTag("Floor").GetComponentInChildren<IgnoreShieldScript>().AddShield(gameObject);
+        //GameObject.FindGameObjectWithTag("Floor").GetComponentInChildren<IgnoreShieldScript>().AddShield(gameObject);
 	}
 
     private void OnCollisionEnter2D(Collision2D col)
