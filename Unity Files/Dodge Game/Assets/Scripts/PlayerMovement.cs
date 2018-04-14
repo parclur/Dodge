@@ -46,6 +46,12 @@ public class PlayerMovement : MonoBehaviour {
 	float iFrameTimer = 0f;
 	Color color;
 
+	Animator anim;
+	SpriteRenderer sr;
+	enum State{
+		IDLE = 0, JUMPING, RUNNING	
+	};
+
 	// Use this for initialization
 	void Start () {
 
@@ -61,6 +67,10 @@ public class PlayerMovement : MonoBehaviour {
         rig = GetComponent<Rigidbody2D>();
         onGround = false;
 		color = GetComponent<SpriteRenderer>().color;
+
+		anim = GetComponent<Animator> ();
+		sr = GetComponent<SpriteRenderer> ();
+
         InitPlayer();
 	}
 	
@@ -84,6 +94,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
 	}
+		
 
 
     public void NotOutAnymore()
@@ -181,13 +192,30 @@ public class PlayerMovement : MonoBehaviour {
 
 		rig.velocity = new Vector2(xMove * playerSpeed, rig.velocity.y);
 
+		if (xMove > 0)
+			sr.flipX = false;
+		if (xMove < 0)
+			sr.flipX = true;
+
+
 		if (yMove != 0 && onGround)
 		{
 			onGround = false;
 			groundTimer = 0.1f;
 
+			anim.SetInteger ("State", (int)State.JUMPING);
+
 			rig.AddForce (Vector2.up * 1.25f * jumpForce);
 		}
+		else if (xMove != 0)
+		{
+			anim.SetInteger ("State", (int)State.RUNNING);
+		}
+		else if (onGround)
+		{
+			anim.SetInteger ("State", (int)State.IDLE);
+		}
+
     }
 
 
@@ -195,17 +223,23 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		if (groundTimer == 0f)
 		{
-			RaycastHit2D rcLeft, rcRight;
+			RaycastHit2D rcLeft, rcRight, rcCenter;
 
-			rcLeft = Physics2D.Raycast (new Vector2 (transform.position.x - 0.5f, transform.position.y - 0.55f), Vector2.down, 0.05f, ground);
-			rcRight = Physics2D.Raycast (new Vector2 (transform.position.x + 0.5f, transform.position.y - 0.55f), Vector2.down, 0.05f, ground);
+			rcLeft = Physics2D.Raycast (new Vector2 (transform.position.x - 1f, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
+			rcRight = Physics2D.Raycast (new Vector2 (transform.position.x + 1f, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
+			rcCenter = Physics2D.Raycast (new Vector2 (transform.position.x, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
 
-			if (rcLeft.transform != null || rcRight.transform != null)
+			if (rcLeft.transform != null || rcRight.transform != null || rcCenter.transform != null)
 			{
 				onGround = true;
+				anim.SetInteger ("State", (int)State.IDLE);
 			} else
 			{
 				onGround = false;
+				if (anim.GetInteger("State") == (int)State.RUNNING)
+				{
+					anim.SetInteger ("State", (int)State.IDLE);
+				}
 			}
 		}
 		else

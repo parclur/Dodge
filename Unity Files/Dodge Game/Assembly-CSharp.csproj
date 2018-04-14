@@ -51,11 +51,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\BallMove.cs" />
+     <Compile Include="Assets\IgnoreShieldScript.cs" />
+     <Compile Include="Assets\PlayerLoginManager.cs" />
      <Compile Include="Assets\Scripts\BallScript.cs" />
      <Compile Include="Assets\Scripts\GroundCheckScript.cs" />
+     <Compile Include="Assets\Scripts\ManagerScript.cs" />
+     <Compile Include="Assets\Scripts\OOBScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\RightStickControl.cs" />
+     <Compile Include="Assets\Scripts\ShieldScript.cs" />
+     <Compile Include="Assets\StartScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
