@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    string playerType; // this will be the type the player is (ex: blocer or striker)
+
     Vector2 spawn;
 
     float playerSpeed = 10f;
@@ -36,7 +38,11 @@ public class PlayerMovement : MonoBehaviour {
 	int numBalls = 0;
 	int maxBalls = 1;
     int shieldHealth = 1;
+    int dashAmount = 1;
+    float speedMultiplier = 1.0f;
+
     public bool isOut = false;
+    bool canCheckDash = true;
 
 	public GameObject ballPrefab;
     public GameObject shieldPrefab;
@@ -64,6 +70,7 @@ public class PlayerMovement : MonoBehaviour {
         shieldPrefab.transform.position = gameObject.transform.position;
         cursorPrefab.name = "Cursor";
         shieldPrefab.name = "Shield";
+        shieldPrefab.SetActive(false);
 
         rig = GetComponent<Rigidbody2D>();
         onGround = false;
@@ -75,6 +82,7 @@ public class PlayerMovement : MonoBehaviour {
         InitPlayer();
 	}
 	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -86,7 +94,8 @@ public class PlayerMovement : MonoBehaviour {
             CheckPickup();
             CheckMove();
             CheckThrow();
-            CheckShield2();
+            // CheckShield2();
+            Dash();
         }
         else
         {
@@ -95,7 +104,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 		
-
 
     public void NotOutAnymore()
     {
@@ -191,7 +199,7 @@ public class PlayerMovement : MonoBehaviour {
         float xMove = Input.GetAxis(playerHor);
         float yMove = Input.GetAxis(playerJump);
 
-		rig.velocity = new Vector2(xMove * playerSpeed, rig.velocity.y);
+		rig.velocity = new Vector2(xMove * playerSpeed * speedMultiplier, rig.velocity.y);
 
 		if (xMove > 0)
         {
@@ -381,7 +389,6 @@ public class PlayerMovement : MonoBehaviour {
 
     void CheckShield2()
     {
-
         if (shieldHealth > 0 && Input.GetAxis(playerShield) > 0)
         {
 
@@ -569,6 +576,30 @@ public class PlayerMovement : MonoBehaviour {
     }
 
 
+    void Dash()
+    {
+        if (dashAmount > 0 && Input.GetAxis(playerShield) > 0)
+        {
+            speedMultiplier = 20.0f;
+            dashAmount--;
+        }
+        else
+        {
+            speedMultiplier = 1.0f;
+        }
+
+        if(canCheckDash)
+        {
+            if (dashAmount <= 0)
+            {
+                canCheckDash = false;
+                StartCoroutine(AbleToDashAgain());
+            }
+        }
+
+    }
+
+
     IEnumerator AbleToShieldAgain()
     {
         yield return new WaitForSeconds(2.0f);
@@ -588,6 +619,14 @@ public class PlayerMovement : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.3f);
         ableToPickUp = true;
+    }
+
+
+    IEnumerator AbleToDashAgain()
+    {
+        yield return new WaitForSeconds(1.0f);
+        dashAmount = 1;
+        canCheckDash = true;
     }
 
 
@@ -617,6 +656,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
 	}
+
 
     /*
 	void UpdateIframes()
