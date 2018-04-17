@@ -10,7 +10,7 @@ public class BallScript : MonoBehaviour {
 
 	Rigidbody2D rb;
 
-	float speedThreshold = 0.7f;
+	float speedThreshold = 11.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -70,4 +70,5 @@ public class BallScript : MonoBehaviour {
 			sr.color = Color.red;
 		}
 	}
+
 }

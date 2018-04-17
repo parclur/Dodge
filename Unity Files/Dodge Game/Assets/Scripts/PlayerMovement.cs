@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool ableToThrow = false;
     public bool ableToPickUp = true;
     public bool ableToShield = true;
+    bool rightFacing;
 
     public bool onGround;
 	public LayerMask ground;
@@ -64,9 +65,6 @@ public class PlayerMovement : MonoBehaviour {
         cursorPrefab.name = "Cursor";
         shieldPrefab.name = "Shield";
 
-        Physics2D.IgnoreLayerCollision(10, 10, true);// fucking work!!!
-        //Physics2D.IgnoreCollision(shieldPrefab.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
-
         rig = GetComponent<Rigidbody2D>();
         onGround = false;
 		color = GetComponent<SpriteRenderer>().color;
@@ -79,7 +77,6 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Physics2D.IgnoreLayerCollision(10, 10, true);// fucking work!!!
 
         if (!isOut)
         {
@@ -197,9 +194,15 @@ public class PlayerMovement : MonoBehaviour {
 		rig.velocity = new Vector2(xMove * playerSpeed, rig.velocity.y);
 
 		if (xMove > 0)
+        {
 			sr.flipX = false;
+            rightFacing = true;
+        }
 		if (xMove < 0)
+        {
 			sr.flipX = true;
+            rightFacing = false;
+        }
 
 
 		if (yMove != 0 && onGround)
@@ -378,7 +381,8 @@ public class PlayerMovement : MonoBehaviour {
 
     void CheckShield2()
     {
-        if(Input.GetAxis(playerShield) > 0)
+
+        if (shieldHealth > 0 && Input.GetAxis(playerShield) > 0)
         {
 
             Debug.Log("Shielding");
@@ -387,151 +391,175 @@ public class PlayerMovement : MonoBehaviour {
             float xMag2 = Input.GetAxis(playerHor);
             float yMag2 = Input.GetAxis(playerVer);
 
-            if (shieldHealth > 0)
+            // activate the shield
+            shieldPrefab.SetActive(true);
+
+            // putting the shield in place
+            float spawnX = gameObject.transform.localPosition.x;
+            float spawnY = gameObject.transform.localPosition.y;
+            float spawnDist = 0.9f;
+
+            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
+
+            // positioning the shield and angling the shield
+            if (Mathf.Abs(xMag) > 0 || Mathf.Abs(yMag) > 0)
             {
-                // activate the shield
-                shieldPrefab.SetActive(true);
-
-                // putting the shield in place
-                float spawnX = gameObject.transform.localPosition.x;
-                float spawnY = gameObject.transform.localPosition.y;
-                float spawnDist = 0.9f;
-
-                shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
-
-                // positioning the shield and angling the shield
-                if (Mathf.Abs(xMag) > 0 || Mathf.Abs(yMag) > 0)
+                // setting pos
+                if (xMag > 0)
                 {
-                    // setting pos
-                    if (xMag > 0)
-                    {
-                        spawnX = gameObject.transform.localPosition.x + spawnDist;
-                    }
-                    else if (xMag < 0)
-                    {
-                        spawnX = gameObject.transform.localPosition.x - spawnDist;
-                    }
-                    
+                    spawnX = gameObject.transform.localPosition.x + spawnDist;
+                }
+                else if (xMag < 0)
+                {
+                    spawnX = gameObject.transform.localPosition.x - spawnDist;
+                }
+
+                if (yMag > 0)
+                {
+                    spawnY = gameObject.transform.localPosition.y + spawnDist;
+                }
+                else if (yMag < 0)
+                {
+                    spawnY = gameObject.transform.localPosition.y - spawnDist;
+                }
+
+                if (xMag == 0 && yMag == 0)
+                {
+                    spawnX = gameObject.transform.localPosition.x + spawnDist;
+                }
+
+                // seting the angle
+                if (xMag > 0)
+                {
+                    shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
                     if (yMag > 0)
                     {
-                        spawnY = gameObject.transform.localPosition.y + spawnDist;
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 45);
                     }
                     else if (yMag < 0)
                     {
-                        spawnY = gameObject.transform.localPosition.y - spawnDist;
-                    }
-                    
-                    if (xMag == 0 && yMag == 0)
-                    {
-                        spawnX = gameObject.transform.localPosition.x + spawnDist;
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 315);
                     }
 
-                    // seting the angle
-                    if (xMag > 0)
+                }
+                else if (xMag < 0)
+                {
+                    shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 180);
+                    if (yMag > 0)
                     {
-                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
-                        if (yMag > 0)
-                        {
-                            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 45);
-                        }
-                        else if (yMag < 0)
-                        {
-                            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 135);
-                        }
-
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 135);
                     }
-                    else if (xMag < 0)
+                    else if (yMag < 0)
                     {
-                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
-                        if (yMag > 0)
-                        {
-                            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 135);
-                        }
-                        else if (yMag < 0)
-                        {
-                            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 45);
-                        }
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 225);
                     }
-                    else
-                    {
-                        if (yMag != 0)
-                        {
-                            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 90);
-                        }
-                    }
-
                 }
                 else
                 {
-                    // seting the pos
-                    if (xMag2 > 0)
+                    if (yMag > 0)
                     {
-                        spawnX = gameObject.transform.localPosition.x + spawnDist;
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 90);
                     }
-                    else if (xMag2 < 0)
+                    else if (yMag < 0)
                     {
-                        spawnX = gameObject.transform.localPosition.x - spawnDist;
-                    }
-
-                    if (yMag2 > 0)
-                    {
-                        spawnY = gameObject.transform.localPosition.y + spawnDist;
-                    }
-                    else if (yMag2 < 0)
-                    {
-                        spawnY = gameObject.transform.localPosition.y - spawnDist;
-                    }
-
-                    if(xMag2 == 0 && yMag2 ==0)
-                    {
-                        spawnX = gameObject.transform.localPosition.x + spawnDist;
-                    }
-
-                    // seting the angle
-                    if (xMag2 > 0)
-                    {
-                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
-                        if (yMag2 > 0)
-                        {
-                            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 45);
-                        }
-                        else if (yMag2 < 0)
-                        {
-                            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 135);
-                        }
-
-                    }
-                    else if (xMag2 < 0)
-                    {
-                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
-                        if (yMag2 > 0)
-                        {
-                            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 135);
-                        }
-                        else if (yMag2 < 0)
-                        {
-                            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 45);
-                        }
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 270);
                     }
                     else
                     {
-                        if (yMag2 != 0)
-                        {
-                            shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 90);
-                        }
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
+                    }
+                }
+
+            }
+            else if (Mathf.Abs(xMag2) > 0 || Mathf.Abs(yMag2) > 0)
+            {
+                // seting the pos
+                if (xMag2 > 0)
+                {
+                    spawnX = gameObject.transform.localPosition.x + spawnDist;
+                }
+                else if (xMag2 < 0)
+                {
+                    spawnX = gameObject.transform.localPosition.x - spawnDist;
+                }
+
+                if (yMag2 > 0)
+                {
+                    spawnY = gameObject.transform.localPosition.y + spawnDist;
+                }
+                else if (yMag2 < 0)
+                {
+                    spawnY = gameObject.transform.localPosition.y - spawnDist;
+                }
+
+                if (xMag2 == 0 && yMag2 == 0)
+                {
+                    spawnX = gameObject.transform.localPosition.x + spawnDist;
+                }
+
+                // seting the angle
+                if (xMag2 > 0)
+                {
+                    shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
+                    if (yMag2 > 0)
+                    {
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 45);
+                    }
+                    else if (yMag2 < 0)
+                    {
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 315);
                     }
 
                 }
-
-                shieldPrefab.transform.position = new Vector2(spawnX, spawnY);
-
+                else if (xMag2 < 0)
+                {
+                    shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 180);
+                    if (yMag2 > 0)
+                    {
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 135);
+                    }
+                    else if (yMag2 < 0)
+                    {
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 225);
+                    }
+                }
+                else
+                {
+                    if (yMag2 > 0)
+                    {
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 90);
+                    }
+                    else if (yMag2 < 0)
+                    {
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 270);
+                    }
+                    else
+                    {
+                        shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
+                    }
+                }
             }
+            else
+            {
+                if(rightFacing)
+                {
+                    spawnX = gameObject.transform.localPosition.x + spawnDist;
+                    spawnY = gameObject.transform.localPosition.y;
+                    shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    spawnX = gameObject.transform.localPosition.x - spawnDist;
+                    spawnY = gameObject.transform.localPosition.y;
+                    shieldPrefab.transform.eulerAngles = new Vector3(0, 0, 180);
+                }
+            }
+            shieldPrefab.transform.position = new Vector2(spawnX, spawnY);
             
         }
         else
         {
             shieldPrefab.SetActive(false);
-            
         }
 
         if(shieldHealth < 1)
@@ -568,7 +596,8 @@ public class PlayerMovement : MonoBehaviour {
         if(col.otherCollider.transform.tag == "Shield")
         {
             Debug.Log("You got blocked bitch");
-            shieldHealth--;
+            if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
+                shieldHealth--;
         }
         else
         {

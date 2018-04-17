@@ -151,7 +151,6 @@ GameObject:
   - component: {fileID: 8712915}
   - component: {fileID: 8712917}
   - component: {fileID: 8712916}
-  - component: {fileID: 8712919}
   - component: {fileID: 8712918}
   m_Layer: 8
   m_Name: Ceiling
@@ -262,17 +261,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &8712919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 8712914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &76036918
 Prefab:
   m_ObjectHideFlags: 0
@@ -408,7 +396,6 @@ GameObject:
   - component: {fileID: 185406285}
   - component: {fileID: 185406287}
   - component: {fileID: 185406286}
-  - component: {fileID: 185406289}
   - component: {fileID: 185406288}
   m_Layer: 8
   m_Name: Wall
@@ -519,17 +506,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &185406289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 185406284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &229570158
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +516,6 @@ GameObject:
   - component: {fileID: 229570159}
   - component: {fileID: 229570161}
   - component: {fileID: 229570160}
-  - component: {fileID: 229570163}
   - component: {fileID: 229570162}
   m_Layer: 8
   m_Name: Platform_4
@@ -651,17 +626,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &229570163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 229570158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &307308357
 Prefab:
   m_ObjectHideFlags: 0
@@ -733,7 +697,6 @@ GameObject:
   - component: {fileID: 355906878}
   - component: {fileID: 355906880}
   - component: {fileID: 355906879}
-  - component: {fileID: 355906882}
   - component: {fileID: 355906881}
   m_Layer: 8
   m_Name: Wall
@@ -844,17 +807,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &355906882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 355906877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &388516919
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +817,6 @@ GameObject:
   - component: {fileID: 388516920}
   - component: {fileID: 388516922}
   - component: {fileID: 388516921}
-  - component: {fileID: 388516924}
   - component: {fileID: 388516923}
   m_Layer: 8
   m_Name: Platform_3
@@ -976,17 +927,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &388516924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 388516919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &485767111 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1716472380115652, guid: 2b196f94a5d8c294ba15169b17c891d4,
@@ -1076,7 +1016,6 @@ GameObject:
   - component: {fileID: 620116524}
   - component: {fileID: 620116526}
   - component: {fileID: 620116525}
-  - component: {fileID: 620116528}
   - component: {fileID: 620116527}
   m_Layer: 8
   m_Name: Platform_1
@@ -1187,17 +1126,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &620116528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 620116523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &636787723 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1716472380115652, guid: 2b196f94a5d8c294ba15169b17c891d4,
@@ -1526,7 +1454,6 @@ GameObject:
   - component: {fileID: 917832195}
   - component: {fileID: 917832197}
   - component: {fileID: 917832196}
-  - component: {fileID: 917832199}
   - component: {fileID: 917832198}
   m_Layer: 8
   m_Name: Platform_2
@@ -1637,17 +1564,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &917832199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 917832194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &928064582
 Prefab:
   m_ObjectHideFlags: 0
@@ -1911,7 +1827,6 @@ GameObject:
   - component: {fileID: 1407980757}
   - component: {fileID: 1407980756}
   - component: {fileID: 1407980758}
-  - component: {fileID: 1407980759}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Floor
@@ -2021,17 +1936,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &1407980759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1407980754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1515616217 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1716472380115652, guid: 2b196f94a5d8c294ba15169b17c891d4,
@@ -2047,7 +1951,6 @@ GameObject:
   - component: {fileID: 1586603358}
   - component: {fileID: 1586603360}
   - component: {fileID: 1586603359}
-  - component: {fileID: 1586603362}
   - component: {fileID: 1586603361}
   m_Layer: 8
   m_Name: Platform_0
@@ -2158,17 +2061,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &1586603362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1586603357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1655302033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,7 +2127,6 @@ GameObject:
   - component: {fileID: 1849286833}
   - component: {fileID: 1849286835}
   - component: {fileID: 1849286834}
-  - component: {fileID: 1849286837}
   - component: {fileID: 1849286836}
   m_Layer: 8
   m_Name: Platform_6
@@ -2346,17 +2237,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &1849286837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1849286832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2090203077
 Prefab:
   m_ObjectHideFlags: 0
@@ -2413,7 +2293,6 @@ GameObject:
   - component: {fileID: 2100162449}
   - component: {fileID: 2100162451}
   - component: {fileID: 2100162450}
-  - component: {fileID: 2100162453}
   - component: {fileID: 2100162452}
   m_Layer: 8
   m_Name: Platform_5
@@ -2524,17 +2403,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &2100162453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2100162448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7faf24c37ea2c40b3527ee8caaead0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2100404437
 GameObject:
   m_ObjectHideFlags: 0
