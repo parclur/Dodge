@@ -40,9 +40,10 @@ public class BallScript : MonoBehaviour {
     public void ResetPos()
     {
         gameObject.transform.position = spawn;
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
 
-	void CheckForDeadBall()
+    void CheckForDeadBall()
 	{
 		float speed = Mathf.Sqrt(rb.velocity.x * rb.velocity.x + rb.velocity.y * rb.velocity.y);
 		if (speed < speedThreshold)

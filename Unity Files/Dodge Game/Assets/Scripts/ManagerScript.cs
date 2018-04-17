@@ -100,7 +100,6 @@ public class ManagerScript : MonoBehaviour {
     {
         int teamMemebersOut = 0;
         int totalTeamMembers = sizeOfTeam1;
-        Debug.Log("Team 1 amount: " + totalTeamMembers);
 
         for (int i = 0; i < totalTeamMembers; i++)
         {
@@ -123,7 +122,6 @@ public class ManagerScript : MonoBehaviour {
     {
         int teamMemebersOut = 0;
         int totalTeamMembers = sizeOfTeam2;
-        Debug.Log("Team 2 amount: " + totalTeamMembers);
 
         for (int i = 0; i < totalTeamMembers; i++)
         {

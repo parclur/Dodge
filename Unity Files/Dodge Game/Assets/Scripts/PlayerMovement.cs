@@ -64,6 +64,9 @@ public class PlayerMovement : MonoBehaviour {
         cursorPrefab.name = "Cursor";
         shieldPrefab.name = "Shield";
 
+        Physics2D.IgnoreLayerCollision(10, 10, true);// fucking work!!!
+        //Physics2D.IgnoreCollision(shieldPrefab.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
+
         rig = GetComponent<Rigidbody2D>();
         onGround = false;
 		color = GetComponent<SpriteRenderer>().color;
@@ -76,8 +79,9 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Physics2D.IgnoreLayerCollision(10, 10, true);// fucking work!!!
 
-        if(!isOut)
+        if (!isOut)
         {
             gameObject.SetActive(true);
             SetCursor();
@@ -86,7 +90,6 @@ public class PlayerMovement : MonoBehaviour {
             CheckMove();
             CheckThrow();
             CheckShield2();
-            UpdateIframes();
         }
         else
         {
@@ -112,6 +115,7 @@ public class PlayerMovement : MonoBehaviour {
     public void ResetPlayer()
     {
         gameObject.transform.position = spawn;
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         shieldHealth = 1;
 
         if(numBalls>0)
@@ -407,6 +411,7 @@ public class PlayerMovement : MonoBehaviour {
                     {
                         spawnX = gameObject.transform.localPosition.x - spawnDist;
                     }
+                    
                     if (yMag > 0)
                     {
                         spawnY = gameObject.transform.localPosition.y + spawnDist;
@@ -415,6 +420,7 @@ public class PlayerMovement : MonoBehaviour {
                     {
                         spawnY = gameObject.transform.localPosition.y - spawnDist;
                     }
+                    
                     if (xMag == 0 && yMag == 0)
                     {
                         spawnX = gameObject.transform.localPosition.x + spawnDist;
@@ -466,6 +472,7 @@ public class PlayerMovement : MonoBehaviour {
                     {
                         spawnX = gameObject.transform.localPosition.x - spawnDist;
                     }
+
                     if (yMag2 > 0)
                     {
                         spawnY = gameObject.transform.localPosition.y + spawnDist;
@@ -474,6 +481,7 @@ public class PlayerMovement : MonoBehaviour {
                     {
                         spawnY = gameObject.transform.localPosition.y - spawnDist;
                     }
+
                     if(xMag2 == 0 && yMag2 ==0)
                     {
                         spawnX = gameObject.transform.localPosition.x + spawnDist;
@@ -575,13 +583,13 @@ public class PlayerMovement : MonoBehaviour {
                     numBalls--;
                 }
 
-                iFrameTimer = 0.5f;
+                //iFrameTimer = 0.5f;
             }
         }
 
 	}
 
-
+    /*
 	void UpdateIframes()
 	{
 		if (iFrameTimer <= 0f)
@@ -600,5 +608,5 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 
-	}
+	}*/
 }
