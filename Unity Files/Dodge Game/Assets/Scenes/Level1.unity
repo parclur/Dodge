@@ -416,7 +416,7 @@ Prefab:
     - target: {fileID: 114929803305666498, guid: 2b196f94a5d8c294ba15169b17c891d4,
         type: 2}
       propertyPath: characterClass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b196f94a5d8c294ba15169b17c891d4, type: 2}

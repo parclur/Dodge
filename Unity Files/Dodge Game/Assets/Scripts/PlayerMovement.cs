@@ -91,6 +91,9 @@ public class PlayerMovement : MonoBehaviour {
 
         if (!isOut)
         {
+			anim.SetBool ("Throwing", false);
+			anim.SetBool ("Catching", false);
+			anim.SetBool ("Dashing", false);
             gameObject.SetActive(true);
             SetCursor();
             CheckGrounded();
@@ -284,6 +287,7 @@ public class PlayerMovement : MonoBehaviour {
                 ballSavedName = hits[i].gameObject.name;
                 numBalls++;
 				Destroy (hits [i].gameObject);
+				anim.SetBool ("Catching", true);
 			}
 		}
 	}
@@ -315,6 +319,7 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetAxis(playerThrow) != 0 && numBalls > 0 && ableToThrow)
 		{
             Debug.Log("Thowing");
+			anim.SetBool ("Throwing", true);
 
             float xMag = Input.GetAxis(playerAimHor);
             float yMag = Input.GetAxis(playerAimVer);
@@ -585,6 +590,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             speedMultiplier = 20.0f;
             dashAmount--;
+			anim.SetBool ("Dashing", true);
         }
         else
         {
