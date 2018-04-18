@@ -53,11 +53,13 @@ public class PlayerMovement : MonoBehaviour {
 	float iFrameTimer = 0f;
 	Color color;
 
+
 	Animator anim;
 	SpriteRenderer sr;
 	enum State{
 		IDLE = 0, JUMPING, RUNNING	
 	};
+	public int characterClass;
 
 	// Use this for initialization
 	void Start () {
@@ -78,6 +80,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		anim = GetComponent<Animator> ();
 		sr = GetComponent<SpriteRenderer> ();
+		anim.SetInteger ("CharacterClass", characterClass);
 
         InitPlayer();
 	}
@@ -222,7 +225,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			rig.AddForce (Vector2.up * 1.25f * jumpForce);
 		}
-		else if (xMove != 0)
+		else if (xMove != 0 && onGround)
 		{
 			anim.SetInteger ("State", (int)State.RUNNING);
 		}
