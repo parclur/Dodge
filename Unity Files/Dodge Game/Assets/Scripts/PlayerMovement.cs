@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour {
         spawn = gameObject.transform.position;
         if (gameObject.tag == "Player1")
         {
-            spawn = GameObject.Find("Player_Start_Point_Red_1").transform.position;
+            spawn = GameObject.Find("Player_Start_Point_Blue_1").transform.position;
             playerHor = "P1LSH";
             playerVer = "P1LSV";
             playerJump = "P1A";
@@ -167,7 +167,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if (gameObject.tag == "Player2")
         {
-            spawn = GameObject.Find("Player_Start_Point_Blue_1").transform.position;
+            spawn = GameObject.Find("Player_Start_Point_Red_1").transform.position;
             playerHor = "P2LSH";
             playerVer = "P2LSV";
             playerJump = "P2A";
@@ -180,7 +180,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if (gameObject.tag == "Player3")
         {
-            spawn = GameObject.Find("Player_Start_Point_Red_2").transform.position;
+            spawn = GameObject.Find("Player_Start_Point_Blue_2").transform.position;
             playerHor = "P3LSH";
             playerVer = "P3LSV";
             playerJump = "P3A";
@@ -193,7 +193,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if (gameObject.tag == "Player4")
         {
-            spawn = GameObject.Find("Player_Start_Point_Blue_2").transform.position;
+            spawn = GameObject.Find("Player_Start_Point_Red_2").transform.position;
             playerHor = "P4LSH";
             playerVer = "P4LSV";
             playerJump = "P4A";
