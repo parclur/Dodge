@@ -716,6 +716,58 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 531263913}
+--- !u!1 &534462150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 534462153}
+  - component: {fileID: 534462152}
+  - component: {fileID: 534462151}
+  m_Layer: 0
+  m_Name: Player1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &534462151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534462150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3c80c33b84b7e438af9459d3589c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &534462152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534462150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5463afce993b6bc4b8cdca0b3c3ad6d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &534462153
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534462150}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 904.214, y: 533.5987, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549206583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,6 +1593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1105487235}
   - component: {fileID: 1105487234}
+  - component: {fileID: 1105487236}
   m_Layer: 0
   m_Name: Player_Login_Manager
   m_TagString: Untagged
@@ -1572,7 +1625,7 @@ MonoBehaviour:
   p2IsStriker: 0
   p2StrikerCharacter: {fileID: 1786790242}
   p2BlockerCharacter: {fileID: 1214245135}
-  p2JoinButton: {fileID: 0}
+  p2JoinButton: {fileID: 531263915}
   p2CharacterSelectButton: {fileID: 1801100913}
 --- !u!224 &1105487235
 RectTransform:
@@ -1592,6 +1645,17 @@ RectTransform:
   m_AnchoredPosition: {x: 1730, y: 79}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1105487236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1105487233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05265f3abe6da6b448690f0deeadc55f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1147792971
 GameObject:
   m_ObjectHideFlags: 0
