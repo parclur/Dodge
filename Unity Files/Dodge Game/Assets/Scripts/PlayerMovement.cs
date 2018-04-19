@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool ableToPickUp = true;
     public bool ableToShield = true;
     bool rightFacing;
+    bool ableToJump = true;
 
     public bool onGround;
 	public LayerMask ground;
@@ -100,8 +101,12 @@ public class PlayerMovement : MonoBehaviour {
             CheckPickup();
             CheckMove();
             CheckThrow();
-            // CheckShield2();
-            Dash();
+
+            if (characterClass == 0)
+                Dash();
+            else if (characterClass == 1)
+                CheckShield2();
+
         }
         else
         {
@@ -129,6 +134,8 @@ public class PlayerMovement : MonoBehaviour {
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         shieldHealth = 1;
 
+        
+
         if(numBalls>0)
         {
             GameObject ball = Instantiate(ballPrefab);
@@ -138,7 +145,7 @@ public class PlayerMovement : MonoBehaviour {
 
         isOut = false;
         gameObject.SetActive(true);
-
+        anim.SetInteger("CharacterClass", characterClass);
 
     }
 
@@ -207,7 +214,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		rig.velocity = new Vector2(xMove * playerSpeed * speedMultiplier, rig.velocity.y);
 
-		if (xMove > 0)
+
+        if (xMove > 0)
         {
 			sr.flipX = false;
             rightFacing = true;
@@ -246,8 +254,8 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			RaycastHit2D rcLeft, rcRight, rcCenter;
 
-			rcLeft = Physics2D.Raycast (new Vector2 (transform.position.x - 1f, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
-			rcRight = Physics2D.Raycast (new Vector2 (transform.position.x + 1f, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
+			rcLeft = Physics2D.Raycast (new Vector2 (transform.position.x - 0.5f, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
+			rcRight = Physics2D.Raycast (new Vector2 (transform.position.x + 0.5f, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
 			rcCenter = Physics2D.Raycast (new Vector2 (transform.position.x, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
 
 			if (rcLeft.transform != null || rcRight.transform != null || rcCenter.transform != null)
@@ -643,9 +651,11 @@ public class PlayerMovement : MonoBehaviour {
 	{
         if(col.otherCollider.transform.tag == "Shield")
         {
-            Debug.Log("You got blocked bitch");
             if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
-                shieldHealth--;
+            {
+                //shieldHealth--;
+                Debug.Log("You got blocked bitch");
+            }
         }
         else
         {
