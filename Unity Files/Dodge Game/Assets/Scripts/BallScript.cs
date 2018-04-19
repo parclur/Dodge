@@ -23,6 +23,17 @@ public class BallScript : MonoBehaviour {
 		CheckForDeadBall ();
 	}
 
+    public void ChangeTeam()
+    {
+        if(possession == 1)
+        {
+            possession = 2;
+        }
+        if(possession == 2)
+        {
+            possession = 1;
+        }
+    }
 
     void SetSpawn()
     {

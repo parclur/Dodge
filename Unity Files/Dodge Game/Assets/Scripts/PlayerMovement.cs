@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool ableToShield = true;
     bool rightFacing;
     bool ableToJump = true;
+    bool canBeHit = true;
 
     public bool onGround;
 	public LayerMask ground;
@@ -363,10 +364,16 @@ public class PlayerMovement : MonoBehaviour {
 
             if (xMag > 0)
             {
+                sr.flipX = false;
+                rightFacing = true;
+                
                 spawnX = gameObject.transform.position.x + 1.0f;
             }
             else if(xMag < 0)
             {
+                sr.flipX = true; ;
+                rightFacing = false;
+
                 spawnX = gameObject.transform.position.x - 1.0f;
 
             }
@@ -601,9 +608,11 @@ public class PlayerMovement : MonoBehaviour {
             speedMultiplier = 20.0f;
             dashAmount--;
 			anim.SetBool ("Dashing", true);
+            canBeHit = false;
         }
         else
         {
+            canBeHit = true;
             speedMultiplier = 1.0f;
         }
 
@@ -655,7 +664,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
             {
-                //shieldHealth--;
+                col.gameObject.GetComponent<Rigidbody2D>().velocity *= -1;
+                col.gameObject.GetComponent<BallScript>().ChangeTeam();
+                shieldHealth--;
+
                 Debug.Log("You got blocked bitch");
             }
         }
@@ -663,13 +675,17 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
             {
-                isOut = true;
-
-                if(numBalls > 0)
+                if(canBeHit)
                 {
-                    GameObject ball = Instantiate(ballPrefab, gameObject.transform);
-                    ball.name = ballSavedName;
-                    numBalls--;
+                    if (numBalls > 0)
+                    {
+                        GameObject ball = Instantiate(ballPrefab, gameObject.transform);
+                        ball.name = ballSavedName;
+                        numBalls--;
+                    }
+
+                    isOut = true;
+
                 }
 
                 //iFrameTimer = 0.5f;
