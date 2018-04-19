@@ -284,20 +284,22 @@ public class PlayerMovement : MonoBehaviour {
 
 	void CheckPickup()
 	{
-		if (Input.GetAxis (playerPickup) != 0 && ableToPickUp)
-		{
-            ableToPickUp = false;
-            ableToThrow = false;
+		if (Input.GetAxis (playerPickup) != 0 && ableToPickUp) {
+			ableToPickUp = false;
+			ableToThrow = false;
+
 
 			Collider2D[] hits = Physics2D.OverlapCircleAll (pickupRad.bounds.center, pickupRad.radius, LayerMask.GetMask ("Ball"));
-			for (int i = 0; i < hits.GetLength (0) && numBalls < maxBalls; i++)
-			{
-                ballSavedName = hits[i].gameObject.name;
-                numBalls++;
+			for (int i = 0; i < hits.GetLength (0) && numBalls < maxBalls; i++) {
+				ballSavedName = hits [i].gameObject.name;
+				numBalls++;
 				Destroy (hits [i].gameObject);
 				anim.SetBool ("Catching", true);
 			}
+		} else if (Input.GetAxis (playerPickup) == 0) {
+			StartCoroutine(AbleToPickUpAgain());
 		}
+
 	}
 
 
@@ -396,7 +398,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (numBalls == 0)
         {
-            StartCoroutine(AbleToPickUpAgain());
+            //StartCoroutine(AbleToPickUpAgain());
         }
         else
             StartCoroutine(AbleToShootAgain());
