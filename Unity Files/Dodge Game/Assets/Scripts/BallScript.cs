@@ -10,7 +10,7 @@ public class BallScript : MonoBehaviour {
 
 	Rigidbody2D rb;
 
-	float speedThreshold = 11.5f;
+	float speedThreshold = 20f;
 
 	// Use this for initialization
 	void Start () {
@@ -25,13 +25,14 @@ public class BallScript : MonoBehaviour {
 
     public void ChangeTeam()
     {
-        if(possession == 1)
-        {
+        if(possession == 1){
             possession = 2;
         }
-        if(possession == 2)
-        {
+        if(possession == 2){
             possession = 1;
+        }
+        else{
+            possession = 0;
         }
         UpdateColor();
     }
@@ -57,7 +58,18 @@ public class BallScript : MonoBehaviour {
 
     void CheckForDeadBall()
 	{
+
+        if(rb.velocity.x > 25)
+        {
+            rb.velocity.Set(25, 0);
+        }
+        if(rb.velocity.x < -25)
+        {
+            rb.velocity.Set(-25, 0);
+        }
 		float speed = Mathf.Sqrt(rb.velocity.x * rb.velocity.x + rb.velocity.y * rb.velocity.y);
+
+        
 		if (speed < speedThreshold)
 		{
 			possession = 0;

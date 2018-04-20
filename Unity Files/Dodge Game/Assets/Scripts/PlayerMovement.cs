@@ -101,7 +101,11 @@ public class PlayerMovement : MonoBehaviour {
             CheckGrounded();
             CheckPickup();
             CheckMove();
-            CheckThrow();
+
+            if(Input.GetAxis(playerShield) < 1)
+            {
+                CheckThrow();
+            }
 
             if (characterClass == 0)
                 Dash();
@@ -142,6 +146,7 @@ public class PlayerMovement : MonoBehaviour {
             GameObject ball = Instantiate(ballPrefab);
             ball.name = ballSavedName;
             numBalls = 0;
+            ball.GetComponent<BallScript>().ResetPos();
         }
 
         isOut = false;
@@ -212,9 +217,8 @@ public class PlayerMovement : MonoBehaviour {
     {
         float xMove = Input.GetAxis(playerHor);
         float yMove = Input.GetAxis(playerJump);
-
+        
 		rig.velocity = new Vector2(xMove * playerSpeed * speedMultiplier, rig.velocity.y);
-
 
         if (xMove > 0)
         {
@@ -255,15 +259,17 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			RaycastHit2D rcLeft, rcRight, rcCenter;
 
-			rcLeft = Physics2D.Raycast (new Vector2 (transform.position.x - 0.5f, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
+            rcLeft = Physics2D.Raycast (new Vector2 (transform.position.x - 0.5f, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
 			rcRight = Physics2D.Raycast (new Vector2 (transform.position.x + 0.5f, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
 			rcCenter = Physics2D.Raycast (new Vector2 (transform.position.x, transform.position.y - 1.05f), Vector2.down, 0.05f, ground);
 
-			if (rcLeft.transform != null || rcRight.transform != null || rcCenter.transform != null)
-			{
-				onGround = true;
-				anim.SetInteger ("State", (int)State.IDLE);
-			} else
+
+            if (rcLeft.transform != null || rcRight.transform != null || rcCenter.transform != null)
+            {
+                onGround = true;
+                anim.SetInteger("State", (int)State.IDLE);
+            }
+            else
 			{
 				onGround = false;
 				if (anim.GetInteger("State") == (int)State.RUNNING)
@@ -605,17 +611,17 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (dashAmount > 0 && Input.GetAxis(playerShield) > 0)
         {
-            speedMultiplier = 20.0f;
+            speedMultiplier = 15.0f;
             dashAmount--;
 			anim.SetBool ("Dashing", true);
-            Physics2D.IgnoreLayerCollision(8, 9, true);
+
             canBeHit = false;
+            StartCoroutine(NormalSpeed());
         }
         else
         {
             canBeHit = true;
-            Physics2D.IgnoreLayerCollision(8, 9, false);
-            speedMultiplier = 1.0f;
+            //speedMultiplier = 1.0f;
         }
 
         if(canCheckDash)
@@ -626,6 +632,14 @@ public class PlayerMovement : MonoBehaviour {
                 StartCoroutine(AbleToDashAgain());
             }
         }
+
+    }
+
+
+    IEnumerator NormalSpeed()
+    {
+        yield return new WaitForSeconds(0.0001f);
+        speedMultiplier = 1.0f;
 
     }
 
@@ -654,8 +668,9 @@ public class PlayerMovement : MonoBehaviour {
 
     IEnumerator AbleToDashAgain()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         dashAmount = 1;
+        speedMultiplier = 1.0f;
         canCheckDash = true;
     }
 
@@ -666,8 +681,8 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (col.transform.tag == "Ball" && col.transform.GetComponent<BallScript>().possession != 0 && col.transform.GetComponent<BallScript>().possession != team)
             {
-                col.gameObject.GetComponent<Rigidbody2D>().velocity *= -1;
                 col.gameObject.GetComponent<BallScript>().ChangeTeam();
+                col.gameObject.GetComponent<Rigidbody2D>().velocity *= -1;
                 shieldHealth--;
 
                 Debug.Log("You got blocked bitch");
@@ -689,32 +704,15 @@ public class PlayerMovement : MonoBehaviour {
                     isOut = true;
 
                 }
+                else
+                {
+                    col.gameObject.GetComponent<BallScript>().ChangeTeam();
+                    col.gameObject.GetComponent<Rigidbody2D>().velocity *= -1;
+                }
 
-                //iFrameTimer = 0.5f;
             }
         }
 
 	}
 
-
-    /*
-	void UpdateIframes()
-	{
-		if (iFrameTimer <= 0f)
-		{
-			iFrameTimer = 0f;
-			GetComponent<SpriteRenderer>().color = color;
-		}
-		else{
-			iFrameTimer -= Time.deltaTime;
-			if ((int)(iFrameTimer * 6) % 2 == 0)
-			{
-				GetComponent<SpriteRenderer>().color = Color.white;
-			}
-			else{
-				GetComponent<SpriteRenderer>().color = color;
-			}
-		}
-
-	}*/
 }
