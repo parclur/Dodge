@@ -608,11 +608,13 @@ public class PlayerMovement : MonoBehaviour {
             speedMultiplier = 20.0f;
             dashAmount--;
 			anim.SetBool ("Dashing", true);
+            Physics2D.IgnoreLayerCollision(8, 9, true);
             canBeHit = false;
         }
         else
         {
             canBeHit = true;
+            Physics2D.IgnoreLayerCollision(8, 9, false);
             speedMultiplier = 1.0f;
         }
 

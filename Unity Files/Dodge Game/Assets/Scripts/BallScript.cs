@@ -33,6 +33,7 @@ public class BallScript : MonoBehaviour {
         {
             possession = 1;
         }
+        UpdateColor();
     }
 
     void SetSpawn()
