@@ -611,7 +611,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (dashAmount > 0 && Input.GetAxis(playerShield) > 0)
         {
-            speedMultiplier = 15.0f;
+            speedMultiplier = 13f;
             dashAmount--;
 			anim.SetBool ("Dashing", true);
 

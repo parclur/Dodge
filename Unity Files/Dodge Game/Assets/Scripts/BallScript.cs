@@ -52,6 +52,7 @@ public class BallScript : MonoBehaviour {
 
     public void ResetPos()
     {
+        SetSpawn();
         gameObject.transform.position = spawn;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }

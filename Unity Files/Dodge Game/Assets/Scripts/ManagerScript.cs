@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ManagerScript : MonoBehaviour {
 
@@ -45,6 +46,14 @@ public class ManagerScript : MonoBehaviour {
             CheckTeamOne();
             CheckTeamTwo();
         }
+
+        if(GetComponent<UIManager>())
+        {
+        GetComponent<UIManager>().SetBlueTeamNum(team1Score);
+        GetComponent<UIManager>().SetRedTeamNum(team2Score);
+        GetComponent<UIManager>().SetRoundNum(gameRound);
+        }
+
 	}
 
     void SetTeams()
@@ -111,6 +120,12 @@ public class ManagerScript : MonoBehaviour {
                 // appear congratulations to the winning team, increase score, reset
                 canCheck = false;
                 Debug.Log("Team2 Wins Round " + gameRound + "!");
+
+                if (GetComponent<UIManager>())
+                {
+                    GetComponent<UIManager>().EnableRoundEndText("Team2 Wins Round " + gameRound + "!");
+                }
+
                 team2Score++;
                 Debug.Log("Team 1 score: " + team1Score + " vs " + "Team 2 score: " + team2Score);
                 StartCoroutine(WaitInBetweenMatch());
@@ -133,6 +148,12 @@ public class ManagerScript : MonoBehaviour {
                 // appear congratulations to the winning team, increase score, reset
                 canCheck = false;
                 Debug.Log("Team1 Wins Round " + gameRound + "!");
+
+                if (GetComponent<UIManager>())
+                {
+                    GetComponent<UIManager>().EnableRoundEndText("Blue Team Wins Round " + gameRound + "!");
+                }
+
                 team1Score++;
                 Debug.Log("Team 1 score: " + team1Score + " vs " + "Team 2 score: " + team2Score);
                 StartCoroutine(WaitInBetweenMatch());
@@ -143,6 +164,12 @@ public class ManagerScript : MonoBehaviour {
     IEnumerator WaitInBetweenMatch()
     {
         yield return new WaitForSeconds(3.5f);
+
+        if (GetComponent<UIManager>())
+        {
+            GetComponent<UIManager>().DisableRoundEndText();
+        }
+
         ResetMatch();
     }
 
@@ -186,17 +213,29 @@ public class ManagerScript : MonoBehaviour {
         {
             Debug.Log("Team1 Wins " + team1Score + " to " + team2Score + "!");
 
+            if (GetComponent<UIManager>())
+            {
+                GetComponent<UIManager>().EnableRoundEndText("Team1 Wins " + team1Score + " to " + team2Score + "!");
+            }
+
         }
         else
         {
             Debug.Log("Team2 Wins " + team2Score + " to " + team1Score + "!");
 
+            if (GetComponent<UIManager>())
+            {
+                GetComponent<UIManager>().EnableRoundEndText("Team2 Wins " + team2Score + " to " + team1Score + "!");
+            }
         }
+
+        StartCoroutine(GoBackToMenu());
     }
 
     IEnumerator GoBackToMenu()
     {
         yield return new WaitForSeconds(4);
         // go back to the menu
+        SceneManager.LoadScene("End_Scene");
     }
 }
