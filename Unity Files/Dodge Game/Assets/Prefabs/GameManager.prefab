@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4873058202106890}
   - component: {fileID: 114337165530235646}
-  - component: {fileID: 114449173217486376}
+  - component: {fileID: 114817340906984870}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -60,7 +60,7 @@ MonoBehaviour:
   player2: {fileID: 0}
   player3: {fileID: 0}
   player4: {fileID: 0}
---- !u!114 &114449173217486376
+--- !u!114 &114817340906984870
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

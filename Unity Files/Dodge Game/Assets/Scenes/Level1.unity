@@ -2620,29 +2620,29 @@ Prefab:
       propertyPath: player4
       value: 
       objectReference: {fileID: 485767111}
+    - target: {fileID: 114817340906984870, guid: e5d629893930c09478e2c807e3611898,
+        type: 2}
+      propertyPath: redTeamScoreText
+      value: 
+      objectReference: {fileID: 1432559275}
+    - target: {fileID: 114817340906984870, guid: e5d629893930c09478e2c807e3611898,
+        type: 2}
+      propertyPath: blueTeamScoreText
+      value: 
+      objectReference: {fileID: 488360569}
+    - target: {fileID: 114817340906984870, guid: e5d629893930c09478e2c807e3611898,
+        type: 2}
+      propertyPath: roundNumText
+      value: 
+      objectReference: {fileID: 441162566}
+    - target: {fileID: 114817340906984870, guid: e5d629893930c09478e2c807e3611898,
+        type: 2}
+      propertyPath: roundEndText
+      value: 
+      objectReference: {fileID: 285960534}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5d629893930c09478e2c807e3611898, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1210006427 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1734694645843710, guid: e5d629893930c09478e2c807e3611898,
-    type: 2}
-  m_PrefabInternal: {fileID: 1210006426}
---- !u!114 &1210006428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1210006427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da41d16765930774aaf1ad9cae745c0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  redTeamScoreText: {fileID: 1432559275}
-  blueTeamScoreText: {fileID: 488360569}
-  roundNumText: {fileID: 441162566}
-  roundEndText: {fileID: 285960534}
 --- !u!1 &1295134147
 GameObject:
   m_ObjectHideFlags: 0
