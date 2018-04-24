@@ -63,6 +63,9 @@ public class PlayerMovement : MonoBehaviour {
 	};
 	public int characterClass;
 
+	public GameObject ballUI;
+	public GameObject rechargeUI;
+
 	// Use this for initialization
 	void Start () {
 
@@ -75,6 +78,8 @@ public class PlayerMovement : MonoBehaviour {
         cursorPrefab.name = "Cursor";
         shieldPrefab.name = "Shield";
         shieldPrefab.SetActive(false);
+
+		ballUI.SetActive (false);
 
         rig = GetComponent<Rigidbody2D>();
         onGround = false;
@@ -112,6 +117,7 @@ public class PlayerMovement : MonoBehaviour {
             else if (characterClass == 1)
                 CheckShield2();
 
+			rechargeUI.SetActive (canCheckDash && ableToShield);
         }
         else
         {
@@ -302,6 +308,7 @@ public class PlayerMovement : MonoBehaviour {
 				numBalls++;
 				Destroy (hits [i].gameObject);
 				anim.SetBool ("Catching", true);
+				ballUI.SetActive (true);
 			}
 		} else if (Input.GetAxis (playerPickup) == 0) {
 			StartCoroutine(AbleToPickUpAgain());
@@ -337,6 +344,7 @@ public class PlayerMovement : MonoBehaviour {
 		{
             Debug.Log("Thowing");
 			anim.SetBool ("Throwing", true);
+			ballUI.SetActive (false);
 
             float xMag = Input.GetAxis(playerAimHor);
             float yMag = Input.GetAxis(playerAimVer);
