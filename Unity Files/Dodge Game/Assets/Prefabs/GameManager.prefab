@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4873058202106890}
   - component: {fileID: 114337165530235646}
+  - component: {fileID: 114449173217486376}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -51,8 +52,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddae742c5fc9e034b880ce4c53029989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScore: 0
+  gameRound: 1
+  maxRounds: 7
+  team1Score: 0
+  team2Score: 0
   player1: {fileID: 0}
   player2: {fileID: 0}
   player3: {fileID: 0}
   player4: {fileID: 0}
+--- !u!114 &114449173217486376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734694645843710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da41d16765930774aaf1ad9cae745c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redTeamScoreText: {fileID: 0}
+  blueTeamScoreText: {fileID: 0}
+  roundNumText: {fileID: 0}
+  roundEndText: {fileID: 0}
