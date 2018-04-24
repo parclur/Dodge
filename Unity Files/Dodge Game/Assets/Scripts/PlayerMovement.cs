@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour {
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         shieldHealth = 1;
 
-        
+		ballUI.SetActive (false);
 
         if(numBalls>0)
         {
