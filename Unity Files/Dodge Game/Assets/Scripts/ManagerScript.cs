@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ManagerScript : MonoBehaviour {
-
+    
     // the manager script will be used to check if all players are out
     // and reset if on team is out
     public int gameRound = 1;
@@ -18,6 +18,16 @@ public class ManagerScript : MonoBehaviour {
     public GameObject player3;
     public GameObject player4;
 
+    int player1Kills;
+    int player2Kills;
+    int player3Kills;
+    int player4Kills;
+
+    int player1Deaths;
+    int player2Deaths;
+    int player3Deaths;
+    int player4Deaths;
+
     List<GameObject> team1Players = new List<GameObject>();
     int sizeOfTeam1 = 0;
 
@@ -28,6 +38,11 @@ public class ManagerScript : MonoBehaviour {
     int sizeOfBalls = 0;
 
     bool canCheck = true;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     // Use this for initialization
     void Start () {
@@ -54,7 +69,21 @@ public class ManagerScript : MonoBehaviour {
         GetComponent<UIManager>().SetRoundNum(gameRound);
         }
 
-	}
+        if(SceneManager.GetActiveScene().name == "End_Scene")
+        {
+            GameObject.Find("EndGameManager").GetComponent<EndSceneUIData>().SetKills(player1Kills, player2Kills, player3Kills, player4Kills);
+            GameObject.Find("EndGameManager").GetComponent<EndSceneUIData>().SetDeaths(player1Deaths, player2Deaths, player3Deaths, player4Deaths);
+
+            if (team1Score > team2Score)
+            {
+                GameObject.Find("EndGameManager").GetComponent<EndSceneUIData>().SetWinningText("Blue Team Wins " + team1Score + " to " + team2Score + "!");
+            }
+            else
+            {
+                GameObject.Find("EndGameManager").GetComponent<EndSceneUIData>().SetWinningText("Red Team Wins " + team2Score + " to " + team1Score + "!");
+            }
+        }
+    }
 
     void SetTeams()
     {
@@ -236,6 +265,52 @@ public class ManagerScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(4);
         // go back to the menu
+
         SceneManager.LoadScene("End_Scene");
+
+    }
+
+    public void IncrementPlayerKills(string player)
+    {
+        if(player == "Player1")
+        {
+            player1Kills++;
+        }
+        else if (player == "Player2")
+        {
+            player2Kills++;
+        }
+        else if (player == "Player3")
+        {
+            player3Kills++;
+        }
+        else if (player == "Player4")
+        {
+            player4Kills++;
+        }
+        Debug.Log(player1Kills + "\n" + player2Kills);
+        Debug.Log(player3Kills + "\n" + player4Kills);
+    }
+
+    public void IncrementPlayerDeaths(string player)
+    {
+        if (player == "Player1")
+        {
+            player1Deaths++;
+        }
+        else if (player == "Player2")
+        {
+            player2Deaths++;
+
+        }
+        else if (player == "Player3")
+        {
+            player3Deaths++;
+        }
+        else if (player == "Player4")
+        {
+            player4Deaths++;
+        }
     }
 }
+

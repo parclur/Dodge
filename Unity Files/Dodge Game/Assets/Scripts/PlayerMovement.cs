@@ -52,12 +52,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	public int team;
 
-	float iFrameTimer = 0f;
 	Color color;
-
 
 	Animator anim;
 	SpriteRenderer sr;
+
 	enum State{
 		IDLE = 0, JUMPING, RUNNING	
 	};
@@ -407,6 +406,7 @@ public class PlayerMovement : MonoBehaviour {
             ball.name = ballSavedName;
             ball.GetComponent<BallScript>().possession = team;
 			ball.GetComponent<BallScript>().UpdateColor();
+            ball.GetComponent<BallScript>().SetThrower(gameObject);
 
             if (xMag != 0 || yMag != 0)
                 ball.GetComponent<Rigidbody2D>().velocity = new Vector2(throwSpeed * xMag * 0.5f, throwSpeed * yMag * 0.5f);
@@ -710,6 +710,7 @@ public class PlayerMovement : MonoBehaviour {
                     }
 
                     isOut = true;
+                    col.gameObject.GetComponent<BallScript>().SendKillInfo(gameObject);
 
                 }
                 else

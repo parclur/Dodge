@@ -12,8 +12,12 @@ public class BallScript : MonoBehaviour {
 
 	float speedThreshold = 20f;
 
+    GameObject thrower;
+    string possessorName;
+
 	// Use this for initialization
 	void Start () {
+        thrower = null;
         SetSpawn();
         rb = GetComponent<Rigidbody2D> ();
 	}
@@ -49,10 +53,10 @@ public class BallScript : MonoBehaviour {
             spawn = GameObject.Find("Ball_Start_Point_3").transform.position;
     }
 
-
     public void ResetPos()
     {
         SetSpawn();
+        thrower = null;
         gameObject.transform.position = spawn;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
@@ -74,6 +78,7 @@ public class BallScript : MonoBehaviour {
 		if (speed < speedThreshold)
 		{
 			possession = 0;
+            //thrower = null;
 			UpdateColor ();
 		}
 	}
@@ -95,5 +100,30 @@ public class BallScript : MonoBehaviour {
 			sr.color = Color.red;
 		}
 	}
+
+    public void SetPossessorName(string newName)
+    {
+        possessorName = newName;
+    }
+
+    public void SetThrower(GameObject player)
+    {
+        thrower = player;
+        possessorName = player.name;
+        possession = thrower.GetComponent<PlayerMovement>().team;
+    }
+
+    public void SendKillInfo(GameObject deadObj)
+    {
+        GameObject GameMan = GameObject.Find("GameManager");
+
+        if(GameMan.GetComponent<ManagerScript>())
+        {
+            Debug.Log(deadObj.name + " is dead");
+            Debug.Log(possessorName + "got a kill");
+            GameMan.GetComponent<ManagerScript>().IncrementPlayerDeaths(deadObj.name);
+            GameMan.GetComponent<ManagerScript>().IncrementPlayerKills(possessorName);
+        }
+    }
 
 }
