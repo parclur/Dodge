@@ -143,6 +143,7 @@ public class PlayerMovement : MonoBehaviour {
         gameObject.transform.position = spawn;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         shieldHealth = 1;
+		sr.flipX = gameObject.transform.position.x > 0;
 
 		ballUI.SetActive (false);
 
@@ -309,7 +310,7 @@ public class PlayerMovement : MonoBehaviour {
 				anim.SetBool ("Catching", true);
 				ballUI.SetActive (true);
 			}
-		} else if (Input.GetAxis (playerPickup) == 0) {
+		} else if (Input.GetAxis (playerPickup) == 0 && !ableToPickUp) {
 			StartCoroutine(AbleToPickUpAgain());
 		}
 

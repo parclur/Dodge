@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1D46A865-0F85-6869-E8EF-8F8955A8B33A}</ProjectGuid>
+    <ProjectGuid>{63E847B9-E931-5C3F-CCA9-0D310F9DA360}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
@@ -51,79 +51,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Rewired\Examples\ControlRemapping1\Scripts\ControlRemappingDemo1.cs" />
-     <Compile Include="Assets\Rewired\Examples\CustomControllersTilt\Scripts\CustomControllersTiltDemo.cs" />
-     <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\CustomControllerDemo.cs" />
-     <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\CustomControllerDemo_Player.cs" />
-     <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\TouchButtonExample.cs" />
-     <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\TouchJoystickExample.cs" />
-     <Compile Include="Assets\Rewired\Examples\EightPlayers\Scripts\EightPlayersExample_Player.cs" />
-     <Compile Include="Assets\Rewired\Examples\FallbackJoystickIdentification\Scripts\FallbackJoystickIdentificationDemo.cs" />
-     <Compile Include="Assets\Rewired\Examples\PressAnyButtonToJoin\Scripts\PressAnyButtonToJoinExample_Assigner.cs" />
-     <Compile Include="Assets\Rewired\Examples\PressAnyButtonToJoin\Scripts\PressAnyButtonToJoinExample_GamePlayer.cs" />
-     <Compile Include="Assets\Rewired\Examples\PressStartToJoin\Scripts\PressStartToJoinExample_Assigner.cs" />
-     <Compile Include="Assets\Rewired\Examples\PressStartToJoin\Scripts\PressStartToJoinExample_GamePlayer.cs" />
-     <Compile Include="Assets\Rewired\Examples\Shared\Scripts\Bullet.cs" />
-     <Compile Include="Assets\Rewired\Examples\SimpleControlRemapping\Scripts\SimpleControlRemapping.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Examples\ControlMapperDemo\Scripts\ControlMapperDemoMessage.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ButtonInfo.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CalibrationWindow.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CanvasScalerExt.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CanvasScalerFitter.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ControlMapper.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ControlMapper_Classes.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ControlMapper_Enums.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ControlMapper_InputGrid.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ControlMapper_WindowManager.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CustomButton.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CustomSlider.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CustomToggle.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ICustomSelectable.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\InputBehaviorWindow.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\InputFieldInfo.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\InputRow.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\LanguageData.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ScrollbarVisibilityHelper.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ScrollRectSelectableChild.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ThemedElement.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ThemeSettings.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ToggleInfo.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UIControl.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UIControlSet.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UIElementInfo.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UIGroup.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UIImageHelper.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UISelectionUtility.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UISliderControl.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UITools.cs" />
-     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Window.cs" />
-     <Compile Include="Assets\Rewired\Extras\TouchControls\Examples\TouchControls1\Scripts\TouchControls1_ManipulateCube.cs" />
-     <Compile Include="Assets\Rewired\Integration\UnityUI\RewiredStandaloneInputModule.cs" />
-     <Compile Include="Assets\Rewired\Internal\Scripts\DataStorage\UserDataStore_PlayerPrefs.cs" />
-     <Compile Include="Assets\Rewired\Internal\Scripts\InputManager.cs" />
-     <Compile Include="Assets\Rewired\Internal\Scripts\Misc\ExternalTools.cs" />
-     <Compile Include="Assets\Rewired\Internal\Scripts\Platforms\Ouya\OuyaInputSource.cs" />
-     <Compile Include="Assets\Scripts\BallScript.cs" />
-     <Compile Include="Assets\Scripts\BallTrailScript.cs" />
-     <Compile Include="Assets\Scripts\EndSceneUIData.cs" />
-     <Compile Include="Assets\Scripts\EndScript.cs" />
-     <Compile Include="Assets\Scripts\GroundCheckScript.cs" />
-     <Compile Include="Assets\Scripts\ManagerScript.cs" />
-     <Compile Include="Assets\Scripts\OOBScript.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\PlayerInput.cs" />
-     <Compile Include="Assets\Scripts\PlayerLoginManager.cs" />
-     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\PlayerToControllerAssigner.cs" />
-     <Compile Include="Assets\Scripts\RewiredPlayerLoginManager.cs" />
-     <Compile Include="Assets\Scripts\RightStickControl.cs" />
-     <Compile Include="Assets\Scripts\ShieldScript.cs" />
-     <Compile Include="Assets\Scripts\StartScript.cs" />
-     <Compile Include="Assets\Scripts\UIManager.cs" />
-     <None Include="Assets\Rewired\Extras\TouchControls\Shaders\ColorShift.shader" />
-     <None Include="Assets\Rewired\Documentation\licences.txt" />
-     <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
-     <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
+     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\ControlMapperInspector.cs" />
+     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomButtonInspector.cs" />
+     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomSliderInspector.cs" />
+     <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomToggleInspector.cs" />
+     <Compile Include="Assets\Rewired\Extras\TouchControls\Scripts\Editor\MenuCommands.cs" />
+     <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\ControllerDataFilesInspector.cs" />
+     <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\CustomInspector_External.cs" />
+     <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\HardwareJoystickMapInspector.cs" />
+     <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\HardwareJoystickTemplateMapInspector.cs" />
+     <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\InputManagerInspector.cs" />
+     <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\UserDataStore_PlayerPrefsInspector.cs" />
+     <Compile Include="Assets\Rewired\Internal\Scripts\Editor\UnityEditorBridge.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -217,6 +156,10 @@
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>C:/Users/Dyson Little/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{1D46A865-0F85-6869-E8EF-8F8955A8B33A}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

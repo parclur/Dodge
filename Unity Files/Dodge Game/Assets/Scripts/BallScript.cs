@@ -15,6 +15,11 @@ public class BallScript : MonoBehaviour {
     GameObject thrower;
     string possessorName;
 
+	public GameObject ballTrailPrefab;
+	float trailLifespan = 0.1f;
+	float trailSpawnCountdownMax = 0.01f;
+	float trailSpawnCountdown = 0.01f;
+
 	// Use this for initialization
 	void Start () {
         thrower = null;
@@ -25,6 +30,20 @@ public class BallScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		CheckForDeadBall ();
+		SpawnTrail ();
+	}
+
+	void SpawnTrail()
+	{
+		trailSpawnCountdown -= Time.deltaTime;
+		if (trailSpawnCountdown <= 0f)
+		{
+			trailSpawnCountdown = trailSpawnCountdownMax;
+			GameObject trail = Instantiate (ballTrailPrefab);
+			trail.transform.position = transform.position;
+			trail.GetComponent<BallTrailScript> ().maxLifespan = trailLifespan;
+			trail.GetComponent<SpriteRenderer> ().color = GetComponent<SpriteRenderer> ().color;
+		}
 	}
 
     public void ChangeTeam()
