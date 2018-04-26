@@ -27,6 +27,9 @@ public class PlayerLoginManager : MonoBehaviour {
     public GameObject player3Panel;
     public GameObject player4Panel;
 
+    public AudioClip buttonClick;
+    AudioSource buttonClickSound;
+
     void Start()
     {
         numberOfPlayers = 0;
@@ -34,10 +37,14 @@ public class PlayerLoginManager : MonoBehaviour {
         playerLoginCanvas.SetActive(false);
         p1IsStriker = true;
         p1CharacterClass = 0;
+
+        buttonClickSound = GetComponent<AudioSource>();
     }
 
     public void SinglePlayer()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         numberOfPlayers = 1;
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
@@ -55,6 +62,8 @@ public class PlayerLoginManager : MonoBehaviour {
 
     public void Player1CharacterSelect()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         if (p1IsStriker)
         {
             p1IsStriker = false;
@@ -74,6 +83,8 @@ public class PlayerLoginManager : MonoBehaviour {
 
     public void Player1Ready()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         p1CharacterRightSelectButton.SetActive(false);
         p1CharacterLeftSelectButton.SetActive(false);
         p1NextButton.SetActive(true);
@@ -99,6 +110,8 @@ public class PlayerLoginManager : MonoBehaviour {
 
     public void ThreePlayer()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         numberOfPlayers = 3;
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
@@ -116,6 +129,8 @@ public class PlayerLoginManager : MonoBehaviour {
 
     public void FourPlayer()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         numberOfPlayers = 4;
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
@@ -133,6 +148,8 @@ public class PlayerLoginManager : MonoBehaviour {
 
     public void StartGame()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         Debug.Log(numberOfPlayers);
         if (numberOfPlayers == 1)
         {
