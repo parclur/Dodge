@@ -64,7 +64,7 @@ public class PlayerLoginManager : MonoBehaviour {
     {
         buttonClickSound.PlayOneShot(buttonClick, 1f);
 
-        if (p1IsStriker)
+        if (p1IsStriker) // this is for switching from  the striker to the blocker
         {
             p1IsStriker = false;
             p1CharacterClass = 1;
@@ -72,10 +72,10 @@ public class PlayerLoginManager : MonoBehaviour {
             p1BlockerCharacter.SetActive(true);
         }
 
-        else
+        else // this is for switching from the blocker to the striker
         {
             p1IsStriker = true;
-            p1CharacterClass = 1;
+            p1CharacterClass = 0;
             p1StrikerCharacter.SetActive(true);
             p1BlockerCharacter.SetActive(false);
         }
