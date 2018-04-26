@@ -67,7 +67,7 @@ public class PlayerLoginManager : MonoBehaviour {
         if (p1IsStriker)
         {
             p1IsStriker = false;
-            p1CharacterClass = 0;
+            p1CharacterClass = 1;
             p1StrikerCharacter.SetActive(false);
             p1BlockerCharacter.SetActive(true);
         }
@@ -149,6 +149,8 @@ public class PlayerLoginManager : MonoBehaviour {
     public void StartGame()
     {
         buttonClickSound.PlayOneShot(buttonClick, 1f);
+
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerClass("Player1", p1CharacterClass);
 
         Debug.Log(numberOfPlayers);
         if (numberOfPlayers == 1)

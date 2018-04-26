@@ -51,6 +51,12 @@ public class Player2LoginManager : MonoBehaviour {
             p1BlockerCharacter.SetActive(true);
         }
 
+        if (numberOfPlayers == 2)
+        {
+            player3Panel.SetActive(false);
+            player4Panel.SetActive(false);
+        }
+
         if (numberOfPlayers == 3)
         {
             player3Panel.SetActive(true);
@@ -69,7 +75,7 @@ public class Player2LoginManager : MonoBehaviour {
         if (p2IsStriker)
         {
             p2IsStriker = false;
-            p2CharacterClass = 0;
+            p2CharacterClass = 1;
             p2StrikerCharacter.SetActive(false);
             p2BlockerCharacter.SetActive(true);
         }
@@ -77,7 +83,7 @@ public class Player2LoginManager : MonoBehaviour {
         else
         {
             p2IsStriker = true;
-            p2CharacterClass = 1;
+            p2CharacterClass = 0;
             p2StrikerCharacter.SetActive(true);
             p2BlockerCharacter.SetActive(false);
         }
@@ -94,6 +100,9 @@ public class Player2LoginManager : MonoBehaviour {
     public void Next()
     {
         Debug.Log(numberOfPlayers);
+
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerClass("Player2", p2CharacterClass);
+
         if (numberOfPlayers == 2)
         {
             SceneManager.LoadScene("Level_Select");

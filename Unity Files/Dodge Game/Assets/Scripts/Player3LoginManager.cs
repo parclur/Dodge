@@ -82,7 +82,7 @@ public class Player3LoginManager : MonoBehaviour {
         if (p3IsStriker)
         {
             p3IsStriker = false;
-            p3CharacterClass = 0;
+            p3CharacterClass = 1;
             p3StrikerCharacter.SetActive(false);
             p3BlockerCharacter.SetActive(true);
         }
@@ -90,7 +90,7 @@ public class Player3LoginManager : MonoBehaviour {
         else
         {
             p3IsStriker = true;
-            p3CharacterClass = 1;
+            p3CharacterClass = 0;
             p3StrikerCharacter.SetActive(true);
             p3BlockerCharacter.SetActive(false);
         }
@@ -107,6 +107,9 @@ public class Player3LoginManager : MonoBehaviour {
     public void Next()
     {
         Debug.Log(numberOfPlayers);
+
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerClass("Player3", p3CharacterClass);
+
         if (numberOfPlayers == 3)
         {
             SceneManager.LoadScene("Level_Select");

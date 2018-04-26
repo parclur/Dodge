@@ -28,6 +28,11 @@ public class ManagerScript : MonoBehaviour {
     int player3Deaths;
     int player4Deaths;
 
+    int player1Class;
+    int player2Class;
+    int player3Class;
+    int player4Class;
+
     List<GameObject> team1Players = new List<GameObject>();
     int sizeOfTeam1 = 0;
 
@@ -46,16 +51,14 @@ public class ManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        player1 = GameObject.FindGameObjectWithTag("Player1");
-        player2 = GameObject.FindGameObjectWithTag("Player2");
-        player3 = GameObject.FindGameObjectWithTag("Player3");
-        player4 = GameObject.FindGameObjectWithTag("Player4");
-
-        SetTeams();
+        
     }
 
     // Update is called once per frame
     void Update () {
+
+        CheckPlayer();
+
         if(canCheck)
         {
             CheckTeamOne();
@@ -82,6 +85,78 @@ public class ManagerScript : MonoBehaviour {
             {
                 GameObject.Find("EndGameManager").GetComponent<EndSceneUIData>().SetWinningText("Red Team Wins " + team2Score + " to " + team1Score + "!");
             }
+        }
+    }
+
+    void CheckPlayer()
+    {
+        if (SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "Test_Level_2"
+            || SceneManager.GetActiveScene().name == "Test_Level_3" || SceneManager.GetActiveScene().name == "Test_Level_4")
+        {
+            player1 = GameObject.FindGameObjectWithTag("Player1");
+            player2 = GameObject.FindGameObjectWithTag("Player2");
+            player3 = GameObject.FindGameObjectWithTag("Player3");
+            player4 = GameObject.FindGameObjectWithTag("Player4");
+
+            SetTeams();
+        }
+    }
+
+    public void SetPlayerClass(string player, int playerClass)
+    {
+        if (player == "Player1")
+        {
+            player1Class = playerClass;
+            //player1Class = PlayerLoginManager.p1CharacterClass;
+            Debug.Log("Set Player1: " + player1Class);
+        }
+
+        if (player == "Player2")
+        {
+            player2Class = playerClass;
+            Debug.Log("Set Player2: " + player2Class);
+        }
+
+        if (player == "Player3")
+        {
+            player3Class = playerClass;
+            Debug.Log("Set Player3: " + player3Class);
+        }
+
+        if (player == "Player4")
+        {
+            player4Class = playerClass;
+            Debug.Log("Set Player4: " + player4Class);
+        }
+    }
+
+    public int GetPlayerClass(string tag)
+    {
+        Debug.Log(tag);
+
+        if (tag == "Player1")
+        {
+            return player1Class;
+        }
+
+        else if (tag == "Player2")
+        {
+            return player2Class;
+        }
+
+        else if(tag == "Player3")
+        {
+            return player3Class;
+        }
+
+        else if(tag == "Player4")
+        {
+            return player4Class;
+        }
+
+        else
+        {
+            return 0;
         }
     }
 

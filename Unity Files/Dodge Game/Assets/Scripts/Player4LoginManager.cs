@@ -86,7 +86,7 @@ public class Player4LoginManager : MonoBehaviour {
         if (p4IsStriker)
         {
             p4IsStriker = false;
-            p4CharacterClass = 0;
+            p4CharacterClass = 1;
             p4StrikerCharacter.SetActive(false);
             p4BlockerCharacter.SetActive(true);
         }
@@ -94,7 +94,7 @@ public class Player4LoginManager : MonoBehaviour {
         else
         {
             p4IsStriker = true;
-            p4CharacterClass = 1;
+            p4CharacterClass = 0;
             p4StrikerCharacter.SetActive(true);
             p4BlockerCharacter.SetActive(false);
         }
@@ -111,6 +111,9 @@ public class Player4LoginManager : MonoBehaviour {
     public void Next()
     {
         Debug.Log(numberOfPlayers);
+
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerClass("Player4", p4CharacterClass);
+
         SceneManager.LoadScene("Level_Select");
     }
 }

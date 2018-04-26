@@ -68,6 +68,8 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        characterClass = GameObject.Find("GameManager").GetComponent<ManagerScript>().GetPlayerClass(gameObject.name);
+
         cursorPrefab = Instantiate(cursorPrefab);
         shieldPrefab = Instantiate(shieldPrefab);
         cursorPrefab.transform.parent = gameObject.transform;
