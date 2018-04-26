@@ -7,6 +7,13 @@ using UnityEngine.SceneManagement;
 public class Player2LoginManager : MonoBehaviour {
 
     int numberOfPlayers;
+    public static int p2CharacterClass = 0;
+
+    int p1CharacterClass;
+    public GameObject p1StrikerCharacter;
+    public GameObject p1BlockerCharacter;
+    public GameObject player3Panel;
+    public GameObject player4Panel;
 
     public GameObject player2Panel;
     public bool p2IsStriker;
@@ -21,6 +28,7 @@ public class Player2LoginManager : MonoBehaviour {
     void Start()
     {
         numberOfPlayers = PlayerLoginManager.numberOfPlayers;
+        p1CharacterClass = PlayerLoginManager.p1CharacterClass;
         p2IsStriker = true;
 
         player2Panel.SetActive(true);
@@ -30,6 +38,30 @@ public class Player2LoginManager : MonoBehaviour {
         p2StrikerCharacter.SetActive(true);
         p2BlockerCharacter.SetActive(false);
         p2NextButton.SetActive(false);
+
+        if (p1CharacterClass == 0)
+        {
+            p1StrikerCharacter.SetActive(true);
+            p1BlockerCharacter.SetActive(false);
+        }
+
+        if (p1CharacterClass == 0)
+        {
+            p1StrikerCharacter.SetActive(false);
+            p1BlockerCharacter.SetActive(true);
+        }
+
+        if (numberOfPlayers == 3)
+        {
+            player3Panel.SetActive(true);
+            player4Panel.SetActive(false);
+        }
+
+        if (numberOfPlayers == 4)
+        {
+            player3Panel.SetActive(true);
+            player4Panel.SetActive(true);
+        }
     }
 
     public void Player2CharacterSelect()
@@ -57,7 +89,7 @@ public class Player2LoginManager : MonoBehaviour {
         p2NextScreenButton.Select();
     }
     
-    public void StartGame()
+    public void Next()
     {
         Debug.Log(numberOfPlayers);
         if (numberOfPlayers == 2)

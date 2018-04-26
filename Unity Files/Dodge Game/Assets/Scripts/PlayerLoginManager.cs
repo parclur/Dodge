@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class PlayerLoginManager : MonoBehaviour {
 
     public static int numberOfPlayers = 0;
+    public static int p1CharacterClass = 0;
 
     public GameObject playerNumCanvas;
     public GameObject playerLoginCanvas;
@@ -22,12 +23,17 @@ public class PlayerLoginManager : MonoBehaviour {
     public GameObject p1NextButton;
     public UnityEngine.UI.Button p1NextScreenButton;
 
+    public GameObject player2Panel;
+    public GameObject player3Panel;
+    public GameObject player4Panel;
+
     void Start()
     {
         numberOfPlayers = 0;
         playerNumCanvas.SetActive(true);
         playerLoginCanvas.SetActive(false);
         p1IsStriker = true;
+        p1CharacterClass = 0;
     }
 
     public void SinglePlayer()
@@ -36,6 +42,9 @@ public class PlayerLoginManager : MonoBehaviour {
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
         player1Panel.SetActive(true);
+        player2Panel.SetActive(false);
+        player3Panel.SetActive(false);
+        player4Panel.SetActive(false);
 
         p1CharacterSelectButton.Select();
         p1CharacterSelectButton.OnSelect(null);
@@ -49,6 +58,7 @@ public class PlayerLoginManager : MonoBehaviour {
         if (p1IsStriker)
         {
             p1IsStriker = false;
+            p1CharacterClass = 0;
             p1StrikerCharacter.SetActive(false);
             p1BlockerCharacter.SetActive(true);
         }
@@ -56,6 +66,7 @@ public class PlayerLoginManager : MonoBehaviour {
         else
         {
             p1IsStriker = true;
+            p1CharacterClass = 1;
             p1StrikerCharacter.SetActive(true);
             p1BlockerCharacter.SetActive(false);
         }
@@ -75,6 +86,9 @@ public class PlayerLoginManager : MonoBehaviour {
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
         player1Panel.SetActive(true);
+        player2Panel.SetActive(true);
+        player3Panel.SetActive(false);
+        player4Panel.SetActive(false);
 
         p1CharacterSelectButton.Select();
         p1CharacterSelectButton.OnSelect(null);
@@ -89,6 +103,9 @@ public class PlayerLoginManager : MonoBehaviour {
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
         player1Panel.SetActive(true);
+        player2Panel.SetActive(true);
+        player3Panel.SetActive(true);
+        player4Panel.SetActive(false);
 
         p1CharacterSelectButton.Select();
         p1CharacterSelectButton.OnSelect(null);
@@ -103,6 +120,9 @@ public class PlayerLoginManager : MonoBehaviour {
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
         player1Panel.SetActive(true);
+        player2Panel.SetActive(true);
+        player3Panel.SetActive(true);
+        player4Panel.SetActive(true);
 
         p1CharacterSelectButton.Select();
         p1CharacterSelectButton.OnSelect(null);
