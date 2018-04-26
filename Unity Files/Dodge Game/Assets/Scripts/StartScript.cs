@@ -8,7 +8,7 @@ public class StartScript : MonoBehaviour {
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Player_Login_Screen");
+        SceneManager.LoadScene("Player_1_Login_Scene");
     }
 
     public void QuitGame()
