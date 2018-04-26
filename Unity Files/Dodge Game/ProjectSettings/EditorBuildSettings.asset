@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Start_Menu.unity
     guid: ebd9e6e6e81a83b4abd865af01c65bfc
   - enabled: 1
-    path: Assets/Scenes/Player_1_Login_Screen.unity
+    path: Assets/Scenes/Player_1_Login_Scene.unity
     guid: d54a31b6b0de1194ebf38adf3667cd8f
   - enabled: 1
     path: Assets/Scenes/Player_2_Login_Scene.unity
@@ -19,9 +19,12 @@ EditorBuildSettings:
     guid: cf4a61e2bbeac514d83eb07921ca6bc6
   - enabled: 1
     path: Assets/Scenes/Player_4_Login_Scene.unity
+    guid: 443c9962a7b437e48b34627122790708
+  - enabled: 1
+    path: Assets/Scenes/Level_Select.unity
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/Player_Login_Screen_OLD.unity
+    path: Assets/Scenes/Player_Login_Screen.unity
     guid: cccf534c78c69234581af1eef1a97151
   - enabled: 1
     path: Assets/Scenes/Level1.unity

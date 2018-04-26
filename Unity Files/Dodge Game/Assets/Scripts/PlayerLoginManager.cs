@@ -136,7 +136,7 @@ public class PlayerLoginManager : MonoBehaviour {
         Debug.Log(numberOfPlayers);
         if (numberOfPlayers == 1)
         {
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Level_Select");
         }
 
         if (numberOfPlayers >= 2)

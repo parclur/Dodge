@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 9
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -77,20 +77,17 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
+    m_PVRFiltering: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -110,8 +107,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    debug:
-      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &6165950
 GameObject:
@@ -206,7 +201,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -222,7 +216,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -239,8 +232,6 @@ SpriteRenderer:
   m_Size: {x: 36, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &8712918
 Rigidbody2D:
   serializedVersion: 4
@@ -350,7 +341,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -366,7 +356,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -383,8 +372,6 @@ SpriteRenderer:
   m_Size: {x: 2, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!1001 &120309977
 Prefab:
   m_ObjectHideFlags: 0
@@ -825,7 +812,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -841,7 +827,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -858,8 +843,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &185406288
 Rigidbody2D:
   serializedVersion: 4
@@ -945,7 +928,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -961,7 +943,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -978,8 +959,6 @@ SpriteRenderer:
   m_Size: {x: 3, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &229570162
 Rigidbody2D:
   serializedVersion: 4
@@ -1004,7 +983,7 @@ Rigidbody2D:
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114609510634471376, guid: 27616811e9399f340880093bdb46accb,
     type: 2}
-  m_PrefabInternal: {fileID: 435534021}
+  m_PrefabInternal: {fileID: 493812964}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &355906877
 GameObject:
@@ -1073,7 +1052,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1089,7 +1067,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1106,8 +1083,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &355906881
 Rigidbody2D:
   serializedVersion: 4
@@ -1128,6 +1103,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
+--- !u!114 &385615929 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114563784743232932, guid: 27616811e9399f340880093bdb46accb,
+    type: 2}
+  m_PrefabInternal: {fileID: 493812964}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &388516919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1174,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1209,7 +1189,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1226,8 +1205,6 @@ SpriteRenderer:
   m_Size: {x: 3, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &388516923
 Rigidbody2D:
   serializedVersion: 4
@@ -1248,7 +1225,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!1001 &435534021
+--- !u!1 &485767111 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1716472380115652, guid: 2b196f94a5d8c294ba15169b17c891d4,
+    type: 2}
+  m_PrefabInternal: {fileID: 795965883}
+--- !u!1001 &493812964
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1347,54 +1329,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 223453860843572022, guid: 27616811e9399f340880093bdb46accb,
         type: 2}
-      propertyPath: m_RenderMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 223453860843572022, guid: 27616811e9399f340880093bdb46accb,
-        type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 815331988}
-    - target: {fileID: 224791251640540556, guid: 27616811e9399f340880093bdb46accb,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.014814815
-      objectReference: {fileID: 0}
-    - target: {fileID: 224791251640540556, guid: 27616811e9399f340880093bdb46accb,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.014814815
-      objectReference: {fileID: 0}
-    - target: {fileID: 224791251640540556, guid: 27616811e9399f340880093bdb46accb,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.014814815
-      objectReference: {fileID: 0}
-    - target: {fileID: 224609859604434856, guid: 27616811e9399f340880093bdb46accb,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27616811e9399f340880093bdb46accb, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &441162566 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114563784743232932, guid: 27616811e9399f340880093bdb46accb,
-    type: 2}
-  m_PrefabInternal: {fileID: 435534021}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1 &485767111 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1716472380115652, guid: 2b196f94a5d8c294ba15169b17c891d4,
-    type: 2}
-  m_PrefabInternal: {fileID: 795965883}
---- !u!114 &488360569 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114411397649458984, guid: 27616811e9399f340880093bdb46accb,
-    type: 2}
-  m_PrefabInternal: {fileID: 435534021}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &506034034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,7 +1456,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1532,7 +1471,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1549,8 +1487,6 @@ SpriteRenderer:
   m_Size: {x: 2, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!1 &620116523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,7 +1552,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1632,7 +1567,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1649,8 +1583,6 @@ SpriteRenderer:
   m_Size: {x: 3, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &620116527
 Rigidbody2D:
   serializedVersion: 4
@@ -2011,11 +1943,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!4 &815331989
 Transform:
   m_ObjectHideFlags: 0
@@ -2140,7 +2072,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2156,7 +2087,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2173,8 +2103,6 @@ SpriteRenderer:
   m_Size: {x: 3, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &917832198
 Rigidbody2D:
   serializedVersion: 4
@@ -2378,7 +2306,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2394,7 +2321,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2411,8 +2337,6 @@ SpriteRenderer:
   m_Size: {x: 2, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!1 &1004347142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,17 +2542,17 @@ Prefab:
         type: 2}
       propertyPath: redTeamScoreText
       value: 
-      objectReference: {fileID: 1432559275}
+      objectReference: {fileID: 1823033976}
     - target: {fileID: 114817340906984870, guid: e5d629893930c09478e2c807e3611898,
         type: 2}
       propertyPath: blueTeamScoreText
       value: 
-      objectReference: {fileID: 488360569}
+      objectReference: {fileID: 1322569727}
     - target: {fileID: 114817340906984870, guid: e5d629893930c09478e2c807e3611898,
         type: 2}
       propertyPath: roundNumText
       value: 
-      objectReference: {fileID: 441162566}
+      objectReference: {fileID: 385615929}
     - target: {fileID: 114817340906984870, guid: e5d629893930c09478e2c807e3611898,
         type: 2}
       propertyPath: roundEndText
@@ -2720,6 +2644,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1322569727 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114411397649458984, guid: 27616811e9399f340880093bdb46accb,
+    type: 2}
+  m_PrefabInternal: {fileID: 493812964}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1365457465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,7 +2688,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2774,7 +2703,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2791,8 +2719,6 @@ SpriteRenderer:
   m_Size: {x: 2, y: 7.996199}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!1 &1403524578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2886,7 +2812,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2902,7 +2827,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2919,8 +2843,6 @@ SpriteRenderer:
   m_Size: {x: 32.15818, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &1407980758
 Rigidbody2D:
   serializedVersion: 4
@@ -2992,12 +2914,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1690ca27877616f47a5e697c87e4dcd1, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1432559275 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114345410254728596, guid: 27616811e9399f340880093bdb46accb,
-    type: 2}
-  m_PrefabInternal: {fileID: 435534021}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1479720976
 Prefab:
   m_ObjectHideFlags: 0
@@ -3179,7 +3095,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3195,7 +3110,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3212,8 +3126,6 @@ SpriteRenderer:
   m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &1586603361
 Rigidbody2D:
   serializedVersion: 4
@@ -3272,7 +3184,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3288,7 +3199,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3305,8 +3215,6 @@ SpriteRenderer:
   m_Size: {x: 2, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!1 &1655302033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3363,6 +3271,12 @@ Transform:
   m_Father: {fileID: 698598547}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1823033976 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114345410254728596, guid: 27616811e9399f340880093bdb46accb,
+    type: 2}
+  m_PrefabInternal: {fileID: 493812964}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1849286832
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,7 +3342,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3444,7 +3357,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3461,8 +3373,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &1849286836
 Rigidbody2D:
   serializedVersion: 4
@@ -3649,7 +3559,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3665,7 +3574,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3682,8 +3590,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &2100162452
 Rigidbody2D:
   serializedVersion: 4
