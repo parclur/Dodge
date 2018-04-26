@@ -26,6 +26,9 @@ public class Player3LoginManager : MonoBehaviour {
     public GameObject p3NextButton;
     public UnityEngine.UI.Button p3NextScreenButton;
 
+    public AudioClip buttonClick;
+    AudioSource buttonClickSound;
+
     void Start()
     {
         numberOfPlayers = PlayerLoginManager.numberOfPlayers;
@@ -41,6 +44,7 @@ public class Player3LoginManager : MonoBehaviour {
         p3BlockerCharacter.SetActive(false);
         p3NextButton.SetActive(false);
 
+        buttonClickSound = GetComponent<AudioSource>();
 
         if (p1CharacterClass == 0)
         {
@@ -79,6 +83,8 @@ public class Player3LoginManager : MonoBehaviour {
 
     public void Player3CharacterSelect()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         if (p3IsStriker)
         {
             p3IsStriker = false;
@@ -98,6 +104,8 @@ public class Player3LoginManager : MonoBehaviour {
 
     public void Player3Ready()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         p3CharacterRightSelectButton.SetActive(false);
         p3CharacterLeftSelectButton.SetActive(false);
         p3NextButton.SetActive(true);
@@ -107,6 +115,8 @@ public class Player3LoginManager : MonoBehaviour {
     public void Next()
     {
         Debug.Log(numberOfPlayers);
+
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
 
         GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerClass("Player3", p3CharacterClass);
 

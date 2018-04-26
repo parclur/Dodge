@@ -93,6 +93,8 @@ public class PlayerLoginManager : MonoBehaviour {
 
     public void TwoPlayer()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         numberOfPlayers = 2;
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);

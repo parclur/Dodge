@@ -15,10 +15,15 @@ public class LevelSelectionManager : MonoBehaviour {
     public GameObject level1Button;
     public UnityEngine.UI.Button level1SelectionButton;
 
+    public AudioClip buttonClick;
+    AudioSource buttonClickSound;
+
     void Start()
     {
         levelSelectionCanvas.SetActive(false);
         roundSelectionCanvas.SetActive(true);
+
+        buttonClickSound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -30,6 +35,8 @@ public class LevelSelectionManager : MonoBehaviour {
 
     public void MoreRounds()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         numberOfRounds++;
 
         if (numberOfRounds > 15)
@@ -42,6 +49,8 @@ public class LevelSelectionManager : MonoBehaviour {
 
     public void LessRounds()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         numberOfRounds--;
 
         if (numberOfRounds < 1)
@@ -54,6 +63,8 @@ public class LevelSelectionManager : MonoBehaviour {
 
     public void Next()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         levelSelectionCanvas.SetActive(true);
         roundSelectionCanvas.SetActive(false);
         level1SelectionButton.Select();
@@ -61,16 +72,22 @@ public class LevelSelectionManager : MonoBehaviour {
 
     public void Level1()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         SceneManager.LoadScene("Level1");
     }
 
     public void Level2()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         SceneManager.LoadScene("Test_Level_2");
     }
 
     public void Level3()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         SceneManager.LoadScene("Test_Level_3");
     }
 }

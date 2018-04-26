@@ -28,6 +28,9 @@ public class Player4LoginManager : MonoBehaviour {
     public GameObject p4NextButton;
     public UnityEngine.UI.Button p4NextScreenButton;
 
+    public AudioClip buttonClick;
+    AudioSource buttonClickSound;
+
     void Start()
     {
         numberOfPlayers = PlayerLoginManager.numberOfPlayers;
@@ -43,6 +46,8 @@ public class Player4LoginManager : MonoBehaviour {
         p4StrikerCharacter.SetActive(true);
         p4BlockerCharacter.SetActive(false);
         p4NextButton.SetActive(false);
+
+        buttonClickSound = GetComponent<AudioSource>();
 
         if (p1CharacterClass == 0)
         {
@@ -83,6 +88,8 @@ public class Player4LoginManager : MonoBehaviour {
 
     public void Player4CharacterSelect()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         if (p4IsStriker)
         {
             p4IsStriker = false;
@@ -102,6 +109,8 @@ public class Player4LoginManager : MonoBehaviour {
 
     public void Player4Ready()
     {
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
+
         p4CharacterRightSelectButton.SetActive(false);
         p4CharacterLeftSelectButton.SetActive(false);
         p4NextButton.SetActive(true);
@@ -111,6 +120,8 @@ public class Player4LoginManager : MonoBehaviour {
     public void Next()
     {
         Debug.Log(numberOfPlayers);
+
+        buttonClickSound.PlayOneShot(buttonClick, 1f);
 
         GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerClass("Player4", p4CharacterClass);
 
