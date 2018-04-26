@@ -24,6 +24,8 @@ public class LevelSelectionManager : MonoBehaviour {
     void Update()
     {
         numberOfRoundsText.text = numberOfRounds.ToString();
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetMaxRounds(numberOfRounds);
+
     }
 
     public void MoreRounds()
@@ -34,6 +36,8 @@ public class LevelSelectionManager : MonoBehaviour {
         {
             numberOfRounds = 1;
         }
+
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetMaxRounds(numberOfRounds);
     }
 
     public void LessRounds()
@@ -44,6 +48,8 @@ public class LevelSelectionManager : MonoBehaviour {
         {
             numberOfRounds = 15;
         }
+
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetMaxRounds(numberOfRounds);
     }
 
     public void Next()

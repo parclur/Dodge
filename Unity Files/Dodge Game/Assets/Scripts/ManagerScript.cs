@@ -18,15 +18,15 @@ public class ManagerScript : MonoBehaviour {
     public GameObject player3;
     public GameObject player4;
 
-    int player1Kills;
-    int player2Kills;
-    int player3Kills;
-    int player4Kills;
+    public int player1Kills;
+    public int player2Kills;
+    public int player3Kills;
+    public int player4Kills;
 
-    int player1Deaths;
-    int player2Deaths;
-    int player3Deaths;
-    int player4Deaths;
+    public int player1Deaths;
+    public int player2Deaths;
+    public int player3Deaths;
+    public int player4Deaths;
 
     int player1Class;
     int player2Class;
@@ -60,9 +60,28 @@ public class ManagerScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
         CheckPlayer();
 
-        if(canCheck)
+        if (SceneManager.GetActiveScene().name == "End_Scene")
+        {
+            canCheck = false;
+            Debug.Log("setting player stats");
+            Debug.Log("Player1 kills: " + player1Kills);
+            GameObject.Find("End_Manager").GetComponent<EndSceneUIData>().SetKills(player1Kills, player2Kills, player3Kills, player4Kills);
+            GameObject.Find("End_Manager").GetComponent<EndSceneUIData>().SetDeaths(player1Deaths, player2Deaths, player3Deaths, player4Deaths);
+
+            if (team1Score > team2Score)
+            {
+                GameObject.Find("End_Manager").GetComponent<EndSceneUIData>().SetWinningText("Blue Team Wins " + team1Score + " to " + team2Score + "!");
+            }
+            else
+            {
+                GameObject.Find("End_Manager").GetComponent<EndSceneUIData>().SetWinningText("Red Team Wins " + team2Score + " to " + team1Score + "!");
+            }
+        }
+
+        if (canCheck)
         {
             CheckTeamOne();
             CheckTeamTwo();
@@ -75,20 +94,7 @@ public class ManagerScript : MonoBehaviour {
         GetComponent<UIManager>().SetRoundNum(gameRound);
         }
 
-        if(SceneManager.GetActiveScene().name == "End_Scene")
-        {
-            GameObject.Find("EndGameManager").GetComponent<EndSceneUIData>().SetKills(player1Kills, player2Kills, player3Kills, player4Kills);
-            GameObject.Find("EndGameManager").GetComponent<EndSceneUIData>().SetDeaths(player1Deaths, player2Deaths, player3Deaths, player4Deaths);
 
-            if (team1Score > team2Score)
-            {
-                GameObject.Find("EndGameManager").GetComponent<EndSceneUIData>().SetWinningText("Blue Team Wins " + team1Score + " to " + team2Score + "!");
-            }
-            else
-            {
-                GameObject.Find("EndGameManager").GetComponent<EndSceneUIData>().SetWinningText("Red Team Wins " + team2Score + " to " + team1Score + "!");
-            }
-        }
     }
 
     void CheckPlayer()
@@ -168,6 +174,11 @@ public class ManagerScript : MonoBehaviour {
         {
             return 0;
         }
+    }
+
+    public void SetMaxRounds(int newMax)
+    {
+        maxRounds = newMax;
     }
 
     void SetTeams()
