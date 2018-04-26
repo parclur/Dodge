@@ -8,9 +8,13 @@ public class CameraPanScript : MonoBehaviour {
 	public GameObject[] Players;
 	public Vector2 cameraBuffer;
 
+	float camWidth ;
+	float camHeight;
+
 	// Use this for initialization
 	void Start () {
 		Players = new GameObject[4];
+
 		
 	}
 	
@@ -62,29 +66,46 @@ public class CameraPanScript : MonoBehaviour {
 
 		foreach (GameObject player in Players) {
 			center += player.transform.position;
+
 		}
 		finalPos = center / Players.Length;
 
 		float sizeX = maxX - minX + cameraBuffer.x;
 		float sizeY = maxY - minY + cameraBuffer.y;
 		float windowSize = (sizeX > sizeY ? sizeX : sizeY);
-		Debug.Log (windowSize);
 
 
-		//Checking Var Limits
-		if (windowSize < 10) {
-			windowSize = 10;
-		}
-		if (finalPos.x < 0) {
-			finalPos.x = 0;
-		} 
-		if (finalPos.y < 0) {
-			finalPos.y = 0;
+		//Checking Var Limits (width)
+		if (windowSize < 8) {
+			windowSize = 8;
+		} else if (windowSize > 18) {
+			windowSize = 18;
 		}
 
+		Camera cam = GetComponent<Camera>();
+
+		cam.orthographicSize = windowSize;
+		camHeight = cam.orthographicSize * 2f;
+		camWidth = camHeight * cam.aspect;
+
+		Debug.Log (finalPos.y - camHeight/4);
+
+		//Checking Var Limits (pos)
+		if (finalPos.x + camWidth/10 > 21) {
+			finalPos.x = 21 - camWidth/10;
+		} else if (finalPos.x - camWidth/10 < -21) {
+			finalPos.x = -21 + camWidth/10;
+		}
+
+		if (finalPos.y - camHeight/4 < 0) {
+			finalPos.y = 0 + camHeight/4;
+		}
 
 
-		gameObject.GetComponent<Camera> ().orthographicSize = windowSize;
+
+
+		//Debug.Log (finalPos);
+
 		gameObject.transform.position = new Vector3 (finalPos.x, finalPos.y, transform.position.z);
 	
 
