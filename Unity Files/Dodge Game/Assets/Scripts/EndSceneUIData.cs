@@ -47,17 +47,13 @@ public class EndSceneUIData : MonoBehaviour {
 
     void UpdateTexts()
     {
-        player1StatText.text = "Player 1 Stats \n" +
-                               "Kills: " + player1KillNum.ToString() + " \n" +
+        player1StatText.text = "Kills: " + player1KillNum.ToString() + " \n" +
                                "Deaths: " + player1DeadNum.ToString();
-        player2StatText.text = "Player 2 Stats \n" +
-                               "Kills: " + player2KillNum.ToString() + " \n" +
+        player2StatText.text = "Kills: " + player2KillNum.ToString() + " \n" +
                                "Deaths: " + player2DeadNum.ToString();
-        player3StatText.text = "Player 3 Stats \n" +
-                               "Kills: " + player3KillNum.ToString() + " \n" +
+        player3StatText.text = "Kills: " + player3KillNum.ToString() + " \n" +
                                "Deaths: " + player3DeadNum.ToString();
-        player4StatText.text = "Player 4 Stats \n" +
-                               "Kills: " + player4KillNum.ToString() + " \n" +
+        player4StatText.text = "Kills: " + player4KillNum.ToString() + " \n" +
                                "Deaths: " + player4DeadNum.ToString();
 
     }

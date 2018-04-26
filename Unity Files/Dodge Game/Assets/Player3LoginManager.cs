@@ -7,6 +7,14 @@ using UnityEngine.SceneManagement;
 public class Player3LoginManager : MonoBehaviour {
 
     int numberOfPlayers;
+    public static int p3CharacterClass = 0;
+    int p1CharacterClass;
+    public GameObject p1StrikerCharacter;
+    public GameObject p1BlockerCharacter;
+    int p2CharacterClass;
+    public GameObject p2StrikerCharacter;
+    public GameObject p2BlockerCharacter;
+    public GameObject player4Panel;
 
     public GameObject player3Panel;
     public bool p3IsStriker;
@@ -21,6 +29,8 @@ public class Player3LoginManager : MonoBehaviour {
     void Start()
     {
         numberOfPlayers = PlayerLoginManager.numberOfPlayers;
+        p1CharacterClass = PlayerLoginManager.p1CharacterClass;
+        p2CharacterClass = Player2LoginManager.p2CharacterClass;
         p3IsStriker = true;
 
         player3Panel.SetActive(true);
@@ -30,6 +40,41 @@ public class Player3LoginManager : MonoBehaviour {
         p3StrikerCharacter.SetActive(true);
         p3BlockerCharacter.SetActive(false);
         p3NextButton.SetActive(false);
+
+
+        if (p1CharacterClass == 0)
+        {
+            p1StrikerCharacter.SetActive(true);
+            p1BlockerCharacter.SetActive(false);
+        }
+
+        if (p1CharacterClass == 1)
+        {
+            p1StrikerCharacter.SetActive(false);
+            p1BlockerCharacter.SetActive(true);
+        }
+
+        if (p2CharacterClass == 0)
+        {
+            p2StrikerCharacter.SetActive(true);
+            p2BlockerCharacter.SetActive(false);
+        }
+
+        if (p2CharacterClass == 1)
+        {
+            p2StrikerCharacter.SetActive(false);
+            p2BlockerCharacter.SetActive(true);
+        }
+
+        if (numberOfPlayers == 3)
+        {
+            player4Panel.SetActive(false);
+        }
+
+        if (numberOfPlayers == 4)
+        {
+            player4Panel.SetActive(true);
+        }
     }
 
     public void Player3CharacterSelect()
@@ -37,6 +82,7 @@ public class Player3LoginManager : MonoBehaviour {
         if (p3IsStriker)
         {
             p3IsStriker = false;
+            p3CharacterClass = 0;
             p3StrikerCharacter.SetActive(false);
             p3BlockerCharacter.SetActive(true);
         }
@@ -44,6 +90,7 @@ public class Player3LoginManager : MonoBehaviour {
         else
         {
             p3IsStriker = true;
+            p3CharacterClass = 1;
             p3StrikerCharacter.SetActive(true);
             p3BlockerCharacter.SetActive(false);
         }
@@ -57,7 +104,7 @@ public class Player3LoginManager : MonoBehaviour {
         p3NextScreenButton.Select();
     }
 
-    public void StartGame()
+    public void Next()
     {
         Debug.Log(numberOfPlayers);
         if (numberOfPlayers == 3)

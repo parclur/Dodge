@@ -45,7 +45,7 @@ public class Player2LoginManager : MonoBehaviour {
             p1BlockerCharacter.SetActive(false);
         }
 
-        if (p1CharacterClass == 0)
+        if (p1CharacterClass == 1)
         {
             p1StrikerCharacter.SetActive(false);
             p1BlockerCharacter.SetActive(true);
@@ -69,6 +69,7 @@ public class Player2LoginManager : MonoBehaviour {
         if (p2IsStriker)
         {
             p2IsStriker = false;
+            p2CharacterClass = 0;
             p2StrikerCharacter.SetActive(false);
             p2BlockerCharacter.SetActive(true);
         }
@@ -76,6 +77,7 @@ public class Player2LoginManager : MonoBehaviour {
         else
         {
             p2IsStriker = true;
+            p2CharacterClass = 1;
             p2StrikerCharacter.SetActive(true);
             p2BlockerCharacter.SetActive(false);
         }
