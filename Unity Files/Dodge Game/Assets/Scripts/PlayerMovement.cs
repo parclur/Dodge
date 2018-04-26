@@ -89,7 +89,13 @@ public class PlayerMovement : MonoBehaviour {
 		anim.SetInteger ("CharacterClass", characterClass);
 
         InitPlayer();
-	}
+
+        if (characterClass == 1)
+        {
+            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1.22f, 1.44f);
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.089f, -0.28f);
+        }
+    }
 	
 
 	// Update is called once per frame
@@ -620,26 +626,12 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (dashAmount > 0 && Input.GetAxis(playerShield) > 0)
         {
-            speedMultiplier = 13f;
+            speedMultiplier = 4f;
             dashAmount--;
 			anim.SetBool ("Dashing", true);
 
             canBeHit = false;
             StartCoroutine(NormalSpeed());
-        }
-        else
-        {
-            canBeHit = true;
-            //speedMultiplier = 1.0f;
-        }
-
-        if(canCheckDash)
-        {
-            if (dashAmount <= 0)
-            {
-                canCheckDash = false;
-                StartCoroutine(AbleToDashAgain());
-            }
         }
 
     }
@@ -647,8 +639,11 @@ public class PlayerMovement : MonoBehaviour {
 
     IEnumerator NormalSpeed()
     {
-        yield return new WaitForSeconds(0.0001f);
+        yield return new WaitForSeconds(0.1f);
         speedMultiplier = 1.0f;
+        canBeHit = true;
+        canCheckDash = true;
+        StartCoroutine(AbleToDashAgain());
 
     }
 
@@ -677,10 +672,8 @@ public class PlayerMovement : MonoBehaviour {
 
     IEnumerator AbleToDashAgain()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         dashAmount = 1;
-        speedMultiplier = 1.0f;
-        canCheckDash = true;
     }
 
 

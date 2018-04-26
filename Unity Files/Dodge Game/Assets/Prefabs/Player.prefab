@@ -166,7 +166,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.041116238, y: -0.07480669}
+  m_Offset: {x: -0.04, y: -0.075}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -177,7 +177,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2050409, y: 1.8503866}
+  m_Size: {x: 1.2, y: 1.85}
   m_EdgeRadius: 0
 --- !u!95 &95192168707725616
 Animator:
@@ -222,7 +222,7 @@ MonoBehaviour:
   cursorPrefab: {fileID: 1685409293584496, guid: 03e11f4389276d74688efbd67aa19d78,
     type: 2}
   team: 1
-  characterClass: 1
+  characterClass: 0
   ballUI: {fileID: 1865808414279996}
   rechargeUI: {fileID: 1281344016465330}
 --- !u!212 &212292273750782474

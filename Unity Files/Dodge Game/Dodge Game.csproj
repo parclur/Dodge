@@ -386,6 +386,7 @@
     <Compile Include="Assets\Rewired\Internal\Scripts\Misc\ExternalTools.cs" />
     <Compile Include="Assets\Rewired\Internal\Scripts\Platforms\Ouya\OuyaInputSource.cs" />
     <Compile Include="Assets\Scripts\BallScript.cs" />
+    <Compile Include="Assets\Scripts\BallTrailScript.cs" />
     <Compile Include="Assets\Scripts\EndSceneUIData.cs" />
     <Compile Include="Assets\Scripts\EndScript.cs" />
     <Compile Include="Assets\Scripts\GroundCheckScript.cs" />
