@@ -44,6 +44,9 @@ public class ManagerScript : MonoBehaviour {
 
     bool canCheck = true;
 
+    bool onLevel = false;
+    bool endofRound = false;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -51,12 +54,12 @@ public class ManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        CheckPlayer();
+
     }
 
     // Update is called once per frame
     void Update () {
-
         CheckPlayer();
 
         if(canCheck)
@@ -98,7 +101,16 @@ public class ManagerScript : MonoBehaviour {
             player3 = GameObject.FindGameObjectWithTag("Player3");
             player4 = GameObject.FindGameObjectWithTag("Player4");
 
-            SetTeams();
+            if (GetComponent<UIManager>() && !endofRound )
+            {
+                GetComponent<UIManager>().EnableRoundEndText("");
+            }
+
+            if (!onLevel)
+            {
+                SetTeams();
+                onLevel = true;
+            }
         }
     }
 
@@ -132,8 +144,6 @@ public class ManagerScript : MonoBehaviour {
 
     public int GetPlayerClass(string tag)
     {
-        Debug.Log(tag);
-
         if (tag == "Player1")
         {
             return player1Class;
@@ -162,51 +172,17 @@ public class ManagerScript : MonoBehaviour {
 
     void SetTeams()
     {
+        team1Players.Add(player1);
+        sizeOfTeam1++;
 
-        if (player1.GetComponent<PlayerMovement>().team == 1)
-        {
-            team1Players.Add(player1);
-            sizeOfTeam1++;
-        }
-        else
-        {
-            team2Players.Add(player1);
-            sizeOfTeam2++;
-        }
+        team2Players.Add(player2);
+        sizeOfTeam2++;
 
-        if (player2.GetComponent<PlayerMovement>().team == 1)
-        {
-            team1Players.Add(player2);
-            sizeOfTeam1++;
-        }
-        else
-        {
-            team2Players.Add(player2);
-            sizeOfTeam2++;
-        }
+        team1Players.Add(player3);
+        sizeOfTeam1++;
 
-        if (player3.GetComponent<PlayerMovement>().team == 1)
-        {
-            team1Players.Add(player3);
-            sizeOfTeam1++;
-        }
-        else
-        {
-            team2Players.Add(player3);
-            sizeOfTeam2++;
-        }
-
-        if (player4.GetComponent<PlayerMovement>().team == 1)
-        {
-            team1Players.Add(player4);
-            sizeOfTeam1++;
-        }
-        else
-        {
-            team2Players.Add(player4);
-            sizeOfTeam2++;
-        }
-
+        team2Players.Add(player4);
+        sizeOfTeam2++;
     }
 
     void CheckTeamOne()
@@ -223,6 +199,7 @@ public class ManagerScript : MonoBehaviour {
             {
                 // appear congratulations to the winning team, increase score, reset
                 canCheck = false;
+                endofRound = true;
                 Debug.Log("Team2 Wins Round " + gameRound + "!");
 
                 if (GetComponent<UIManager>())
@@ -251,6 +228,8 @@ public class ManagerScript : MonoBehaviour {
             {
                 // appear congratulations to the winning team, increase score, reset
                 canCheck = false;
+                endofRound = true;
+
                 Debug.Log("Team1 Wins Round " + gameRound + "!");
 
                 if (GetComponent<UIManager>())
@@ -304,7 +283,7 @@ public class ManagerScript : MonoBehaviour {
             {
                 GameObject.Find("Ball" + i).GetComponent<BallScript>().ResetPos();
             }
-
+            endofRound = false;
             canCheck = true;
         }
 
@@ -363,8 +342,6 @@ public class ManagerScript : MonoBehaviour {
         {
             player4Kills++;
         }
-        Debug.Log(player1Kills + "\n" + player2Kills);
-        Debug.Log(player3Kills + "\n" + player4Kills);
     }
 
     public void IncrementPlayerDeaths(string player)

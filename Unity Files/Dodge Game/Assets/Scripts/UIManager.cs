@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        CheckUI();
         UpdateTexts();
 	}
 
@@ -32,6 +34,18 @@ public class UIManager : MonoBehaviour {
         redTeamScoreText.text = redTeamScore.ToString();
         blueTeamScoreText.text = blueTeamScore.ToString();
         roundNumText.text = roundNum.ToString();
+    }
+
+    void CheckUI()
+    {
+        if (SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "Test_Level_2"
+            || SceneManager.GetActiveScene().name == "Test_Level_3" || SceneManager.GetActiveScene().name == "Test_Level_4")
+        {
+            redTeamScoreText = GameObject.Find("RedTeamScore").GetComponent<Text>();
+            blueTeamScoreText = GameObject.Find("BlueTeamScore").GetComponent<Text>();
+            roundNumText = GameObject.Find("RoundNum").GetComponent<Text>();
+            roundEndText = GameObject.Find("RoundWinText").GetComponent<Text>();
+        }
     }
 
     public void SetRedTeamNum(int newRedNum)

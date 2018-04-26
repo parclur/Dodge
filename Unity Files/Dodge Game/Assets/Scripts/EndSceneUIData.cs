@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndSceneUIData : MonoBehaviour {
 
@@ -43,6 +44,7 @@ public class EndSceneUIData : MonoBehaviour {
     {
         if (GameObject.Find("End_Canvas"))
             UpdateTexts();
+
     }
 
     void UpdateTexts()
@@ -56,6 +58,15 @@ public class EndSceneUIData : MonoBehaviour {
         player4StatText.text = "Kills: " + player4KillNum.ToString() + " \n" +
                                "Deaths: " + player4DeadNum.ToString();
 
+    }
+
+    void CheckPlayer()
+    {
+        if (SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "Test_Level_2"
+            || SceneManager.GetActiveScene().name == "Test_Level_3" || SceneManager.GetActiveScene().name == "Test_Level_4")
+        {
+           
+        }
     }
 
     public void SetKills(int p1, int p2, int p3, int p4)
