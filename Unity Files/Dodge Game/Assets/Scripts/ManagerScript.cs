@@ -9,6 +9,7 @@ public class ManagerScript : MonoBehaviour {
     // and reset if on team is out
     public int gameRound = 1;
     public int maxRounds = 7;
+    public int playerAmount = 0;
 
     public int team1Score = 0;
     public int team2Score = 0;
@@ -165,6 +166,15 @@ public class ManagerScript : MonoBehaviour {
         sizeOfBalls = 0;
     }
 
+    public void SetPlayerAmount(int numPlayers)
+    {
+        playerAmount = numPlayers;
+    }
+
+    public int GetNumPlayers()
+    {
+        return playerAmount;
+    }
 
     void CheckPlayer()
     {

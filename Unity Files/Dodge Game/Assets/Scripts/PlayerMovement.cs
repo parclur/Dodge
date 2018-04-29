@@ -57,6 +57,8 @@ public class PlayerMovement : MonoBehaviour {
 	Animator anim;
 	SpriteRenderer sr;
 
+    bool ableToSpawn = true;
+
 	enum State{
 		IDLE = 0, JUMPING, RUNNING	
 	};
@@ -103,7 +105,7 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!isOut)
+        if (!isOut && ableToSpawn)
         {
 			anim.SetBool ("Throwing", false);
 			anim.SetBool ("Catching", false);
@@ -148,24 +150,28 @@ public class PlayerMovement : MonoBehaviour {
 
     public void ResetPlayer()
     {
-        gameObject.transform.position = spawn;
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-        shieldHealth = 1;
-		sr.flipX = gameObject.transform.position.x > 0;
-
-		ballUI.SetActive (false);
-
-        if(numBalls>0)
+        if(ableToSpawn)
         {
-            GameObject ball = Instantiate(ballPrefab);
-            ball.name = ballSavedName;
-            numBalls = 0;
-            ball.GetComponent<BallScript>().ResetPos();
-        }
+            gameObject.transform.position = spawn;
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            shieldHealth = 1;
+            sr.flipX = gameObject.transform.position.x > 0;
 
-        isOut = false;
-        gameObject.SetActive(true);
-        anim.SetInteger("CharacterClass", characterClass);
+            ballUI.SetActive(false);
+
+            if (numBalls > 0)
+            {
+                GameObject ball = Instantiate(ballPrefab);
+                ball.name = ballSavedName;
+                numBalls = 0;
+                ball.GetComponent<BallScript>().ResetPos();
+            }
+
+            isOut = false;
+            gameObject.SetActive(true);
+            anim.SetInteger("CharacterClass", characterClass);
+
+        }
 
     }
 
@@ -175,6 +181,15 @@ public class PlayerMovement : MonoBehaviour {
         spawn = gameObject.transform.position;
         if (gameObject.tag == "Player1")
         {
+            if (GameObject.Find("GameManager").GetComponent<ManagerScript>().GetNumPlayers() >= 1)
+            {
+                ableToSpawn = true;
+            }
+            else
+            {
+                ableToSpawn = false;
+            }
+
             spawn = GameObject.Find("Player_Start_Point_Blue_1").transform.position;
             playerHor = "P1LSH";
             playerVer = "P1LSV";
@@ -187,6 +202,15 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if (gameObject.tag == "Player2")
         {
+            if (GameObject.Find("GameManager").GetComponent<ManagerScript>().GetNumPlayers() >= 2 || GameObject.Find("GameManager").GetComponent<ManagerScript>().GetNumPlayers() == 1)
+            {
+                ableToSpawn = true;
+            }
+            else
+            {
+                ableToSpawn = false;
+            }
+
             spawn = GameObject.Find("Player_Start_Point_Red_1").transform.position;
             playerHor = "P2LSH";
             playerVer = "P2LSV";
@@ -200,6 +224,15 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if (gameObject.tag == "Player3")
         {
+            if (GameObject.Find("GameManager").GetComponent<ManagerScript>().GetNumPlayers() >= 3 || GameObject.Find("GameManager").GetComponent<ManagerScript>().GetNumPlayers() == 1)
+            {
+                ableToSpawn = true;
+            }
+            else
+            {
+                ableToSpawn = false;
+            }
+
             spawn = GameObject.Find("Player_Start_Point_Blue_2").transform.position;
             playerHor = "P3LSH";
             playerVer = "P3LSV";
@@ -213,6 +246,15 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if (gameObject.tag == "Player4")
         {
+            if (GameObject.Find("GameManager").GetComponent<ManagerScript>().GetNumPlayers() >= 4 || GameObject.Find("GameManager").GetComponent<ManagerScript>().GetNumPlayers() == 1)
+            {
+                ableToSpawn = true;
+            }
+            else
+            {
+                ableToSpawn = false;
+            }
+
             spawn = GameObject.Find("Player_Start_Point_Red_2").transform.position;
             playerHor = "P4LSH";
             playerVer = "P4LSV";
@@ -344,7 +386,6 @@ public class PlayerMovement : MonoBehaviour {
         cursorPrefab.transform.position = new Vector2(gameObject.transform.position.x + spawnX, gameObject.transform.position.y + spawnY);
     }
 
-
 	void CheckThrow()
 	{
 
@@ -433,7 +474,6 @@ public class PlayerMovement : MonoBehaviour {
         else
             StartCoroutine(AbleToShootAgain());
 	}
-
 
     void CheckShield2()
     {
@@ -623,7 +663,6 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-
     void Dash()
     {
         if (dashAmount > 0 && Input.GetAxis(playerShield) > 0)
@@ -638,7 +677,6 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-
     IEnumerator NormalSpeed()
     {
         yield return new WaitForSeconds(0.1f);
@@ -649,7 +687,6 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-
     IEnumerator AbleToShieldAgain()
     {
         yield return new WaitForSeconds(2.0f);
@@ -657,13 +694,11 @@ public class PlayerMovement : MonoBehaviour {
         shieldHealth = 1;
     }
 
-
     IEnumerator AbleToShootAgain()
     {
         yield return new WaitForSeconds(0.3f);
         ableToThrow = true;
     }
-
 
     IEnumerator AbleToPickUpAgain()
     {
@@ -671,13 +706,11 @@ public class PlayerMovement : MonoBehaviour {
         ableToPickUp = true;
     }
 
-
     IEnumerator AbleToDashAgain()
     {
         yield return new WaitForSeconds(1.0f);
         dashAmount = 1;
     }
-
 
     void OnCollisionEnter2D(Collision2D col)
 	{
