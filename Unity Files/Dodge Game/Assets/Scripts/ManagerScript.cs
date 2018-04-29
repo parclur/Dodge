@@ -349,12 +349,14 @@ public class ManagerScript : MonoBehaviour {
 
     void ResetMatch()
     {
-        gameRound++;
-
-        if(gameRound > maxRounds)
-        {
-            ResetGame();
-        }
+		if (team1Score > (maxRounds / 2)) 
+		{
+			ResetGame ();
+		} 
+		else if (team2Score > (maxRounds / 2)) 
+		{
+			ResetGame ();
+		}
         else
         {
             for (int i = 0; i < sizeOfTeam1; i++)
@@ -376,6 +378,7 @@ public class ManagerScript : MonoBehaviour {
             }
             endofRound = false;
             canCheck = true;
+			gameRound++;
         }
 
 
