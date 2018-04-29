@@ -100,6 +100,11 @@ public class ManagerScript : MonoBehaviour {
             }
         }
 
+        if(SceneManager.GetActiveScene().name == "Start_Menu")
+        {
+            MenuSettings();
+        }
+
         if (canCheck)
         {
             CheckTeamOne();
@@ -115,6 +120,51 @@ public class ManagerScript : MonoBehaviour {
 
 
     }
+
+    void MenuSettings()
+    {
+        maxRounds = 0;
+        team1Score = 0;
+        team2Score = 0;
+        gameRound = 1;
+
+        canCheck = true;
+
+        onLevel = false;
+        endofRound = false;
+
+
+
+        player1 = null;
+        player2 = null;
+        player3 = null;
+        player4 = null;
+
+        player1Kills = 0;
+        player2Kills = 0;
+        player3Kills = 0;
+        player4Kills = 0;
+
+        player1Deaths = 0;
+        player2Deaths = 0;
+        player3Deaths = 0;
+        player4Deaths = 0;
+
+        player1Class = 0;
+        player2Class = 0;
+        player3Class = 0;
+        player4Class = 0;
+
+        team1Players.Clear();
+        sizeOfTeam1 = 0;
+
+        team2Players.Clear();
+        sizeOfTeam2 = 0;
+
+        ballList.Clear();
+        sizeOfBalls = 0;
+    }
+
 
     void CheckPlayer()
     {
