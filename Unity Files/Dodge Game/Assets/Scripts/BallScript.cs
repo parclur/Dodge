@@ -22,7 +22,7 @@ public class BallScript : MonoBehaviour {
 
 	AudioSource collisionSound;
 	GameObject lastCollisionObject = null;
-	float collisionCooldown = 0.5f;
+	float collisionCooldown = 0.1f;
 
 
 	// Use this for initialization
@@ -161,6 +161,7 @@ public class BallScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col)
 	{
+
 		if (col.gameObject.layer == LayerMask.NameToLayer("Ground") && lastCollisionObject != col.gameObject) {
 			
 			collisionSound.Play();
