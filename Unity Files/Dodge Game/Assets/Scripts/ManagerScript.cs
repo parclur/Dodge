@@ -47,8 +47,27 @@ public class ManagerScript : MonoBehaviour {
     bool onLevel = false;
     bool endofRound = false;
 
+    public static GameObject instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
+
     private void Awake()
     {
+        //Check if instance already exists
+        if (instance == null)
+        {
+            //if not, set instance to this
+            instance = gameObject;
+        }
+
+
+        //If instance already exists and it's not this:
+        else if (instance != this)
+        {
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
+        }
+
+
+        //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
     }
 
