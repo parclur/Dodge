@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraPanScript : MonoBehaviour {
 
 	float minX; float maxX; float minY; float maxY;
-	public GameObject[] Players;
+	List<GameObject> players = new List<GameObject> ();
+	public GameObject manager;
 	public Vector2 cameraBuffer;
 
 	float camWidth ;
@@ -13,7 +14,8 @@ public class CameraPanScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Players = new GameObject[4];
+		manager = GameObject.Find ("GameManager");
+		//players = new List<GameObject> ();
 
 		
 	}
@@ -23,14 +25,26 @@ public class CameraPanScript : MonoBehaviour {
 		UpdatePlayers ();
 		CalculateFrame ();
 		CalculatePosition ();
-
-
 		
 	}
 
 	void UpdatePlayers(){
-		Players [0] = GameObject.FindGameObjectWithTag ("Player1"); Players [1] = GameObject.FindGameObjectWithTag ("Player2"); 
-		Players [2] = GameObject.FindGameObjectWithTag ("Player3"); Players [3] = GameObject.FindGameObjectWithTag ("Player4");
+		if (manager.GetComponent<ManagerScript> ().team2Players != null) 
+		{
+			for (int i = 1; i <= 4; i++) {
+				if (GameObject.Find ("Player" + i)) {
+					players.Add (GameObject.Find ("Player" + i));
+				}
+			}
+
+			//players = manager.GetComponent<ManagerScript> ().team1Players;
+			//players.AddRange (manager.GetComponent<ManagerScript> ().team2Players);
+
+
+			Debug.Log (players.Count);
+
+		}
+			
 	}
 
 	void CalculateFrame () {
@@ -40,19 +54,21 @@ public class CameraPanScript : MonoBehaviour {
 		maxY = -Mathf.Infinity;
 
 
-		foreach (GameObject player in Players){
+		foreach (GameObject player in players){
 			Vector3 tempPlayer = player.transform.position;
-			if (tempPlayer.x < minX) {
-				minX = tempPlayer.x;
-			}
-			if (tempPlayer.x > maxX) {
-				maxX = tempPlayer.x;
-			}
-			if (tempPlayer.y < minY) {
-				minY = tempPlayer.y;
-			}
-			if (tempPlayer.y > maxY) {
-				maxY = tempPlayer.y;
+			if (player.GetComponent<PlayerMovement> ().isOut == false) {
+				if (tempPlayer.x < minX) {
+					minX = tempPlayer.x;
+				}
+				if (tempPlayer.x > maxX) {
+					maxX = tempPlayer.x;
+				}
+				if (tempPlayer.y < minY) {
+					minY = tempPlayer.y;
+				}
+				if (tempPlayer.y > maxY) {
+					maxY = tempPlayer.y;
+				}
 			}
 		}
 		
@@ -64,11 +80,13 @@ public class CameraPanScript : MonoBehaviour {
 		Vector3 center = Vector3.zero;
 		Vector3 finalPos;
 
-		foreach (GameObject player in Players) {
-			center += player.transform.position;
+		foreach (GameObject player in players) {
+			if (player.GetComponent<PlayerMovement>().isOut == false){
+				center += player.transform.position;
+			}
 
 		}
-		finalPos = center / Players.Length;
+		finalPos = center / players.Count;
 
 		float sizeX = maxX - minX + cameraBuffer.x;
 		float sizeY = maxY - minY + cameraBuffer.y;
@@ -84,7 +102,7 @@ public class CameraPanScript : MonoBehaviour {
 
 		Camera cam = GetComponent<Camera>();
 
-		cam.orthographicSize = windowSize;
+		cam.orthographicSize = (windowSize + cam.orthographicSize)/2f;
 		camHeight = cam.orthographicSize * 2f;
 		camWidth = camHeight * cam.aspect;
 
@@ -106,7 +124,8 @@ public class CameraPanScript : MonoBehaviour {
 
 		//Debug.Log (finalPos);
 
-		gameObject.transform.position = new Vector3 (finalPos.x, finalPos.y, transform.position.z);
+		gameObject.transform.position = Vector3.Lerp (transform.position, new Vector3(finalPos.x, finalPos.y, transform.position.z), 0.5f);
+
 	
 
 	}

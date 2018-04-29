@@ -34,11 +34,11 @@ public class ManagerScript : MonoBehaviour {
     int player3Class;
     int player4Class;
 
-    List<GameObject> team1Players = new List<GameObject>();
-    int sizeOfTeam1 = 0;
+    public List<GameObject> team1Players = new List<GameObject>();
+    public int sizeOfTeam1 = 0;
 
-    List<GameObject> team2Players = new List<GameObject>();
-    int sizeOfTeam2 = 0;
+    public List<GameObject> team2Players = new List<GameObject>();
+    public int sizeOfTeam2 = 0;
 
     List<GameObject> ballList = new List<GameObject>();
     int sizeOfBalls = 0;
