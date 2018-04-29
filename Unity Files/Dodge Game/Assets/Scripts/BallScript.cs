@@ -20,8 +20,15 @@ public class BallScript : MonoBehaviour {
 	float trailSpawnCountdownMax = 0.01f;
 	float trailSpawnCountdown = 0.01f;
 
+	AudioSource collisionSound;
+	GameObject lastCollisionObject = null;
+	float collisionCooldown = 0.5f;
+
+
 	// Use this for initialization
 	void Start () {
+		collisionSound = GetComponent<AudioSource> ();
+
         thrower = null;
         SetSpawn();
         rb = GetComponent<Rigidbody2D> ();
@@ -31,6 +38,12 @@ public class BallScript : MonoBehaviour {
 	void Update () {
 		CheckForDeadBall ();
 		SpawnTrail ();
+
+		collisionCooldown -= Time.deltaTime;
+		if (collisionCooldown <= 0f) {
+			lastCollisionObject = null;
+			collisionCooldown = 0f;
+		}
 	}
 
 	void SpawnTrail()
@@ -144,5 +157,23 @@ public class BallScript : MonoBehaviour {
             GameMan.GetComponent<ManagerScript>().IncrementPlayerKills(possessorName);
         }
     }
+
+
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if (col.gameObject.layer == LayerMask.NameToLayer("Ground") && lastCollisionObject != col.gameObject) {
+			
+			collisionSound.Play();
+
+			lastCollisionObject = col.gameObject;
+			collisionCooldown = 0.1f;
+		}
+	}
+
+	void OnCollisionExit2D(Collision2D col)
+	{
+		
+	}
+
 
 }
