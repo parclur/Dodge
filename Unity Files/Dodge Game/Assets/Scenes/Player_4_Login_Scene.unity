@@ -330,8 +330,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Player1CharacterSelect
+      - m_Target: {fileID: 1987297633}
+        m_MethodName: Player4CharacterSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1984,8 +1984,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1987297633}
+        m_MethodName: Next
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3123,8 +3123,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Player1CharacterSelect
+      - m_Target: {fileID: 1987297633}
+        m_MethodName: Player4CharacterSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3412,7 +3412,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1987297633}
         m_MethodName: Back
         m_Mode: 1
         m_Arguments:
@@ -3596,8 +3596,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Player1Ready
+      - m_Target: {fileID: 1987297633}
+        m_MethodName: Player4Ready
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3683,8 +3683,8 @@ MonoBehaviour:
   p4CharacterRightSelectButton: {fileID: 215174436}
   p4CharacterLeftSelectButton: {fileID: 1628347560}
   p4CharacterSelectButton: {fileID: 215174438}
-  p4ReadyButton: {fileID: 0}
-  p4ReadyScreenButton: {fileID: 0}
+  p4ReadyButton: {fileID: 1932775542}
+  p4ReadyScreenButton: {fileID: 1932775544}
   p4NextButton: {fileID: 1226602495}
   p4NextScreenButton: {fileID: 1226602497}
   buttonClick: {fileID: 8300000, guid: 2498cacdc2711d442a0013c29e75bc14, type: 3}

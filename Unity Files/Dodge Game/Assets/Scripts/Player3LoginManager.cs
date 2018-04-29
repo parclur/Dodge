@@ -137,6 +137,6 @@ public class Player3LoginManager : MonoBehaviour {
 
     public void Back()
     {
-        SceneManager.LoadScene("Player_1_Login");
+        SceneManager.LoadScene("Player_1_Login_Scene");
     }
 }
