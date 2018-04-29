@@ -349,6 +349,8 @@ public class ManagerScript : MonoBehaviour {
 
     void ResetMatch()
     {
+		GameObject.Find ("Buzzer").GetComponent<AudioSource> ().Play ();
+
 		if (team1Score > (maxRounds / 2)) 
 		{
 			ResetGame ();
