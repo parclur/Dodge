@@ -9,7 +9,7 @@ public class ManagerScript : MonoBehaviour {
     // and reset if on team is out
     public int gameRound = 1;
     public int maxRounds = 7;
-    public int playerAmount = 0;
+    public int playerAmount;// = 0;
 
     public int team1Score = 0;
     public int team2Score = 0;
@@ -173,6 +173,7 @@ public class ManagerScript : MonoBehaviour {
 
     public int GetNumPlayers()
     {
+        Debug.Log(playerAmount);
         return playerAmount;
     }
 

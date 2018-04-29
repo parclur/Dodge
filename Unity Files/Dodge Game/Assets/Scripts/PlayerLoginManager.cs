@@ -51,6 +51,8 @@ public class PlayerLoginManager : MonoBehaviour {
         buttonClickSound.PlayOneShot(buttonClick, 1f);
 
         numberOfPlayers = 1;
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerAmount(numberOfPlayers);
+
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
         player1Panel.SetActive(true);
@@ -106,6 +108,8 @@ public class PlayerLoginManager : MonoBehaviour {
         buttonClickSound.PlayOneShot(buttonClick, 1f);
 
         numberOfPlayers = 2;
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerAmount(numberOfPlayers);
+
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
         player1Panel.SetActive(true);
@@ -129,6 +133,8 @@ public class PlayerLoginManager : MonoBehaviour {
         buttonClickSound.PlayOneShot(buttonClick, 1f);
 
         numberOfPlayers = 3;
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerAmount(numberOfPlayers);
+
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
         player1Panel.SetActive(true);
@@ -152,6 +158,8 @@ public class PlayerLoginManager : MonoBehaviour {
         buttonClickSound.PlayOneShot(buttonClick, 1f);
 
         numberOfPlayers = 4;
+        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerAmount(numberOfPlayers);
+
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
         player1Panel.SetActive(true);

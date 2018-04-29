@@ -22,7 +22,6 @@ public class PlayerNumbers : MonoBehaviour {
         numberOfPlayers = 1;
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
-        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerAmount(numberOfPlayers);
     }
 
     public void TwoPlayer()
@@ -30,8 +29,6 @@ public class PlayerNumbers : MonoBehaviour {
         numberOfPlayers = 2;
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
-        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerAmount(numberOfPlayers);
-
     }
 
     public void ThreePlayer()
@@ -39,8 +36,6 @@ public class PlayerNumbers : MonoBehaviour {
         numberOfPlayers = 3;
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
-        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerAmount(numberOfPlayers);
-
     }
 
     public void FourPlayer()
@@ -48,7 +43,5 @@ public class PlayerNumbers : MonoBehaviour {
         numberOfPlayers = 4;
         playerNumCanvas.SetActive(false);
         playerLoginCanvas.SetActive(true);
-        GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerAmount(numberOfPlayers);
-
     }
 }
