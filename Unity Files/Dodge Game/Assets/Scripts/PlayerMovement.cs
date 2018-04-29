@@ -67,38 +67,42 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject ballUI;
 	public GameObject rechargeUI;
 
+	bool aDown = false;
+
 	// Use this for initialization
 	void Start () {
+		
+		InitPlayer();
 
-        characterClass = GameObject.Find("GameManager").GetComponent<ManagerScript>().GetPlayerClass(gameObject.name);
+		if (ableToSpawn) {
+			characterClass = GameObject.Find ("GameManager").GetComponent<ManagerScript> ().GetPlayerClass (gameObject.name);
 
-        cursorPrefab = Instantiate(cursorPrefab);
-        shieldPrefab = Instantiate(shieldPrefab);
-        cursorPrefab.transform.parent = gameObject.transform;
-        shieldPrefab.transform.parent = gameObject.transform;
-        cursorPrefab.transform.position = gameObject.transform.position;
-        shieldPrefab.transform.position = gameObject.transform.position;
-        cursorPrefab.name = "Cursor";
-        shieldPrefab.name = "Shield";
-        shieldPrefab.SetActive(false);
+			cursorPrefab = Instantiate (cursorPrefab);
+			shieldPrefab = Instantiate (shieldPrefab);
+			cursorPrefab.transform.parent = gameObject.transform;
+			shieldPrefab.transform.parent = gameObject.transform;
+			cursorPrefab.transform.position = gameObject.transform.position;
+			shieldPrefab.transform.position = gameObject.transform.position;
+			cursorPrefab.name = "Cursor";
+			shieldPrefab.name = "Shield";
+			shieldPrefab.SetActive (false);
 
-		ballUI.SetActive (false);
+			ballUI.SetActive (false);
 
-        rig = GetComponent<Rigidbody2D>();
-        onGround = false;
-		color = GetComponent<SpriteRenderer>().color;
+			rig = GetComponent<Rigidbody2D> ();
+			onGround = false;
+			color = GetComponent<SpriteRenderer> ().color;
 
-		anim = GetComponent<Animator> ();
-		sr = GetComponent<SpriteRenderer> ();
-		anim.SetInteger ("CharacterClass", characterClass);
+			anim = GetComponent<Animator> ();
+			sr = GetComponent<SpriteRenderer> ();
+			anim.SetInteger ("CharacterClass", characterClass);
 
-        InitPlayer();
 
-        if (characterClass == 1)
-        {
-            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1.22f, 1.44f);
-            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.089f, -0.28f);
-        }
+			if (characterClass == 1) {
+				gameObject.GetComponent<BoxCollider2D> ().size = new Vector2 (1.22f, 1.44f);
+				gameObject.GetComponent<BoxCollider2D> ().offset = new Vector2 (-0.089f, -0.28f);
+			}
+		}
     }
 	
 
@@ -288,7 +292,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
 
-		if (yMove != 0 && onGround)
+		if (yMove != 0 && onGround && !aDown)
 		{
 			onGround = false;
 			groundTimer = 0.1f;
@@ -305,6 +309,8 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			anim.SetInteger ("State", (int)State.IDLE);
 		}
+
+		aDown = yMove != 0;
 
     }
 
