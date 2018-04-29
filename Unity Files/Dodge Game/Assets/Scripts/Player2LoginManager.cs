@@ -22,6 +22,8 @@ public class Player2LoginManager : MonoBehaviour {
     public GameObject p2CharacterRightSelectButton;
     public GameObject p2CharacterLeftSelectButton;
     public UnityEngine.UI.Button p2CharacterSelectButton;
+    public GameObject p2ReadyButton;
+    public UnityEngine.UI.Button p2ReadyScreenButton;
     public GameObject p2NextButton;
     public UnityEngine.UI.Button p2NextScreenButton;
 
@@ -102,6 +104,7 @@ public class Player2LoginManager : MonoBehaviour {
 
         p2CharacterRightSelectButton.SetActive(false);
         p2CharacterLeftSelectButton.SetActive(false);
+        p2ReadyButton.SetActive(false);
         p2NextButton.SetActive(true);
         p2NextScreenButton.Select();
     }
@@ -123,5 +126,10 @@ public class Player2LoginManager : MonoBehaviour {
         {
             SceneManager.LoadScene("Player_3_Login_Scene");
         }
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("Player_1_Login");
     }
 }

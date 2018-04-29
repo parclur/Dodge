@@ -25,6 +25,8 @@ public class Player4LoginManager : MonoBehaviour {
     public GameObject p4CharacterRightSelectButton;
     public GameObject p4CharacterLeftSelectButton;
     public UnityEngine.UI.Button p4CharacterSelectButton;
+    public GameObject p4ReadyButton;
+    public UnityEngine.UI.Button p4ReadyScreenButton;
     public GameObject p4NextButton;
     public UnityEngine.UI.Button p4NextScreenButton;
 
@@ -113,6 +115,8 @@ public class Player4LoginManager : MonoBehaviour {
 
         p4CharacterRightSelectButton.SetActive(false);
         p4CharacterLeftSelectButton.SetActive(false);
+        p4ReadyButton.SetActive(false);
+        p4NextButton.SetActive(true);
         p4NextButton.SetActive(true);
         p4NextScreenButton.Select();
     }
@@ -126,5 +130,10 @@ public class Player4LoginManager : MonoBehaviour {
         GameObject.Find("GameManager").GetComponent<ManagerScript>().SetPlayerClass("Player4", p4CharacterClass);
 
         SceneManager.LoadScene("Level_Select");
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("Player_1_Login");
     }
 }

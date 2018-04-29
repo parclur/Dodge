@@ -23,6 +23,8 @@ public class Player3LoginManager : MonoBehaviour {
     public GameObject p3CharacterRightSelectButton;
     public GameObject p3CharacterLeftSelectButton;
     public UnityEngine.UI.Button p3CharacterSelectButton;
+    public GameObject p3ReadyButton;
+    public UnityEngine.UI.Button p3ReadyScreenButton;
     public GameObject p3NextButton;
     public UnityEngine.UI.Button p3NextScreenButton;
 
@@ -108,6 +110,8 @@ public class Player3LoginManager : MonoBehaviour {
 
         p3CharacterRightSelectButton.SetActive(false);
         p3CharacterLeftSelectButton.SetActive(false);
+        p3ReadyButton.SetActive(false);
+        p3NextButton.SetActive(true);
         p3NextButton.SetActive(true);
         p3NextScreenButton.Select();
     }
@@ -129,5 +133,10 @@ public class Player3LoginManager : MonoBehaviour {
         {
             SceneManager.LoadScene("Player_4_Login_Scene");
         }
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("Player_1_Login");
     }
 }
