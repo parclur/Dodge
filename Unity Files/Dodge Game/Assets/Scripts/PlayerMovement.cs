@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject ballPrefab;
     public GameObject shieldPrefab;
     public GameObject cursorPrefab;
+	public GameObject explosionPrefab;
 
 	public int team;
 
@@ -746,6 +747,8 @@ public class PlayerMovement : MonoBehaviour {
 
                     isOut = true;
                     col.gameObject.GetComponent<BallScript>().SendKillInfo(gameObject);
+					Vector3 deathPoint = transform.position;
+					Instantiate(explosionPrefab, deathPoint, Quaternion.identity);
 
                 }
                 else

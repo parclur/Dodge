@@ -221,6 +221,8 @@ MonoBehaviour:
     type: 2}
   cursorPrefab: {fileID: 1685409293584496, guid: 03e11f4389276d74688efbd67aa19d78,
     type: 2}
+  explosionPrefab: {fileID: 1908493609706840, guid: 09ee5f07f4dd8ad45b619426a3a140fb,
+    type: 2}
   team: 1
   characterClass: 0
   ballUI: {fileID: 1865808414279996}
